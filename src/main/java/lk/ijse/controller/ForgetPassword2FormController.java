@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.awt.event.KeyEvent;
+
 public class ForgetPassword2FormController {
 
     @FXML
