@@ -8,58 +8,58 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="668.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashBoardFormController">
+<AnchorPane fx:id="Anchorpane1" prefHeight="779.0" prefWidth="1198.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashBoardFormController">
    <children>
-      <AnchorPane prefHeight="669.0" prefWidth="213.0" style="-fx-background-color: #0c0c31;">
+      <AnchorPane layoutX="-7.0" layoutY="-41.0" prefHeight="821.0" prefWidth="220.0" style="-fx-background-color: #0c0c31;">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="6.0" layoutY="148.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Dashboard" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="231.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Dashboard" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="6.0" layoutY="202.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Customer" textFill="WHITE">
+            <JFXButton fx:id="btnCustomer" buttonType="RAISED" layoutX="12.0" layoutY="285.0" onAction="#btnCustomerOnAction" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Customer" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="256.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Order" textFill="WHITE">
+            <JFXButton layoutX="12.0" layoutY="339.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Order" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="311.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Supplier" textFill="WHITE">
+            <JFXButton layoutX="12.0" layoutY="394.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Supplier" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="367.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Batch" textFill="WHITE">
+            <JFXButton layoutX="12.0" layoutY="450.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Batch" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="6.0" layoutY="423.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Ingredients" textFill="WHITE">
+            <JFXButton layoutX="12.0" layoutY="506.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Ingredients" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="7.0" layoutY="479.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Employee" textFill="WHITE">
+            <JFXButton layoutX="13.0" layoutY="562.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Employee" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="7.0" layoutY="535.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Store" textFill="WHITE">
+            <JFXButton layoutX="13.0" layoutY="618.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Store" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="7.0" layoutY="589.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Payment" textFill="WHITE">
+            <JFXButton layoutX="13.0" layoutY="672.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Payment" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Anchorpane2" layoutX="213.0" prefHeight="669.0" prefWidth="899.0" style="-fx-background-color: #f0fdfa;">
+      <AnchorPane fx:id="Anchorpane2" layoutX="213.0" prefHeight="780.0" prefWidth="985.0" style="-fx-background-color: #f0fdfa;">
          <children>
             <Label layoutX="329.0" layoutY="17.0" text="Dash Board">
                <font>

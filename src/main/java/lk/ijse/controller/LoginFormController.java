@@ -90,7 +90,7 @@ public class LoginFormController {
 
         Scene scene = new Scene(rootNode);
 
-        Stage stage = (Stage) this.rootnode.getScene().getWindow();
+        Stage stage = (Stage) rootnode.getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.setTitle("Dashboard Form");
@@ -100,23 +100,13 @@ public class LoginFormController {
     void linkForgetPasswordOnAction(ActionEvent event) throws IOException, MessagingException {
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/forgetPassword2_form.fxml"));
-
-
         Scene scene = new Scene(root);
-
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-
         stage.setScene(scene);
-
-
         stage.setTitle("Password Forget Form");
-
-
         stage.show();
 
-    }
+
       /*  String recipientEmail = emailField.getText();
 
 
@@ -261,8 +251,8 @@ public class LoginFormController {
             throw e;
 
 
-        }
-    } */
+        }*/
+    }
 
     @FXML
     void linkNewAccountOnAction(ActionEvent event) {

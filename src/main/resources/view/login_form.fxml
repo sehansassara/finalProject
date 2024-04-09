@@ -51,11 +51,5 @@
          </font>
       </Text>
       <Hyperlink fx:id="linkForgetPassword" layoutX="363.0" layoutY="359.0" onAction="#linkForgetPasswordOnAction" prefHeight="22.0" prefWidth="150.0" text="Forgotten Password" />
-      <TextField fx:id="emailField" layoutX="336.0" layoutY="251.0" prefHeight="34.0" prefWidth="250.0" promptText="type here" />
-      <Text layoutX="266.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>
