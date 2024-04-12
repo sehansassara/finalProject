@@ -1,33 +1,52 @@
 package lk.ijse.controller;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class DashBoardFormController {
 
     @FXML
-    private AnchorPane Anchorpane1;
+    private AnchorPane anchorpaneDash;
 
     @FXML
-    private AnchorPane Anchorpane2;
+    void btnBatch1OnAction(ActionEvent event) {
+
+    }
 
     @FXML
-    private JFXButton btnCustomer;
+    void btnCustomer1OnAction(ActionEvent event) {
+
+    }
 
     @FXML
-    void btnCustomerOnAction(ActionEvent event) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/customer_form.fxml"));
+    void btnDashBoard1OnAction(ActionEvent event) {
 
+    }
 
-        Anchorpane2.getChildren().clear();
-        Anchorpane2.getChildren().add(dashboardPane);
+    @FXML
+    void btnEmployee1OnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnIngredient1OnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnOrder1OnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnOrderPlace1OnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSupplier1OnAction(ActionEvent event) {
+
     }
 
 }

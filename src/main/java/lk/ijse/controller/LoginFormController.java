@@ -47,53 +47,53 @@ public class LoginFormController {
 
     @FXML
     private TextField txtUserId;
-   
+
 
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
-            String userId = txtUserId.getText();
-            String pw = txtPassword.getText();
+        String userId = txtUserId.getText();
+        String pw = txtPassword.getText();
 
-            try {
-                checkCredential(userId, pw);
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-            }
+        try {
+            checkCredential(userId, pw);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
 
-        private void checkCredential(String userId, String pw) throws SQLException, IOException {
-            String sql = "SELECT userId, password FROM user WHERE userId = ?";
+    private void checkCredential(String userId, String pw) throws SQLException, IOException {
+        String sql = "SELECT userId, password FROM user WHERE userId = ?";
 
-            Connection connection = DbConnection.getInstance().getConnection();
-            PreparedStatement pstm = connection.prepareStatement(sql);
-            pstm.setObject(1, userId);
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, userId);
 
-            ResultSet resultSet = pstm.executeQuery();
-            if(resultSet.next()) {
-                String dbPw = resultSet.getString("password");
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String dbPw = resultSet.getString("password");
 
-                if(pw.equals(dbPw)) {
-                    navigateToTheDashboard();
-                } else {
-                    new Alert(Alert.AlertType.ERROR, "sorry! password is incorrect!").show();
-                }
-
+            if(pw.equals(dbPw)) {
+                navigateToTheDashboard();
             } else {
-                new Alert(Alert.AlertType.INFORMATION, "sorry! user id can't be find!").show();
+                new Alert(Alert.AlertType.ERROR, "sorry! password is incorrect!").show();
             }
+
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "sorry! user id can't be find!").show();
+        }
 
 
 
     }
     private void navigateToTheDashboard() throws IOException {
-        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashBoard_form.fxml"));
+        AnchorPane rootNode = FXMLLoader.load(getClass().getResource("/view/mainBoard_form.fxml"));
 
         Scene scene = new Scene(rootNode);
 
         Stage stage = (Stage) rootnode.getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
-        stage.setTitle("Dashboard Form");
+        stage.setTitle("main Board Form");
     }
 
     @FXML

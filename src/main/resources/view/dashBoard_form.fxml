@@ -1,177 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Anchorpane1" prefHeight="779.0" prefWidth="1198.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashBoardFormController">
+<AnchorPane fx:id="anchorpaneDash" prefHeight="790.0" prefWidth="1008.0" style="-fx-background-color: #f1fcfc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashBoardFormController">
    <children>
-      <AnchorPane layoutX="-7.0" layoutY="-41.0" prefHeight="821.0" prefWidth="220.0" style="-fx-background-color: #0c0c31;">
+      <AnchorPane layoutX="325.0" layoutY="160.0" prefHeight="112.0" prefWidth="200.0" style="-fx-background-color: #ffff00;">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="231.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Dashboard" textFill="WHITE">
+            <Label layoutX="10.0" layoutY="26.0" text="Customer Count">
                <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="btnCustomer" buttonType="RAISED" layoutX="12.0" layoutY="285.0" onAction="#btnCustomerOnAction" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Customer" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="12.0" layoutY="339.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Order" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="12.0" layoutY="394.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Supplier" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="12.0" layoutY="450.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Batch" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="12.0" layoutY="506.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Ingredients" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="13.0" layoutY="562.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Employee" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="13.0" layoutY="618.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Store" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="13.0" layoutY="672.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #53ea80;" text="Payment" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="Anchorpane2" layoutX="213.0" prefHeight="780.0" prefWidth="985.0" style="-fx-background-color: #f0fdfa;">
-         <children>
-            <Label layoutX="329.0" layoutY="17.0" text="Dash Board">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="37.0" />
+                  <Font name="DejaVu Sans Bold" size="20.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="51.0" layoutY="108.0" prefHeight="116.0" prefWidth="220.0" style="-fx-background-color: #7ff6b6;">
-               <children>
-                  <Label layoutX="37.0" layoutY="25.0" text="Customer Count" textAlignment="JUSTIFY">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="88.0" layoutY="58.0" text="15" textAlignment="JUSTIFY">
-                     <font>
-                        <Font name="System Bold" size="31.0" />
-                     </font>
-                  </Label>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </AnchorPane>
-            <AnchorPane layoutX="341.0" layoutY="108.0" prefHeight="116.0" prefWidth="220.0" style="-fx-background-color: #f0ad81;">
-               <children>
-                  <Label layoutX="55.0" layoutY="25.0" text="Batch Count" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="87.0" layoutY="53.0" text="15" textAlignment="JUSTIFY">
-                     <font>
-                        <Font name="System Bold" size="31.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="624.0" layoutY="108.0" prefHeight="116.0" prefWidth="220.0" style="-fx-background-color: #b5ea53;">
-               <children>
-                  <Label layoutX="37.0" layoutY="26.0" text="Employee Count" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold Italic" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="81.0" layoutY="53.0" text="15" textAlignment="JUSTIFY">
-                     <font>
-                        <Font name="System Bold" size="31.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="97.0" layoutY="348.0" prefHeight="92.0" prefWidth="129.0" style="-fx-background-color: #df9121;" text="Customer">
+            <Label layoutX="81.0" layoutY="70.0" text="20">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="29.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="55.0" fitWidth="96.0">
-                     <image>
-                        <Image url="@../../../../../../Downloads/icons8-customer-96.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="244.0" layoutY="348.0" prefHeight="88.0" prefWidth="129.0" style="-fx-background-color: #df9121;" text="Order">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <graphic>
-                  <ImageView>
-                     <image>
-                        <Image url="@../../../../../../Downloads/icons8-order-60.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="387.0" layoutY="349.0" prefHeight="88.0" prefWidth="129.0" style="-fx-background-color: #df9121;" text="Supplier">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="58.0" fitWidth="96.0">
-                     <image>
-                        <Image url="@../../../../../../Downloads/icons8-supplier-96.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="531.0" layoutY="349.0" prefHeight="88.0" prefWidth="129.0" style="-fx-background-color: #df9121;" text="Batch">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="58.0" fitWidth="64.0">
-                     <image>
-                        <Image url="@../../../../../../Downloads/icons8-batch-64.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="670.0" layoutY="350.0" prefHeight="88.0" prefWidth="129.0" style="-fx-background-color: #df9121;" text="Ingredients">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="57.0" fitWidth="50.0">
-                     <image>
-                        <Image url="@../../../../../../Downloads/icons8-fish-50.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
+            </Label>
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="773.0" layoutY="160.0" prefHeight="112.0" prefWidth="200.0" style="-fx-background-color: #00e5ff;">
+         <children>
+            <Label layoutX="31.0" layoutY="26.0" text="Order Count">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="80.0" layoutY="73.0" text="20">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="549.0" layoutY="160.0" prefHeight="112.0" prefWidth="200.0" style="-fx-background-color: #00e676;">
+         <children>
+            <Label layoutX="9.0" layoutY="27.0" text="Employee Count">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="80.0" layoutY="72.0" text="20">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="120.0" layoutY="369.0" onAction="#btnDashBoard1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #e25a87;" text="DashBoard">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-dashboard-100.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="277.0" layoutY="369.0" onAction="#btnCustomer1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #bb5ae2;" text="Customer">
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-customer-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="435.0" layoutY="369.0" onAction="#btnOrder1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #5ae287;" text="Order">
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-order-60.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="595.0" layoutY="369.0" onAction="#btnBatch1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #ddb042;" text="Batch">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-batch-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="754.0" layoutY="369.0" onAction="#btnEmployee1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #ed7c7c;" text="Employee">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-employee-68.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="397.0" layoutY="28.0" prefHeight="46.0" prefWidth="214.0" style="-fx-background-color: #f1fcfc;" text="DashBord">
+         <font>
+            <Font name="System Bold" size="38.0" />
+         </font>
+      </Label>
+      <Text fontSmoothingType="LCD" layoutX="98.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The best and quality sea food producers, we are lnv sea food factory" wrappingWidth="155.0">
+         <font>
+            <Font name="Timmana Regular" size="18.0" />
+         </font>
+      </Text>
+      <Line endX="123.0" layoutX="492.0" layoutY="75.0" startX="-100.0" strokeWidth="3.0" />
+      <ImageView fitHeight="268.0" fitWidth="264.0" layoutX="31.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/27709-200.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" layoutX="192.0" layoutY="523.0" onAction="#btnIngredient1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #4fc3f7;" text="Ingredient">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-fish-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="359.0" layoutY="523.0" onAction="#btnSupplier1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #ffb74d;" text="Supplier">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-supplier-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="525.0" layoutY="523.0" onAction="#btnCustomer1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #bdbdbd;" text="Customer">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-customer-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="683.0" layoutY="523.0" onAction="#btnOrderPlace1OnAction" prefHeight="105.0" prefWidth="133.0" style="-fx-background-color: #ef5350;" text="OrderPlace">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-create-order-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
