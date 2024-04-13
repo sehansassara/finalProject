@@ -144,7 +144,7 @@
                   </JFXButton>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="Anchorpanemain" layoutY="-1.0" prefHeight="788.0" prefWidth="1019.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="Anchorpanemain" layoutX="230.0" prefHeight="780.0" prefWidth="1008.0" />
    </children>
 </AnchorPane>

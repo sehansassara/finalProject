@@ -1,25 +1,32 @@
 package lk.ijse.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.model.Customer;
 import lk.ijse.repository.CustomerRepo;
-
+import lk.ijse.model.tm.CustomerTm;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CustomerFormController {
 
     public JFXButton btnBack;
     public JFXButton btnClear;
+    @FXML
+    private TableView<CustomerTm> tblCustomer;
     @FXML
     private TableColumn<?, ?> colAddress;
 
@@ -57,8 +64,37 @@ public class CustomerFormController {
     @FXML
     private TextField txtTel;
 
-    private TextField txtStatus;
+    public void initialize() {
+        setCellValueFactory();
+        loadAllCustomer();
+    }
 
+    private void setCellValueFactory() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+    }
+
+    private void loadAllCustomer() {
+        ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
+        try {
+            List<Customer> customerList = CustomerRepo.getAll();
+            for(Customer customer : customerList){
+                CustomerTm tm = new CustomerTm(
+                customer.getId(),
+                customer.getName(),
+                customer.getAddress(),
+                customer.getTel()
+                );
+                obList.add(tm);
+            }
+
+            tblCustomer.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     @FXML
@@ -92,6 +128,7 @@ public class CustomerFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+        loadAllCustomer();
     }
 
     @FXML
@@ -130,5 +167,21 @@ public class CustomerFormController {
         stage.setScene(new Scene(anchorPane));
         stage.setTitle("Dashboard Form");
         stage.centerOnScreen();
+    }
+
+    @FXML
+    void txtSearchOnAction(ActionEvent event) throws SQLException {
+        String id = txtCusId.getText();
+
+        Customer customer = CustomerRepo.searchById(id);
+
+        if (customer != null) {
+            txtCusId.setText(customer.getId());
+            txtName.setText(customer.getName());
+            txtTel.setText(customer.getTel());
+            txtAddress.setText(customer.getAddress());
+        }else {
+            new Alert(Alert.AlertType.INFORMATION,"customer is not found !").show();
+        }
     }
 }

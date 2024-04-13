@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="custAnchorpane" prefHeight="790.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.CustomerFormController">
+<AnchorPane fx:id="custAnchorpane" prefHeight="719.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.CustomerFormController">
    <children>
       <Text layoutX="110.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUS ID" wrappingWidth="61.0">
          <font>
@@ -79,7 +79,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TableView layoutX="97.0" layoutY="396.0" prefHeight="286.0" prefWidth="811.0">
+      <TableView fx:id="tblCustomer" layoutX="97.0" layoutY="396.0" prefHeight="286.0" prefWidth="811.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="123.0" text="CUS ID" />
           <TableColumn fx:id="colName" prefWidth="220.0" text="Name" />
@@ -87,7 +87,7 @@
             <TableColumn fx:id="colTel" prefWidth="233.0" text="Tel" />
         </columns>
       </TableView>
-      <JFXButton fx:id="btnBack" layoutX="66.0" layoutY="720.0" onAction="#btnBackOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #64dd17;" text="Back">
+      <JFXButton fx:id="btnBack" layoutX="74.0" layoutY="319.0" onAction="#btnBackOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #64dd17;" text="Back">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -99,7 +99,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtCusId" layoutX="110.0" layoutY="133.0" prefHeight="40.0" prefWidth="241.0" />
+      <TextField fx:id="txtCusId" layoutX="110.0" layoutY="133.0" onAction="#txtSearchOnAction" prefHeight="40.0" prefWidth="241.0" />
       <TextField fx:id="txtName" layoutX="632.0" layoutY="124.0" prefHeight="40.0" prefWidth="241.0" />
       <TextField fx:id="txtAddress" layoutX="110.0" layoutY="236.0" prefHeight="40.0" prefWidth="241.0" />
       <TextField fx:id="txtTel" layoutX="632.0" layoutY="244.0" prefHeight="40.0" prefWidth="241.0" />

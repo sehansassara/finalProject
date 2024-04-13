@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane fx:id="AnchorpaneOrder" prefHeight="790.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.OrderFormController">
    <children>
@@ -14,11 +18,92 @@
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <TextField fx:id="txtOrderId" layoutX="127.0" layoutY="202.0" prefHeight="41.0" prefWidth="243.0" />
-      <Text layoutX="127.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID">
+      <TextField fx:id="txtOrderId" layoutX="104.0" layoutY="153.0" onAction="#txtSearchOnAction" prefHeight="34.0" prefWidth="243.0" />
+      <Text layoutX="104.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
+      <Text layoutX="424.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cust ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtCustId" layoutX="424.0" layoutY="153.0" prefHeight="34.0" prefWidth="243.0" />
+      <Text layoutX="736.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of  Place">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtDateOfPlace" layoutX="736.0" layoutY="153.0" prefHeight="34.0" prefWidth="243.0" />
+      <Text layoutX="209.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pay ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtPayId" layoutX="209.0" layoutY="239.0" prefHeight="34.0" prefWidth="243.0" />
+      <Text layoutX="546.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of  Release">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtDateOfRelease" layoutX="546.0" layoutY="240.0" prefHeight="34.0" prefWidth="243.0" />
+      <JFXButton buttonType="RAISED" layoutX="881.0" layoutY="323.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-plus-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="767.0" layoutY="323.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #d50000;" text="Delete">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-delete-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="652.0" layoutY="323.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffff00;" text="Update">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-update-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="538.0" layoutY="323.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5;" text="Clear">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-clear-90.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TableView fx:id="tblOrder" layoutX="109.0" layoutY="411.0" prefHeight="289.0" prefWidth="799.0">
+        <columns>
+          <TableColumn fx:id="colOrderId" prefWidth="134.0" text="Order ID" />
+          <TableColumn fx:id="colCustId" prefWidth="122.0" text="Cust ID" />
+            <TableColumn fx:id="colDateOfPlace" prefWidth="179.0" text="Date Of Place" />
+            <TableColumn fx:id="colPayId" prefWidth="165.0" text="Pay ID" />
+            <TableColumn fx:id="colDateOfRelease" prefWidth="198.0" text="Date Of Release" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
