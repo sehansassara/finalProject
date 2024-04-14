@@ -44,7 +44,7 @@ public class OrderRepo {
     }
 
     public static boolean delete(String id) throws SQLException {
-String sql = "UPDATE orders set status = 'DELETE' WHERE ORD_ID = ?";
+        String sql = "UPDATE orders set status = 'DELETE' WHERE ORD_ID = ?";
 
         PreparedStatement pstm = DbConnection.getInstance().
                 getConnection().
@@ -62,7 +62,10 @@ String sql = "UPDATE orders set status = 'DELETE' WHERE ORD_ID = ?";
                 getConnection().
                 prepareStatement(sql);
 
+        pstm.setObject(1, id);
+
         ResultSet resultSet = pstm.executeQuery();
+
         if (resultSet.next()){
             String ordId = resultSet.getString(1);
             String cusId = resultSet.getString(2);

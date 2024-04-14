@@ -75,7 +75,12 @@ public class MainBoardFormController {
     public void btnStoreOnAction(ActionEvent actionEvent) {
     }
     @FXML
-    public void btnPaymentOnAction(ActionEvent actionEvent) {
+    public void btnPaymentOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane orderPane = FXMLLoader.load(this.getClass().getResource("/view/payment_form.fxml"));
+
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(orderPane);
     }
 
     @FXML
