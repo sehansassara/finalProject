@@ -66,10 +66,20 @@ public class MainBoardFormController {
     public void btnBatchOnAction(ActionEvent actionEvent) {
     }
     @FXML
-    public void btnIngredientOnAction(ActionEvent actionEvent) {
+    public void btnIngredientOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane orderPane = FXMLLoader.load(this.getClass().getResource("/view/ingredient_form.fxml"));
+
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(orderPane);
     }
     @FXML
-    public void btnEmployeeOnAction(ActionEvent actionEvent) {
+    public void btnEmployeeOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane orderPane = FXMLLoader.load(this.getClass().getResource("/view/employee_form.fxml"));
+
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(orderPane);
     }
     @FXML
     public void btnStoreOnAction(ActionEvent actionEvent) {

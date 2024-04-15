@@ -118,6 +118,7 @@ public class OrderFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
+        loadAllOrders();
     }
 
     @FXML
@@ -139,6 +140,7 @@ public class OrderFormController {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
 
         }
+        loadAllOrders();
     }
 
     @FXML
@@ -158,7 +160,7 @@ public class OrderFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
-
+        loadAllOrders();
     }
 
     public void txtSearchOnAction(ActionEvent actionEvent) {

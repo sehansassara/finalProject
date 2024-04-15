@@ -76,7 +76,9 @@ public class PaymentFormController {
                 );
                 obList.add(tm);
             }
+
             tblPayment.setItems(obList);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -106,7 +108,7 @@ public class PaymentFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
-
+        loadAllPayments();
     }
 
     @FXML
@@ -146,6 +148,7 @@ public class PaymentFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
+        loadAllPayments();
     }
 
     @FXML
