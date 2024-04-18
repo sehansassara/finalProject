@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.controller.SupplierFormController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="719.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFormController">
+   <children>
+      <Label layoutX="433.0" layoutY="20.0" text="Supplier">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Text layoutX="106.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUP ID" wrappingWidth="55.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtSupId" layoutX="106.0" layoutY="160.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="205.0" />
+      <Text layoutX="405.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" wrappingWidth="124.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtCompanyName" layoutX="405.0" layoutY="160.0" prefHeight="30.0" prefWidth="205.0" />
+      <Text layoutX="710.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="124.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtAddress" layoutX="710.0" layoutY="160.0" prefHeight="30.0" prefWidth="205.0" />
+      <Text layoutX="260.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact" wrappingWidth="124.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtContact" layoutX="260.0" layoutY="259.0" prefHeight="30.0" prefWidth="205.0" />
+      <Text layoutX="581.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ING ID" wrappingWidth="124.0">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtIngId" layoutX="581.0" layoutY="259.0" prefHeight="30.0" prefWidth="205.0" />
+      <JFXButton layoutX="862.0" layoutY="331.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-plus-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="756.0" layoutY="331.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #d50000;" text="Delete">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-delete-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="650.0" layoutY="331.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffff00;" text="Update">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-update-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="544.0" layoutY="331.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5 #b0bec5 #b0bec5;" text="Clear">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-clear-90.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TableView fx:id="tblSupplier" layoutX="87.0" layoutY="442.0" prefHeight="246.0" prefWidth="842.0">
+        <columns>
+          <TableColumn fx:id="colSupId" prefWidth="132.0" text="SUP ID" />
+          <TableColumn fx:id="colCompanyName" prefWidth="197.0" text="Company Name" />
+            <TableColumn fx:id="colAddress" prefWidth="164.0" text="Address" />
+            <TableColumn fx:id="colContact" prefWidth="203.0" text="Contact" />
+            <TableColumn fx:id="colIngId" prefWidth="145.0" text="ING ID" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

@@ -4,7 +4,10 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -63,7 +66,12 @@ public class MainBoardFormController {
         Anchorpanemain.getChildren().add(orderPane);
     }
     @FXML
-    public void btnBatchOnAction(ActionEvent actionEvent) {
+    public void btnBatchOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane orderPane = FXMLLoader.load(this.getClass().getResource("/view/batch_form.fxml"));
+
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(orderPane);
     }
     @FXML
     public void btnIngredientOnAction(ActionEvent actionEvent) throws IOException {
@@ -82,7 +90,12 @@ public class MainBoardFormController {
         Anchorpanemain.getChildren().add(orderPane);
     }
     @FXML
-    public void btnStoreOnAction(ActionEvent actionEvent) {
+    public void btnStoreOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane orderPane = FXMLLoader.load(this.getClass().getResource("/view/store_form.fxml"));
+
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(orderPane);
     }
     @FXML
     public void btnPaymentOnAction(ActionEvent actionEvent) throws IOException {
@@ -94,8 +107,12 @@ public class MainBoardFormController {
     }
 
     @FXML
-    void btnSupplierOnAction(ActionEvent actionEvent) {
+    void btnSupplierOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane orderPane = FXMLLoader.load(this.getClass().getResource("/view/supplier_form.fxml"));
 
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(orderPane);
     }
     @FXML
     public void btnBatchEmployeeOnAction(ActionEvent actionEvent) {
@@ -104,9 +121,22 @@ public class MainBoardFormController {
     public void btnBatchIngredientOnAction(ActionEvent actionEvent) {
     }
 
-
     @FXML
-    void btnLogOutOnAction(ActionEvent actionEvent) {
+    void btnBackOnAction(ActionEvent event) throws IOException {
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/dashBoard_form.fxml"));
 
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(dashboardPane);
+    }
+    @FXML
+    void btnLogOutOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane loginPane = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
+
+        Scene scene = new Scene(loginPane);
+
+        Stage stage = (Stage) Anchorpane1.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
     }
 }

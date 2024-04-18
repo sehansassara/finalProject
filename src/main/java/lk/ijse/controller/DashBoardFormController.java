@@ -16,7 +16,6 @@ public class DashBoardFormController {
 
     @FXML
     void btnCustomer1OnAction(ActionEvent event) {
-
     }
 
     @FXML

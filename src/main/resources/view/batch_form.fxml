@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.controller.BatchFormController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="719.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchFormController">
+   <children>
+      <Label layoutX="451.0" layoutY="23.0" text="Batch">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Text layoutX="106.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BAT ID" wrappingWidth="59.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtBatId" layoutX="106.0" layoutY="138.0" onAction="#txtSearchOnAction" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="406.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STO ID" wrappingWidth="59.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtStoId" layoutX="405.0" layoutY="138.0" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="695.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ORD ID" wrappingWidth="59.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtOrdId" layoutX="695.0" layoutY="138.0" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="106.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="59.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="choiceType" layoutX="106.0" layoutY="208.0" prefHeight="24.0" prefWidth="180.0" />
+      <Text layoutX="406.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Production Date" wrappingWidth="131.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="695.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Num Of Rejected Item" wrappingWidth="170.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtProductionDate" layoutX="405.0" layoutY="207.0" prefHeight="29.0" prefWidth="209.0" />
+      <TextField fx:id="txtNumOfReject" layoutX="695.0" layoutY="207.0" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="405.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty" wrappingWidth="170.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtQty" layoutX="405.0" layoutY="278.0" prefHeight="29.0" prefWidth="209.0" />
+      <JFXButton buttonType="RAISED" layoutX="849.0" layoutY="338.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-plus-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="743.0" layoutY="338.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #d50000;" text="Delete">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-delete-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="637.0" layoutY="338.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffff00;" text="Update">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-update-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="531.0" layoutY="338.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5;" text="Clear">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-clear-90.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblBatch" layoutX="20.0" layoutY="430.0" prefHeight="261.0" prefWidth="980.0">
+        <columns>
+          <TableColumn fx:id="colBatId" prefWidth="116.0" text="BAT ID" />
+          <TableColumn fx:id="colStoId" prefWidth="109.0" text="STO ID" />
+            <TableColumn fx:id="colOrdId" prefWidth="116.0" text="ORD ID" />
+            <TableColumn fx:id="colType" prefWidth="236.0" text="Type" />
+            <TableColumn fx:id="colProductionDate" prefWidth="172.0" text="Production Date" />
+            <TableColumn fx:id="colNumberOfRejectedItem" prefWidth="124.0" text="Num Of Reject" />
+            <TableColumn fx:id="colQty" prefWidth="106.0" text="Qty" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

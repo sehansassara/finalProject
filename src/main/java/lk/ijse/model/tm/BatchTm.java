@@ -1,4 +1,4 @@
-package lk.ijse.model;
+package lk.ijse.model.tm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Batch {
+public class BatchTm {
     private String batId;
     private String stoId;
     private String ordId;

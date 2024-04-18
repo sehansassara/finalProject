@@ -70,7 +70,7 @@ public class OrderRepo {
             String ordId = resultSet.getString(1);
             String cusId = resultSet.getString(2);
             String dateOfPlase = resultSet.getString(3);
-            String payId = resultSet.getString(4);
+           String payId = resultSet.getString(4);
             String dateOfRelease = resultSet.getString(5);
 
             Order order = new Order(ordId,cusId,dateOfPlase,payId,dateOfRelease);

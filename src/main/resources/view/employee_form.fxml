@@ -11,8 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="790.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EmployeeFormController">
+<AnchorPane prefHeight="719.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.EmployeeFormController">
    <children>
       <Label layoutX="422.0" layoutY="26.0" text="Employee">
          <font>
@@ -109,7 +108,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblEmployee" layoutX="58.0" layoutY="469.0" prefHeight="225.0" prefWidth="909.0">
+      <TableView fx:id="tblEmployee" layoutX="55.0" layoutY="457.0" prefHeight="225.0" prefWidth="909.0">
         <columns>
           <TableColumn fx:id="colEmpId" prefWidth="86.0" text="EMP ID" />
           <TableColumn fx:id="colFirstName" prefWidth="151.0" text="First Name" />

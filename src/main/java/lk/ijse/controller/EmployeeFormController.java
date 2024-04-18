@@ -10,11 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.model.Employee;
-import lk.ijse.model.Payment;
 import lk.ijse.model.tm.EmployeeTm;
-import lk.ijse.model.tm.PaymentTm;
 import lk.ijse.repository.EmployeeRepo;
-import lk.ijse.repository.PaymentRepo;
 
 import java.sql.SQLException;
 import java.util.List;

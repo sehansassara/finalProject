@@ -126,7 +126,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Anchorpanemain1" layoutX="229.0" prefHeight="772.0" prefWidth="1019.0">
+      <AnchorPane fx:id="Anchorpanemain1" layoutX="229.0" prefHeight="680.0" prefWidth="1019.0">
          <children>
             <AnchorPane layoutX="1.0" layoutY="718.0" prefHeight="107.0" prefWidth="1018.0" style="-fx-background-color: #0c0c31;">
                <children>
@@ -142,9 +142,21 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
+                  <JFXButton buttonType="RAISED" layoutX="107.0" layoutY="32.0" onAction="#btnBackOnAction" prefHeight="44.0" prefWidth="124.0" style="-fx-background-color: #a1887f;" text="Back">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8-back-96.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="Anchorpanemain" layoutY="-1.0" prefHeight="788.0" prefWidth="1019.0" />
+            <AnchorPane fx:id="Anchorpanemain" layoutY="-1.0" prefHeight="719.0" prefWidth="1019.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

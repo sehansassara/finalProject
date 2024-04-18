@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +13,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.model.Customer;
 import lk.ijse.model.Order;
+import lk.ijse.model.Payment;
 import lk.ijse.model.tm.CustomerTm;
 import lk.ijse.model.tm.OrderTm;
 import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.OrderRepo;
+import lk.ijse.repository.PaymentRepo;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -42,9 +45,11 @@ public class OrderFormController {
 
     @FXML
     private TableView<OrderTm> tblOrder;
+    @FXML
+    private JFXComboBox<String> comCustId;
 
     @FXML
-    private TextField txtCustId;
+    private JFXComboBox<String> comPayId;
 
     @FXML
     private TextField txtDateOfPlace;
@@ -55,12 +60,40 @@ public class OrderFormController {
     @FXML
     private TextField txtOrderId;
 
-    @FXML
-    private TextField txtPayId;
-
     public void initialize(){
         setCellValueFactory();
         loadAllOrders();
+        getCustomerIds();
+        getPaymentIds();
+    }
+
+    private void getPaymentIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> idList = PaymentRepo.getIds();
+            for (String id : idList){
+                obList.add(id);
+            }
+            comPayId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getCustomerIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+
+        try {
+            List<String> idList = CustomerRepo.getIds();
+            for (String id : idList){
+                obList.add(id);
+            }
+            comCustId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -100,11 +133,10 @@ public class OrderFormController {
 
     private void clearFields() {
         txtOrderId.setText("");
-        txtCustId.setText("");
         txtDateOfPlace.setText("");
-        txtPayId.setText("");
-        txtPayId.setText("");
         txtDateOfRelease.setText("");
+        comCustId.setValue(null);
+        comPayId.setValue(null);
     }
 
     @FXML
@@ -124,10 +156,15 @@ public class OrderFormController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         String ordId = txtOrderId.getText();
-        String cusId = txtCustId.getText();
+        String cusId = comCustId.getValue();
         String dop = txtDateOfPlace.getText();
-        String payId = txtPayId.getText();
+        String payId = comPayId.getValue();
         String dor = txtDateOfRelease.getText();
+
+        if (cusId == null || payId == null) {
+            new Alert(Alert.AlertType.ERROR, "Customer ID and Payment ID must be selected").show();
+            return; // Exit the method
+        }
 
         Order order = new Order(ordId,cusId,dop,payId,dor);
 
@@ -146,9 +183,9 @@ public class OrderFormController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String ordId = txtOrderId.getText();
-        String cusId = txtCustId.getText();
+        String cusId = comCustId.getValue();
         String dop = txtDateOfPlace.getText();
-        String payId = txtPayId.getText();
+        String payId = comPayId.getValue();
         String dor = txtDateOfRelease.getText();
 
         Order order = new Order(ordId,cusId,dop,payId,dor);
@@ -163,6 +200,27 @@ public class OrderFormController {
         loadAllOrders();
     }
 
+    @FXML
+    void comCusIdOnAction(ActionEvent event) {
+        String id = comCustId.getValue();
+
+        try {
+            Customer customer = CustomerRepo.searchById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void comPayIdOnAction(ActionEvent event) {
+        String payId = comPayId.getValue();
+
+        try {
+            Payment payment = PaymentRepo.searchById(payId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void txtSearchOnAction(ActionEvent actionEvent) {
         String id = txtOrderId.getText();
 
@@ -170,9 +228,9 @@ public class OrderFormController {
             Order order = OrderRepo.searchById(id);
             if (order != null){
                 txtOrderId.setText(order.getOrdId());
-                txtCustId.setText(order.getCusId());
+                comCustId.setValue(order.getCusId());
                 txtDateOfPlace.setText(order.getDateOfPlace());
-                txtPayId.setText(order.getPayId());
+                comPayId.setValue(order.getPayId());
                 txtDateOfRelease.setText(order.getDateOfRelease());
             }
         } catch (SQLException e) {
