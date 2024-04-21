@@ -101,6 +101,11 @@ public class CustomerFormController {
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtCusId.getText();
 
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter customer ID.").show();
+            return;
+        }
+
         try {
             boolean isDeleted = CustomerRepo.delete(id);
             if(isDeleted) {
@@ -118,6 +123,11 @@ public class CustomerFormController {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String tel = txtTel.getText();
+
+        if (id.isEmpty() || name.isEmpty() || address.isEmpty() || tel.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
+            return;
+        }
 
         Customer customer = new Customer(id,name,address,tel);
 
@@ -138,6 +148,11 @@ public class CustomerFormController {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String tel = txtTel.getText();
+
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter customer ID.").show();
+            return;
+        }
 
         Customer customer = new Customer(id, name, address, tel);
 

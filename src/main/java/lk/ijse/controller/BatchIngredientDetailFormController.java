@@ -24,6 +24,9 @@ public class BatchIngredientDetailFormController {
     private TextField txtBatId;
 
     @FXML
+    private TextField txtIngId;
+
+    @FXML
     private TextField txtQty;
 
     @FXML

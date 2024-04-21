@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -47,7 +48,6 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtIngId" layoutX="581.0" layoutY="259.0" prefHeight="30.0" prefWidth="205.0" />
       <JFXButton layoutX="862.0" layoutY="331.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -105,5 +105,6 @@
             <TableColumn fx:id="colIngId" prefWidth="145.0" text="ING ID" />
         </columns>
       </TableView>
+      <JFXComboBox fx:id="comIngId" layoutX="582.0" layoutY="262.0" onAction="#ComIngIdOnAction" prefHeight="30.0" prefWidth="205.0" />
    </children>
 </AnchorPane>

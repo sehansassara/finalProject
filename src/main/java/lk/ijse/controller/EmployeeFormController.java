@@ -118,6 +118,11 @@ public class EmployeeFormController {
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtEmpId.getText();
 
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter employee ID.").show();
+            return;
+        }
+
         try {
             boolean isDeleted = EmployeeRepo.delete(id);
             if (isDeleted){
@@ -136,11 +141,22 @@ public class EmployeeFormController {
         String lName = txtLastName.getText();
         String address = txtAddress.getText();
         String tel = txtTel.getText();
-        double salary = Double.parseDouble(txtSalary.getText());
+
+        double salary = 0.0;
+        if (!txtSalary.getText().isEmpty()) {
+            salary = Double.parseDouble(txtSalary.getText());
+        }
+
         String position = txtPosition.getText();
 
         Employee employee = new Employee(id,fName,lName,address,tel,salary,position);
+
         try {
+            if (id.isEmpty() || fName.isEmpty() || lName.isEmpty() || address.isEmpty() || tel.isEmpty() || position.isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Please fill in all required fields.").show();
+                return;
+            }
+
             boolean isSaved = EmployeeRepo.save(employee);
             if (isSaved){
                 new Alert(Alert.AlertType.CONFIRMATION,"employee is saved").show();
@@ -158,12 +174,24 @@ public class EmployeeFormController {
         String lName = txtLastName.getText();
         String address = txtAddress.getText();
         String tel = txtTel.getText();
-        double salary = Double.parseDouble(txtSalary.getText());
+
+        double salary = 0.0;
+        if (!txtSalary.getText().isEmpty()) {
+            salary = Double.parseDouble(txtSalary.getText());
+        }
+
         String position = txtPosition.getText();
+
+
 
         Employee employee = new Employee(id,fName,lName,address,tel,salary,position);
 
         try {
+            if (id.isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Please enter employee ID.").show();
+                return;
+            }
+
             boolean isUpdated = EmployeeRepo.update(employee);
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION,"employee is updated").show();

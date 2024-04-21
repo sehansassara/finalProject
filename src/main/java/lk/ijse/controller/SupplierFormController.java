@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,8 +10,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.model.Customer;
+import lk.ijse.model.Ingredient;
 import lk.ijse.model.Supplier;
 import lk.ijse.model.tm.SupplierTm;
+import lk.ijse.repository.CustomerRepo;
+import lk.ijse.repository.IngredientRepo;
 import lk.ijse.repository.SupplierRepo;
 
 import java.sql.SQLException;
@@ -46,6 +51,9 @@ public class SupplierFormController {
     private TextField txtContact;
 
     @FXML
+    private JFXComboBox<String> comIngId;
+
+    @FXML
     private TextField txtIngId;
 
     @FXML
@@ -53,6 +61,22 @@ public class SupplierFormController {
     public void initialize() {
         setCellValueFactory();
         loadAllSupplier();
+        getIngrediantIds();
+    }
+
+    private void getIngrediantIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+
+        try {
+            List<String> idList = IngredientRepo.getIds();
+            for (String id : idList){
+                obList.add(id);
+            }
+            comIngId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -93,12 +117,17 @@ public class SupplierFormController {
         txtCompanyName.setText("");
         txtAddress.setText("");
         txtContact.setText("");
-        txtIngId.setText("");
+        comIngId.setValue(null);
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtSupId.getText();
+
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter supplier ID.").show();
+            return;
+        }
 
         try {
             boolean isDeleted = SupplierRepo.delete(id);
@@ -116,7 +145,12 @@ public class SupplierFormController {
         String companyName = txtCompanyName.getText();
         String address = txtAddress.getText();
         String contact = txtContact.getText();
-        String ingId = txtIngId.getText();
+        String ingId = comIngId.getValue();
+
+        if (id.isEmpty() || companyName.isEmpty() || address.isEmpty() || contact.isEmpty() || ingId == null) {
+            new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
+            return;
+        }
 
         Supplier supplier = new Supplier(id,companyName,address,contact,ingId);
 
@@ -136,7 +170,12 @@ public class SupplierFormController {
         String companyName = txtCompanyName.getText();
         String address = txtAddress.getText();
         String contact = txtContact.getText();
-        String ingId = txtIngId.getText();
+        String ingId = comIngId.getValue();
+
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter supplier ID.").show();
+            return;
+        }
 
         Supplier supplier = new Supplier(id,companyName,address,contact,ingId);
 
@@ -151,6 +190,16 @@ public class SupplierFormController {
     }
 
     @FXML
+    void ComIngIdOnAction(ActionEvent event) {
+        String id = txtSupId.getText();
+
+        try {
+            Ingredient ingredient = IngredientRepo.searchById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
     void txtSearchOnAction(ActionEvent event) {
         String id = txtSupId.getText();
 
@@ -161,7 +210,7 @@ public class SupplierFormController {
                 txtCompanyName.setText(supplier.getCompanyName());
                 txtAddress.setText(supplier.getAddress());
                 txtContact.setText(supplier.getContact());
-                txtIngId.setText(supplier.getIngId());
+                comIngId.setValue(supplier.getIngId());
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.INFORMATION,"supplier is not found !").show();

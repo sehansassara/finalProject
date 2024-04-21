@@ -83,6 +83,12 @@ public class StoreFormController {
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtStoId.getText();
 
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter store ID.").show();
+            return;
+        }
+
+
         try {
             boolean isDeleted = StoreRepo.delete(id);
             if (isDeleted){
@@ -97,8 +103,19 @@ public class StoreFormController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         String id = txtStoId.getText();
-        int capacity = Integer.parseInt(txtCapacity.getText());
+
+        int capacity = 0;
+        if (!txtCapacity.getText().isEmpty()) {
+            capacity = Integer.parseInt(txtCapacity.getText());
+        }
+
         String location = txtLocation.getText();
+
+        if (id.isEmpty() || location.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
+            return;
+        }
+
 
         Store store = new Store(id,capacity,location);
 
@@ -116,8 +133,19 @@ public class StoreFormController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String id = txtStoId.getText();
-        int capacity = Integer.parseInt(txtCapacity.getText());
+
+        int capacity = 0;
+        if (!txtCapacity.getText().isEmpty()) {
+            capacity = Integer.parseInt(txtCapacity.getText());
+        }
+
         String location = txtLocation.getText();
+
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter store ID.").show();
+            return;
+        }
+
 
         Store store = new Store(id,capacity,location);
 

@@ -93,6 +93,11 @@ public class IngredientFormController {
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtIngId.getText();
 
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter ingredient ID.").show();
+            return;
+        }
+
         try {
             boolean isDeleted = IngredientRepo.delete(id);
             if (isDeleted){
@@ -108,8 +113,18 @@ public class IngredientFormController {
     void btnSaveOnAction(ActionEvent event) {
         String id = txtIngId.getText();
         String type = (String) choiceType.getValue();
-        double price = Double.parseDouble(txtUnitPrice.getText());
+
+        double price = 0.0;
+        if (!txtUnitPrice.getText().isEmpty()) {
+            price = Double.parseDouble(txtUnitPrice.getText());
+        }
+
         String qtyOnHand = txtQuantityOnHand.getText();
+
+        if (id.isEmpty() || type == null || qtyOnHand.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
+            return;
+        }
 
         Ingredient ingredient = new Ingredient(id,type,price,qtyOnHand);
         try {
@@ -127,8 +142,18 @@ public class IngredientFormController {
     void btnUpdateOnAction(ActionEvent event) {
         String id = txtIngId.getText();
         String type = (String) choiceType.getValue();
-        double price = Double.parseDouble(txtUnitPrice.getText());
+
+        double price = 0.0;
+        if (!txtUnitPrice.getText().isEmpty()) {
+            price = Double.parseDouble(txtUnitPrice.getText());
+        }
+
         String qtyOnHand = txtQuantityOnHand.getText();
+
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter ingredient ID.").show();
+            return;
+        }
 
         Ingredient ingredient = new Ingredient(id,type,price,qtyOnHand);
 

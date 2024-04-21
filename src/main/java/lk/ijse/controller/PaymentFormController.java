@@ -100,6 +100,11 @@ public class PaymentFormController {
     void btnDeleteOnAction(ActionEvent event) {
         String payId = txtPayId.getText();
 
+        if (payId.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter payment ID.").show();
+            return;
+        }
+
         try {
             boolean isDeleted = PaymentRepo.delete(payId);
             if (isDeleted){
@@ -114,9 +119,19 @@ public class PaymentFormController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         String payId = txtPayId.getText();
-        double amount = Double.parseDouble(txtAmount.getText());
+
+        double amount  = 0.0;
+        if (!txtAmount.getText().isEmpty()) {
+            amount = Double.parseDouble(txtAmount.getText());
+        }
+
         String date = txtDate.getText();
         String choiceTypeValue = (String) choiceType.getValue();
+
+        if (payId.isEmpty() || date.isEmpty() || choiceTypeValue == null) {
+            new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
+            return;
+        }
 
         Payment payment = new Payment(payId,amount,date,choiceTypeValue);
 
@@ -134,9 +149,19 @@ public class PaymentFormController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String payId = txtPayId.getText();
-        double amount = Double.parseDouble(txtAmount.getText());
+
+        double amount  = 0.0;
+        if (!txtAmount.getText().isEmpty()) {
+            amount = Double.parseDouble(txtAmount.getText());
+        }
+
         String date = txtDate.getText();
         String choiceTypeValue = (String) choiceType.getValue();
+
+        if (payId.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter payment ID.").show();
+            return;
+        }
 
         Payment payment = new Payment(payId,amount,date,choiceTypeValue);
 

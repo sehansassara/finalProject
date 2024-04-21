@@ -14,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.model.Customer;
 import lk.ijse.model.Order;
 import lk.ijse.model.Payment;
-import lk.ijse.model.tm.CustomerTm;
 import lk.ijse.model.tm.OrderTm;
 import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.OrderRepo;
@@ -45,6 +44,7 @@ public class OrderFormController {
 
     @FXML
     private TableView<OrderTm> tblOrder;
+
     @FXML
     private JFXComboBox<String> comCustId;
 
@@ -143,10 +143,17 @@ public class OrderFormController {
     void btnDeleteOnAction(ActionEvent event) {
         String id = txtOrderId.getText();
 
+        if (id.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter order ID for delete.").show();
+            return;
+        }
+
+
         try {
             boolean isDeleted = OrderRepo.delete(id);
-            new Alert(Alert.AlertType.CONFIRMATION,"order is deleted").show();
-
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "order is deleted").show();
+            }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
@@ -161,9 +168,9 @@ public class OrderFormController {
         String payId = comPayId.getValue();
         String dor = txtDateOfRelease.getText();
 
-        if (cusId == null || payId == null) {
-            new Alert(Alert.AlertType.ERROR, "Customer ID and Payment ID must be selected").show();
-            return; // Exit the method
+        if (ordId.isEmpty() || cusId == null || dop.isEmpty() || payId == null || dor.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
+            return;
         }
 
         Order order = new Order(ordId,cusId,dop,payId,dor);
@@ -187,6 +194,12 @@ public class OrderFormController {
         String dop = txtDateOfPlace.getText();
         String payId = comPayId.getValue();
         String dor = txtDateOfRelease.getText();
+
+        if (ordId.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please enter order ID.").show();
+            return;
+        }
+
 
         Order order = new Order(ordId,cusId,dop,payId,dor);
         try {

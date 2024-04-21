@@ -41,7 +41,9 @@ public class CustomerRepo {
     public static boolean delete(String id) throws SQLException {
         String sql = "UPDATE customer SET status = 'DELETE' WHERE CUS_ID = ?";
 
-        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+        PreparedStatement pstm = DbConnection.getInstance().
+                getConnection().
+                prepareStatement(sql);
 
         pstm.setObject(1, id);
 
