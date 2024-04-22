@@ -1,26 +1,23 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.model.Batch;
-import lk.ijse.model.Customer;
-import lk.ijse.model.Order;
-import lk.ijse.model.Store;
+import lk.ijse.model.*;
 import lk.ijse.model.tm.BatchTm;
 import lk.ijse.model.tm.EmployeeTm;
-import lk.ijse.repository.BatchRepo;
-import lk.ijse.repository.CustomerRepo;
-import lk.ijse.repository.OrderRepo;
-import lk.ijse.repository.StoreRepo;
+import lk.ijse.repository.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class BatchFormController {
 
@@ -68,14 +65,103 @@ public class BatchFormController {
     @FXML
     private TextField txtQty;
 
+    @FXML
+    private TableColumn<?, ?> colAction;
+
+    @FXML
+    private TableColumn<?, ?> colEmpId;
+
+    @FXML
+    private TableColumn<?, ?> colFirstName;
+
+    @FXML
+    private TableView<EmployeeTm> tblEmp;
+
+    private ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
+
+
+
     public void initialize() {
         setCellValueFactory();
+        setCellValueFactoryEmp();
         loadAllBatch();
+        loadAllEmp();
         getOrderIds();
         getStoreIds();
 
         ObservableList<String> batchType = FXCollections.observableArrayList("Jack Mackerel", "Tuna Mackeral","Mackerel","Sardin");
         choiceType.setItems(batchType);
+    }
+
+    private void loadAllEmp() {
+        ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
+        JFXButton btn = new JFXButton("Add");
+        btn.setCursor(Cursor.HAND);
+
+        try {
+            List<Employee> employeeList = EmployeeRepo.getAll();
+            for (Employee employee : employeeList){
+                EmployeeTm tm = new EmployeeTm(
+                        employee.getEmpId(),
+                        employee.getFirstName(),
+                        employee.getAddress(),
+                        employee.getTel(),
+                        employee.getSalary(),
+                        employee.getPosition(),
+                        btn
+                );
+                obList.add(tm);
+            }
+
+            tblEmp.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        btn.setOnAction((e) -> {
+            System.out.println("hh");
+            ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Add?", yes, no).showAndWait();
+
+            if(type.orElse(no) == yes) {
+                int selectedIndex = tblEmp.getSelectionModel().getSelectedIndex();
+
+                EmployeeTm tm = obList.get(selectedIndex);
+                System.out.println("tm.getEmpId() = " + tm.getEmpId());
+
+                String Empid = tm.getEmpId();
+                String batchId=txtBatId.getText();
+                System.out.println(batchId);
+
+                BatchEmployee batchEmployee = new BatchEmployee(Empid, batchId);
+
+                try {
+                    boolean isSaved = BatchEmployeeRepo.save(batchEmployee);
+                    if (isSaved){
+                        new Alert(Alert.AlertType.CONFIRMATION,"employee is saved").show();
+                    }
+                } catch (SQLException ex) {
+                    new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
+                }
+
+
+                tblEmp.refresh();
+
+            }
+        });
+
+
+
+    }
+
+    private void setCellValueFactoryEmp() {
+        colEmpId.setCellValueFactory(new PropertyValueFactory<>("empId"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
+
     }
 
     private void getStoreIds() {

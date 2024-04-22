@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -85,7 +86,10 @@ public class EmployeeFormController {
                         employee.getAddress(),
                         employee.getTel(),
                         employee.getSalary(),
-                        employee.getPosition()
+                        employee.getPosition(),
+                        new JFXButton()
+
+
                 );
                 obList.add(tm);
             }
