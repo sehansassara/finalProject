@@ -95,12 +95,13 @@ public class BatchFormController {
 
     private void loadAllEmp() {
         ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
-        JFXButton btn = new JFXButton("Add");
-        btn.setCursor(Cursor.HAND);
 
         try {
             List<Employee> employeeList = EmployeeRepo.getAll();
             for (Employee employee : employeeList){
+                JFXButton btn = new JFXButton("Add");
+                btn.setCursor(Cursor.HAND);
+
                 EmployeeTm tm = new EmployeeTm(
                         employee.getEmpId(),
                         employee.getFirstName(),
@@ -111,6 +112,43 @@ public class BatchFormController {
                         btn
                 );
                 obList.add(tm);
+
+                btn.setOnAction((e) -> {
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Add?", yes, no).showAndWait();
+
+                    if(type.orElse(no) == yes) {
+                        int selectedIndex = obList.indexOf(tm);
+
+                        Employee emp = employeeList.get(selectedIndex);
+                        String Empid = emp.getEmpId();
+                        String batchId=txtBatId.getText();
+
+                        BatchEmployee batchEmployee = new BatchEmployee(Empid, batchId);
+
+                        try {
+                            boolean isSaved = BatchEmployeeRepo.save(batchEmployee);
+                            if (isSaved){
+                                new Alert(Alert.AlertType.CONFIRMATION,"employee is saved").show();
+                            }
+                        } catch (SQLException ex) {
+                            new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
+                        }
+
+                        obList.remove(tm);
+                        obList.add(new EmployeeTm(
+                                emp.getEmpId(),
+                                emp.getFirstName(),
+                                emp.getAddress(),
+                                emp.getTel(),
+                                emp.getSalary(),
+                                emp.getPosition(),
+                                new JFXButton("Added")
+                        ));
+                    }
+                });
             }
 
             tblEmp.setItems(obList);
@@ -118,49 +156,11 @@ public class BatchFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        btn.setOnAction((e) -> {
-            System.out.println("hh");
-            ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
-            ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Add?", yes, no).showAndWait();
-
-            if(type.orElse(no) == yes) {
-                int selectedIndex = tblEmp.getSelectionModel().getSelectedIndex();
-
-                EmployeeTm tm = obList.get(selectedIndex);
-                System.out.println("tm.getEmpId() = " + tm.getEmpId());
-
-                String Empid = tm.getEmpId();
-                String batchId=txtBatId.getText();
-                System.out.println(batchId);
-
-                BatchEmployee batchEmployee = new BatchEmployee(Empid, batchId);
-
-                try {
-                    boolean isSaved = BatchEmployeeRepo.save(batchEmployee);
-                    if (isSaved){
-                        new Alert(Alert.AlertType.CONFIRMATION,"employee is saved").show();
-                    }
-                } catch (SQLException ex) {
-                    new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
-                }
-
-
-                tblEmp.refresh();
-
-            }
-        });
-
-
-
     }
-
     private void setCellValueFactoryEmp() {
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("empId"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        colAction.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btnSave"));
 
     }
 
