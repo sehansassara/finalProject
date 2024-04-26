@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PaymentRepo {
     public static boolean save(Payment payment) throws SQLException {
-        String sql = "INSERT INTO payment VALUES( ?,?,?,?,,?'ACTIVE')";
+        String sql = "INSERT INTO payment VALUES( ?,?,?,?,?,'ACTIVE')";
 
         PreparedStatement pstm = DbConnection.getInstance().
                 getConnection().

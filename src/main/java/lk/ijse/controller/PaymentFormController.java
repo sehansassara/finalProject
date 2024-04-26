@@ -11,8 +11,11 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.model.Payment;
 import lk.ijse.model.tm.OrderTm;
 import lk.ijse.model.tm.PaymentTm;
+import lk.ijse.repository.IngredientRepo;
+import lk.ijse.repository.OrderRepo;
 import lk.ijse.repository.PaymentRepo;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -40,7 +43,7 @@ public class PaymentFormController {
     private TableView<PaymentTm> tblPayment;
 
     @FXML
-    private TextField txtOrdId;
+    private JFXComboBox<String> comOrd;
 
     @FXML
     private TextField txtAmount;
@@ -55,11 +58,26 @@ public class PaymentFormController {
     public void initialize() {
         setCellValueFactory();
         loadAllPayments();
-
+        getOrdIds();
         ObservableList<String> paymentTypes = FXCollections.observableArrayList("Cash", "Card");
         choiceType.setItems(paymentTypes);
 
 
+    }
+
+    private void getOrdIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+
+        try {
+            List<String> idList = OrderRepo.getIds();
+            for (String id : idList){
+                obList.add(id);
+            }
+            comOrd.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -103,7 +121,8 @@ public class PaymentFormController {
         txtPayId.setText("");
         txtAmount.setText("");
         txtDate.setText("");
-        txtOrdId.setText("");
+        comOrd.setValue(null);
+        choiceType.setValue(null);
     }
 
     @FXML
@@ -135,11 +154,11 @@ public class PaymentFormController {
             amount = Double.parseDouble(txtAmount.getText());
         }
 
-        String date = txtDate.getText();
+        Date date = Date.valueOf(txtDate.getText());
         String choiceTypeValue = (String) choiceType.getValue();
-        String ordId = txtOrdId.getId();
+        String ordId = comOrd.getValue();
 
-        if (payId.isEmpty() || date.isEmpty() || choiceTypeValue == null) {
+        if (payId.isEmpty() || choiceTypeValue == null) {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
@@ -166,9 +185,9 @@ public class PaymentFormController {
             amount = Double.parseDouble(txtAmount.getText());
         }
 
-        String date = txtDate.getText();
+        Date date = Date.valueOf(txtDate.getText());
         String choiceTypeValue = (String) choiceType.getValue();
-        String ordId = txtOrdId.getId();
+        String ordId = comOrd.getValue();
 
         if (payId.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Please enter payment ID.").show();
@@ -197,8 +216,8 @@ public class PaymentFormController {
             if (payment != null){
                 txtPayId.setText(payment.getPayId());
                 txtAmount.setText(String.valueOf(payment.getAmount()));
-                txtDate.setText(payment.getDate());
-                txtOrdId.setText(payment.getOrdId());
+                txtDate.setText(String.valueOf(payment.getDate()));
+                comOrd.setValue(payment.getOrdId());
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.INFORMATION,"payment is not found !").show();

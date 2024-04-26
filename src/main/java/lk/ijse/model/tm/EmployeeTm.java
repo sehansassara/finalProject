@@ -16,5 +16,5 @@ public class EmployeeTm {
     private double salary;
     private String position;
     private JFXButton btnSave;
-  //  private JFXButton btnRemove;
+    private JFXButton btnRemove;
 }

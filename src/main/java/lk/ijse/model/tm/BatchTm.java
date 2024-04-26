@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -12,7 +14,7 @@ public class BatchTm {
     private String stoId;
     private double price;
     private String type;
-    private String productionDate;
+    private Date productionDate;
     private int numberOfReject;
     private int qty;
 }

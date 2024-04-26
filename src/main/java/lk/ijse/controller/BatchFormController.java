@@ -14,6 +14,7 @@ import lk.ijse.model.tm.BatchTm;
 import lk.ijse.model.tm.EmployeeTm;
 import lk.ijse.repository.*;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +105,9 @@ public class BatchFormController {
                 JFXButton btn = new JFXButton("Add");
                 btn.setCursor(Cursor.HAND);
 
+                JFXButton removeBtn = new JFXButton("remove");
+                removeBtn.setCursor(Cursor.HAND);
+
                 EmployeeTm tm = new EmployeeTm(
                         employee.getEmpId(),
                         employee.getFirstName(),
@@ -111,7 +115,8 @@ public class BatchFormController {
                         employee.getTel(),
                         employee.getSalary(),
                         employee.getPosition(),
-                        btn
+                        btn,
+                        removeBtn
                 );
                 obList.add(tm);
 
@@ -147,9 +152,56 @@ public class BatchFormController {
                                 emp.getTel(),
                                 emp.getSalary(),
                                 emp.getPosition(),
-                                new JFXButton("Added")
+                                new JFXButton("Added"),
+                                new JFXButton("remove")
                         ));
                     }
+                });
+
+                removeBtn.setOnAction((e) -> {
+
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+
+                    if(type.orElse(no) == yes) {
+
+                        int selectedIndex = obList.indexOf(tm);
+
+
+                        Employee emp = employeeList.get(selectedIndex);
+
+                        String Empid = emp.getEmpId();
+
+                        String batchId=txtBatId.getText();
+                        BatchEmployee batchEmployee = new BatchEmployee(Empid, batchId);
+
+                        try {
+
+                            boolean isDeleted = BatchEmployeeRepo.delete(batchEmployee);
+
+                            if (isDeleted){
+
+                                new Alert(Alert.AlertType.CONFIRMATION,"employee is removed").show();
+
+                                obList.remove(selectedIndex);
+
+                                tblEmp.refresh();
+
+                            }
+
+                        } catch (SQLException ex) {
+
+                            new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
+
+                        }
+
+                    }
+
                 });
             }
 
@@ -163,7 +215,7 @@ public class BatchFormController {
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("empId"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btnSave"));
-
+        colAction11.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
     }
 
     private void getStoreIds() {
@@ -253,7 +305,7 @@ public class BatchFormController {
         String stoId = comStoId.getValue();
         double price = Double.parseDouble(txtPrice.getText());
         String type = (String) choiceType.getValue();
-        String productionDate = txtProductionDate.getText();
+        Date productionDate = Date.valueOf(txtProductionDate.getText());
 
         int numOfReject = 0;
         if (!txtNumOfReject.getText().isEmpty()) {
@@ -265,7 +317,7 @@ public class BatchFormController {
             qty = Integer.parseInt(txtQty.getText());
         }
 
-        if (id.isEmpty() || stoId.isEmpty() || type == null || productionDate.isEmpty()) {
+        if (id.isEmpty() || stoId.isEmpty() || type == null) {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
@@ -289,7 +341,7 @@ public class BatchFormController {
         String stoId = comStoId.getValue();
         double price = Double.parseDouble(txtPrice.getText());
         String type = (String) choiceType.getValue();
-        String productionDate = txtProductionDate.getText();
+        Date productionDate = Date.valueOf(txtProductionDate.getText());
 
         int numOfReject = 0;
         if (!txtNumOfReject.getText().isEmpty()) {
@@ -340,7 +392,7 @@ public class BatchFormController {
                 txtBatId.setText(batch.getBatId());
                 comStoId.setValue(batch.getStoId());
                 txtPrice.setText(String.valueOf(batch.getPrice()));
-                txtProductionDate.setText(batch.getProductionDate());
+                txtProductionDate.setText(String.valueOf(batch.getProductionDate()));
                 txtNumOfReject.setText(String.valueOf(batch.getNumberOfReject()));
                 txtQty.setText(String.valueOf(batch.getQty()));
             }

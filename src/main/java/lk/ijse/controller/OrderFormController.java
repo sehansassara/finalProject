@@ -19,6 +19,7 @@ import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.OrderRepo;
 import lk.ijse.repository.PaymentRepo;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -64,22 +65,9 @@ public class OrderFormController {
         setCellValueFactory();
         loadAllOrders();
         getCustomerIds();
-        getPaymentIds();
     }
 
-    private void getPaymentIds() {
-        ObservableList<String> obList = FXCollections.observableArrayList();
 
-        try {
-            List<String> idList = PaymentRepo.getIds();
-            for (String id : idList){
-                obList.add(id);
-            }
-            comPayId.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private void getCustomerIds() {
         ObservableList<String> obList = FXCollections.observableArrayList();
@@ -100,8 +88,6 @@ public class OrderFormController {
         colOrderId.setCellValueFactory(new PropertyValueFactory<>("ordId"));
         colCustId.setCellValueFactory(new PropertyValueFactory<>("cusId"));
         colDateOfPlace.setCellValueFactory(new PropertyValueFactory<>("dateOfPlace"));
-        colPayId.setCellValueFactory(new PropertyValueFactory<>("payId"));
-        colDateOfRelease.setCellValueFactory(new PropertyValueFactory<>("dateOfRelease"));
     }
 
     private void loadAllOrders() {
@@ -113,9 +99,7 @@ public class OrderFormController {
                 OrderTm tm = new OrderTm(
                         order.getOrdId(),
                         order.getCusId(),
-                        order.getDateOfPlace(),
-                        order.getPayId(),
-                        order.getDateOfRelease()
+                        order.getDateOfPlace()
                 );
                 obList.add(tm);
             }
@@ -134,9 +118,7 @@ public class OrderFormController {
     private void clearFields() {
         txtOrderId.setText("");
         txtDateOfPlace.setText("");
-        txtDateOfRelease.setText("");
         comCustId.setValue(null);
-        comPayId.setValue(null);
     }
 
     @FXML
@@ -164,16 +146,15 @@ public class OrderFormController {
     void btnSaveOnAction(ActionEvent event) {
         String ordId = txtOrderId.getText();
         String cusId = comCustId.getValue();
-        String dop = txtDateOfPlace.getText();
-        String payId = comPayId.getValue();
-        String dor = txtDateOfRelease.getText();
+        Date dop = Date.valueOf(txtDateOfPlace.getText());
 
-        if (ordId.isEmpty() || cusId == null || dop.isEmpty() || payId == null || dor.isEmpty()) {
+
+        if (ordId.isEmpty() || cusId == null) {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
 
-        Order order = new Order(ordId,cusId,dop,payId,dor);
+        Order order = new Order(ordId,cusId,dop);
 
         try {
             boolean isSaved = OrderRepo.save(order);
@@ -191,9 +172,7 @@ public class OrderFormController {
     void btnUpdateOnAction(ActionEvent event) {
         String ordId = txtOrderId.getText();
         String cusId = comCustId.getValue();
-        String dop = txtDateOfPlace.getText();
-        String payId = comPayId.getValue();
-        String dor = txtDateOfRelease.getText();
+        Date dop = Date.valueOf(txtDateOfPlace.getText());
 
         if (ordId.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Please enter order ID.").show();
@@ -201,7 +180,7 @@ public class OrderFormController {
         }
 
 
-        Order order = new Order(ordId,cusId,dop,payId,dor);
+        Order order = new Order(ordId,cusId,dop);
         try {
             boolean isUpdated = OrderRepo.update(order);
             if (isUpdated){
@@ -242,9 +221,7 @@ public class OrderFormController {
             if (order != null){
                 txtOrderId.setText(order.getOrdId());
                 comCustId.setValue(order.getCusId());
-                txtDateOfPlace.setText(order.getDateOfPlace());
-                comPayId.setValue(order.getPayId());
-                txtDateOfRelease.setText(order.getDateOfRelease());
+                txtDateOfPlace.setText(String.valueOf(order.getDateOfPlace()));
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.INFORMATION,"order is not found !").show();

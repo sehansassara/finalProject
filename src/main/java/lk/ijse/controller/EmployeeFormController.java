@@ -87,8 +87,8 @@ public class EmployeeFormController {
                         employee.getTel(),
                         employee.getSalary(),
                         employee.getPosition(),
+                        new JFXButton(),
                         new JFXButton()
-                        //new JFXButton()
 
 
                 );

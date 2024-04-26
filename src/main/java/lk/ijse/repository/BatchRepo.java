@@ -3,6 +3,7 @@ package lk.ijse.repository;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Batch;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -74,7 +75,7 @@ public class BatchRepo {
             String stoId = resultSet.getString(2);
             double price = Double.parseDouble(resultSet.getString(3));
             String type = resultSet.getString(4);
-            String productionDate = resultSet.getString(5);
+            Date productionDate = Date.valueOf(resultSet.getString(5));
             int numberOfReject = resultSet.getInt(6);
             int qty = resultSet.getInt(7);
 
@@ -100,7 +101,7 @@ public class BatchRepo {
             String stoId = resultSet.getString(2);
             double price = resultSet.getDouble(3);
             String type = resultSet.getString(4);
-            String productionDate = resultSet.getString(5);
+            Date productionDate = Date.valueOf(resultSet.getString(5));
             int numberOfReject = resultSet.getInt(6);
             int qty = resultSet.getInt(7);
 
