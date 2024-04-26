@@ -12,4 +12,5 @@ public class PaymentTm {
     private double amount;
     private String date;
     private String type;
+    private String ordId;
 }

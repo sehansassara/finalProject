@@ -31,26 +31,27 @@
          </font>
       </Text>
       <TextField fx:id="txtAmount" layoutX="616.0" layoutY="141.0" prefHeight="29.0" prefWidth="223.0" />
-      <Text layoutX="150.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+      <Text layoutX="150.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtDate" layoutX="150.0" layoutY="224.0" prefHeight="29.0" prefWidth="223.0" />
-      <Text layoutX="616.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+      <TextField fx:id="txtDate" layoutX="150.0" layoutY="214.0" prefHeight="29.0" prefWidth="223.0" />
+      <Text layoutX="616.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TableView fx:id="tblPayment" layoutX="160.0" layoutY="424.0" prefHeight="246.0" prefWidth="700.0">
+      <TableView fx:id="tblPayment" layoutX="93.0" layoutY="419.0" prefHeight="246.0" prefWidth="838.0">
         <columns>
           <TableColumn fx:id="colPayId" prefWidth="116.0" text="PAY ID" />
           <TableColumn fx:id="colAmount" prefWidth="193.0" text="Amount" />
             <TableColumn fx:id="colDate" prefWidth="197.0" text="Date" />
             <TableColumn fx:id="colType" prefWidth="193.0" text="Type" />
+            <TableColumn fx:id="colOrd" prefWidth="138.0" text="ORD ID" />
         </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="777.0" layoutY="330.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
+      <JFXButton buttonType="RAISED" layoutX="777.0" layoutY="348.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -62,7 +63,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="669.0" layoutY="330.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #d50000;" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="669.0" layoutY="348.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #d50000;" text="Delete">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -74,7 +75,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="561.0" layoutY="330.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffff00;" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="561.0" layoutY="348.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffff00;" text="Update">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -86,7 +87,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="450.0" layoutY="330.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5;" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="450.0" layoutY="348.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5;" text="Clear">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -98,6 +99,12 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <ChoiceBox fx:id="choiceType" layoutX="616.0" layoutY="224.0" onDragDetected="#choiceTypeOnAction" prefHeight="29.0" prefWidth="223.0" />
+      <ChoiceBox fx:id="choiceType" layoutX="616.0" layoutY="214.0" onDragDetected="#choiceTypeOnAction" prefHeight="29.0" prefWidth="223.0" />
+      <Text layoutX="460.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ORD ID">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtOrdId" layoutX="384.0" layoutY="281.0" prefHeight="29.0" prefWidth="223.0" />
    </children>
 </AnchorPane>

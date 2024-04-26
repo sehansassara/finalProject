@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class BatchFormController {
+    @FXML
+    private TableColumn<?, ?> colAction11;
 
     @FXML
     private TableView<BatchTm> tblBatch;
@@ -34,7 +36,7 @@ public class BatchFormController {
     private TableColumn<?, ?> colNumberOfRejectedItem;
 
     @FXML
-    private TableColumn<?, ?> colOrdId;
+    private TableColumn<?, ?> colPrice;
 
     @FXML
     private TableColumn<?, ?> colProductionDate;
@@ -48,8 +50,9 @@ public class BatchFormController {
     @FXML
     private TableColumn<?, ?> colType;
 
+
     @FXML
-    private JFXComboBox<String> comOrdId;
+    private TextField txtPrice;
 
     @FXML
     private JFXComboBox<String> comStoId;
@@ -86,7 +89,6 @@ public class BatchFormController {
         setCellValueFactoryEmp();
         loadAllBatch();
         loadAllEmp();
-        getOrderIds();
         getStoreIds();
 
         ObservableList<String> batchType = FXCollections.observableArrayList("Jack Mackerel", "Tuna Mackeral","Mackerel","Sardin");
@@ -178,24 +180,10 @@ public class BatchFormController {
         }
     }
 
-    private void getOrderIds() {
-        ObservableList<String> obList = FXCollections.observableArrayList();
-
-        try {
-            List<String> orderList = OrderRepo.getIds();
-            for (String id : orderList){
-                obList.add(id);
-            }
-            comOrdId.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void setCellValueFactory() {
         colBatId.setCellValueFactory(new PropertyValueFactory<>("batId"));
         colStoId.setCellValueFactory(new PropertyValueFactory<>("stoId"));
-        colOrdId.setCellValueFactory(new PropertyValueFactory<>("ordId"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colProductionDate.setCellValueFactory(new PropertyValueFactory<>("productionDate"));
         colNumberOfRejectedItem.setCellValueFactory(new PropertyValueFactory<>("numberOfReject"));
@@ -211,7 +199,7 @@ public class BatchFormController {
                 BatchTm tm = new BatchTm(
                         batch.getBatId(),
                         batch.getStoId(),
-                        batch.getOrdId(),
+                        batch.getPrice(),
                         batch.getType(),
                         batch.getProductionDate(),
                         batch.getNumberOfReject(),
@@ -233,7 +221,7 @@ public class BatchFormController {
     private void clearFields() {
         txtBatId.setText("");
         comStoId.setValue(null);
-        comOrdId.setValue(null);
+        txtPrice.setText("");
         txtProductionDate.setText("");
         txtNumOfReject.setText("");
         txtQty.setText("");
@@ -263,7 +251,7 @@ public class BatchFormController {
     void btnSaveOnAction(ActionEvent event) {
         String id = txtBatId.getText();
         String stoId = comStoId.getValue();
-        String ordId = comOrdId.getValue();
+        double price = Double.parseDouble(txtPrice.getText());
         String type = (String) choiceType.getValue();
         String productionDate = txtProductionDate.getText();
 
@@ -277,12 +265,12 @@ public class BatchFormController {
             qty = Integer.parseInt(txtQty.getText());
         }
 
-        if (id.isEmpty() || stoId.isEmpty() || ordId.isEmpty() || type == null || productionDate.isEmpty()) {
+        if (id.isEmpty() || stoId.isEmpty() || type == null || productionDate.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
 
-        Batch batch = new Batch(id,stoId,ordId,type,productionDate,numOfReject,qty);
+        Batch batch = new Batch(id,stoId,price,type,productionDate,numOfReject,qty);
 
         try {
             boolean isSaved = BatchRepo.save(batch);
@@ -299,7 +287,7 @@ public class BatchFormController {
     void btnUpdateOnAction(ActionEvent event) {
         String id = txtBatId.getText();
         String stoId = comStoId.getValue();
-        String ordId = comOrdId.getValue();
+        double price = Double.parseDouble(txtPrice.getText());
         String type = (String) choiceType.getValue();
         String productionDate = txtProductionDate.getText();
 
@@ -318,7 +306,7 @@ public class BatchFormController {
             return;
         }
 
-        Batch batch = new Batch(id,stoId,ordId,type,productionDate,numOfReject,qty);
+        Batch batch = new Batch(id,stoId,price,type,productionDate,numOfReject,qty);
 
         try {
             boolean isUpdated = BatchRepo.update(batch);
@@ -329,17 +317,6 @@ public class BatchFormController {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
         loadAllBatch();
-    }
-
-    @FXML
-    void comOrdIdOnAction(ActionEvent event) {
-        String id = comOrdId.getValue();
-
-        try {
-            Order order = OrderRepo.searchById(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @FXML
@@ -362,7 +339,7 @@ public class BatchFormController {
             if(batch != null){
                 txtBatId.setText(batch.getBatId());
                 comStoId.setValue(batch.getStoId());
-                comOrdId.setValue(batch.getOrdId());
+                txtPrice.setText(String.valueOf(batch.getPrice()));
                 txtProductionDate.setText(batch.getProductionDate());
                 txtNumOfReject.setText(String.valueOf(batch.getNumberOfReject()));
                 txtQty.setText(String.valueOf(batch.getQty()));

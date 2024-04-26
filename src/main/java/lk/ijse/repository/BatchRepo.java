@@ -19,7 +19,7 @@ public class BatchRepo {
 
         pstm.setObject(1,batch.getBatId());
         pstm.setObject(2,batch.getStoId());
-        pstm.setObject(3,batch.getOrdId());
+        pstm.setObject(3,batch.getPrice());
         pstm.setObject(4,batch.getType());
         pstm.setObject(5,batch.getProductionDate());
         pstm.setObject(6,batch.getNumberOfReject());
@@ -29,14 +29,14 @@ public class BatchRepo {
     }
 
     public static boolean update(Batch batch) throws SQLException {
-        String sql = "UPDATE batch SET STO_ID = ?, ORD_ID = ?, type = ?, productionDate = ?, numberOfRejectedItem = ?, qty = ? WHERE BAT_ID = ?";
+        String sql = "UPDATE batch SET STO_ID = ?, price = ?, type = ?, productionDate = ?, numberOfRejectedItem = ?, qty = ? WHERE BAT_ID = ?";
 
         PreparedStatement pstm = DbConnection.getInstance().
                 getConnection().
                 prepareStatement(sql);
 
         pstm.setObject(1,batch.getStoId());
-        pstm.setObject(2,batch.getOrdId());
+        pstm.setObject(2,batch.getPrice());
         pstm.setObject(3,batch.getType());
         pstm.setObject(4,batch.getProductionDate());
         pstm.setObject(5,batch.getNumberOfReject());
@@ -72,13 +72,13 @@ public class BatchRepo {
         if (resultSet.next()){
             String batId = resultSet.getString(1);
             String stoId = resultSet.getString(2);
-            String ordId = resultSet.getString(3);
+            double price = Double.parseDouble(resultSet.getString(3));
             String type = resultSet.getString(4);
             String productionDate = resultSet.getString(5);
             int numberOfReject = resultSet.getInt(6);
             int qty = resultSet.getInt(7);
 
-            Batch batch = new Batch(batId,stoId,ordId,type,productionDate,numberOfReject,qty);
+            Batch batch = new Batch(batId,stoId,price,type,productionDate,numberOfReject,qty);
             return batch;
         }
         return null;
@@ -98,13 +98,13 @@ public class BatchRepo {
         while (resultSet.next()){
             String batId = resultSet.getString(1);
             String stoId = resultSet.getString(2);
-            String ordId = resultSet.getString(3);
+            double price = resultSet.getDouble(3);
             String type = resultSet.getString(4);
             String productionDate = resultSet.getString(5);
             int numberOfReject = resultSet.getInt(6);
             int qty = resultSet.getInt(7);
 
-            Batch batch = new Batch(batId,stoId,ordId,type,productionDate,numberOfReject,qty);
+            Batch batch = new Batch(batId,stoId,price,type,productionDate,numberOfReject,qty);
 
             batchList.add(batch);
         }

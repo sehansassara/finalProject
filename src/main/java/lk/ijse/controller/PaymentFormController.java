@@ -25,6 +25,9 @@ public class PaymentFormController {
     private TableColumn<?, ?> colAmount;
 
     @FXML
+    private TableColumn<?, ?> colOrd;
+
+    @FXML
     private TableColumn<?, ?> colDate;
 
     @FXML
@@ -37,10 +40,14 @@ public class PaymentFormController {
     private TableView<PaymentTm> tblPayment;
 
     @FXML
+    private TextField txtOrdId;
+
+    @FXML
     private TextField txtAmount;
 
     @FXML
     private TextField txtDate;
+
 
     @FXML
     private TextField txtPayId;
@@ -60,6 +67,7 @@ public class PaymentFormController {
         colAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colOrd.setCellValueFactory(new PropertyValueFactory<>("ordId"));
     }
 
     private void loadAllPayments() {
@@ -72,7 +80,8 @@ public class PaymentFormController {
                         payment.getPayId(),
                         payment.getAmount(),
                         payment.getDate(),
-                        payment.getType()
+                        payment.getType(),
+                        payment.getOrdId()
                 );
                 obList.add(tm);
             }
@@ -94,6 +103,7 @@ public class PaymentFormController {
         txtPayId.setText("");
         txtAmount.setText("");
         txtDate.setText("");
+        txtOrdId.setText("");
     }
 
     @FXML
@@ -127,13 +137,14 @@ public class PaymentFormController {
 
         String date = txtDate.getText();
         String choiceTypeValue = (String) choiceType.getValue();
+        String ordId = txtOrdId.getId();
 
         if (payId.isEmpty() || date.isEmpty() || choiceTypeValue == null) {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
 
-        Payment payment = new Payment(payId,amount,date,choiceTypeValue);
+        Payment payment = new Payment(payId,amount,date,choiceTypeValue,ordId);
 
         try {
             boolean isSaved = PaymentRepo.save(payment);
@@ -157,13 +168,14 @@ public class PaymentFormController {
 
         String date = txtDate.getText();
         String choiceTypeValue = (String) choiceType.getValue();
+        String ordId = txtOrdId.getId();
 
         if (payId.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Please enter payment ID.").show();
             return;
         }
 
-        Payment payment = new Payment(payId,amount,date,choiceTypeValue);
+        Payment payment = new Payment(payId,amount,date,choiceTypeValue,ordId);
 
         try {
             boolean isUpdated = PaymentRepo.update(payment);
@@ -186,6 +198,7 @@ public class PaymentFormController {
                 txtPayId.setText(payment.getPayId());
                 txtAmount.setText(String.valueOf(payment.getAmount()));
                 txtDate.setText(payment.getDate());
+                txtOrdId.setText(payment.getOrdId());
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.INFORMATION,"payment is not found !").show();

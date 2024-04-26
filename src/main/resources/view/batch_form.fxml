@@ -20,47 +20,42 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <Text layoutX="106.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BAT ID" wrappingWidth="59.7294921875">
+      <Text layoutX="97.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BAT ID" wrappingWidth="59.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtBatId" layoutX="106.0" layoutY="96.0" onAction="#txtSearchOnAction" prefHeight="29.0" prefWidth="209.0" />
-      <Text layoutX="406.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STO ID" wrappingWidth="59.7294921875">
+      <TextField fx:id="txtBatId" layoutX="97.0" layoutY="96.0" onAction="#txtSearchOnAction" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="445.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STO ID" wrappingWidth="59.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="695.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ORD ID" wrappingWidth="59.7294921875">
+      <Text layoutX="743.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="59.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="699.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="59.7294921875">
+      <ChoiceBox fx:id="choiceType" layoutX="744.0" layoutY="243.0" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="445.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Production Date" wrappingWidth="131.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="choiceType" layoutX="699.0" layoutY="228.0" prefHeight="24.0" prefWidth="180.0" />
-      <Text layoutX="406.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Production Date" wrappingWidth="131.7294921875">
+      <Text layoutX="743.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Num Of Rejected Item" wrappingWidth="170.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="695.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Num Of Rejected Item" wrappingWidth="170.7294921875">
+      <TextField fx:id="txtProductionDate" layoutX="444.0" layoutY="173.0" prefHeight="29.0" prefWidth="209.0" />
+      <TextField fx:id="txtNumOfReject" layoutX="743.0" layoutY="173.0" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="444.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty" wrappingWidth="170.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtProductionDate" layoutX="405.0" layoutY="163.0" prefHeight="29.0" prefWidth="209.0" />
-      <TextField fx:id="txtNumOfReject" layoutX="695.0" layoutY="163.0" prefHeight="29.0" prefWidth="209.0" />
-      <Text layoutX="405.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty" wrappingWidth="170.7294921875">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Text>
-      <TextField fx:id="txtQty" layoutX="405.0" layoutY="223.0" prefHeight="29.0" prefWidth="209.0" />
-      <JFXButton buttonType="RAISED" layoutX="849.0" layoutY="338.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
+      <TextField fx:id="txtQty" layoutX="444.0" layoutY="243.0" prefHeight="29.0" prefWidth="209.0" />
+      <JFXButton buttonType="RAISED" layoutX="849.0" layoutY="328.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #03a9f4;" text="Save">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -72,7 +67,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="743.0" layoutY="338.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #d50000;" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="743.0" layoutY="328.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #d50000;" text="Delete">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,7 +79,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="637.0" layoutY="338.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffff00;" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="637.0" layoutY="328.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #ffff00;" text="Update">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -96,7 +91,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="531.0" layoutY="338.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5;" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="531.0" layoutY="328.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5;" text="Clear">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -112,16 +107,15 @@
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="116.0" text="BAT ID" />
           <TableColumn fx:id="colStoId" prefWidth="109.0" text="STO ID" />
-            <TableColumn fx:id="colOrdId" prefWidth="116.0" text="ORD ID" />
+            <TableColumn fx:id="colPrice" prefWidth="116.0" text="Price" />
             <TableColumn fx:id="colType" prefWidth="236.0" text="Type" />
             <TableColumn fx:id="colProductionDate" prefWidth="172.0" text="Production Date" />
             <TableColumn fx:id="colNumberOfRejectedItem" prefWidth="124.0" text="Num Of Reject" />
             <TableColumn fx:id="colQty" prefWidth="106.0" text="Qty" />
         </columns>
       </TableView>
-      <JFXComboBox fx:id="comStoId" layoutX="408.0" layoutY="92.0" onAction="#comStoIdOnAction" prefHeight="29.0" prefWidth="209.0" />
-      <JFXComboBox fx:id="comOrdId" layoutX="695.0" layoutY="92.0" onAction="#comOrdIdOnAction" prefHeight="29.0" prefWidth="209.0" />
-      <TableView fx:id="tblEmp" layoutX="71.0" layoutY="178.0" prefHeight="200.0" prefWidth="299.0">
+      <JFXComboBox fx:id="comStoId" layoutX="447.0" layoutY="92.0" onAction="#comStoIdOnAction" prefHeight="29.0" prefWidth="209.0" />
+      <TableView fx:id="tblEmp" layoutX="97.0" layoutY="164.0" prefHeight="218.0" prefWidth="299.0">
         <columns>
           <TableColumn fx:id="colEmpId" prefWidth="75.0" text="EmpId" />
           <TableColumn fx:id="colFirstName" prefWidth="75.0" text="name" />
@@ -129,10 +123,16 @@
             <TableColumn fx:id="colAction11" prefWidth="75.0" text="Action" />
         </columns>
       </TableView>
-      <Label layoutX="97.0" layoutY="152.0" text="Employee Detail:">
+      <Label layoutX="97.0" layoutY="143.0" text="Employee Detail:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <TextField fx:id="txtPrice" layoutX="743.0" layoutY="96.0" prefHeight="29.0" prefWidth="209.0" />
+      <Text layoutX="743.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="59.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

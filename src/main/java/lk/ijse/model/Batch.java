@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Batch {
     private String batId;
     private String stoId;
-    private String ordId;
+    private double price;
     private String type;
     private String productionDate;
     private int numberOfReject;

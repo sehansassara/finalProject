@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PaymentRepo {
     public static boolean save(Payment payment) throws SQLException {
-        String sql = "INSERT INTO payment VALUES( ?,?,?,?,'ACTIVE')";
+        String sql = "INSERT INTO payment VALUES( ?,?,?,?,,?'ACTIVE')";
 
         PreparedStatement pstm = DbConnection.getInstance().
                 getConnection().
@@ -22,12 +22,13 @@ public class PaymentRepo {
         pstm.setObject(2,payment.getAmount());
         pstm.setObject(3,payment.getDate());
         pstm.setObject(4,payment.getType());
+        pstm.setObject(5,payment.getOrdId());
 
         return pstm.executeUpdate() > 0;
     }
 
     public static boolean update(Payment payment) throws SQLException {
-        String sql = "UPDATE payment SET amount = ?, date = ?, type = ? WHERE PAY_ID = ?";
+        String sql = "UPDATE payment SET amount = ?, date = ?, type = ?, ORD_ID = ? WHERE PAY_ID = ?";
 
         PreparedStatement pstm = DbConnection.getInstance().
                 getConnection().
@@ -36,7 +37,8 @@ public class PaymentRepo {
         pstm.setObject(1,payment.getAmount());
         pstm.setObject(2,payment.getDate());
         pstm.setObject(3,payment.getType());
-        pstm.setObject(4,payment.getPayId());
+        pstm.setObject(4,payment.getOrdId());
+        pstm.setObject(5,payment.getPayId());
 
         return pstm.executeUpdate() > 0;
     }
@@ -69,8 +71,9 @@ public class PaymentRepo {
             double amount = resultSet.getDouble(2);
             String date = resultSet.getString(3);
             String type = resultSet.getString(4);
+            String ordID = resultSet.getString(5);
 
-            Payment payment = new Payment(id,amount,date,type);
+            Payment payment = new Payment(id,amount,date,type,ordID);
             return  payment;
         }
         return null;
@@ -92,8 +95,9 @@ public class PaymentRepo {
             double amount = resultSet.getDouble(2);
             String date = resultSet.getString(3);
             String type = resultSet.getString(4);
+            String ordId = resultSet.getString(5);
 
-            Payment payment = new Payment(id,amount,date,type);
+            Payment payment = new Payment(id,amount,date,type,ordId);
             paymentList.add(payment);
         }
         return paymentList;
