@@ -16,14 +16,14 @@ public class OrderRepo {
         String sql = "INSERT INTO orders VALUES( ?,?,?,'ACTIVE')";
 
         PreparedStatement pstm = DbConnection.getInstance().
-               getConnection().
-               prepareStatement(sql);
+                getConnection().
+                prepareStatement(sql);
 
-        pstm.setObject(1,order.getOrdId());
-        pstm.setObject(2,order.getCusId());
-        pstm.setObject(3,order.getDateOfPlace());
+        pstm.setObject(1, order.getOrdId());
+        pstm.setObject(2, order.getCusId());
+        pstm.setObject(3, order.getDateOfPlace());
 
-       return pstm.executeUpdate() > 0;
+        return pstm.executeUpdate() > 0;
     }
 
     public static boolean update(Order order) throws SQLException {
@@ -33,11 +33,11 @@ public class OrderRepo {
                 getConnection().
                 prepareStatement(sql);
 
-        pstm.setObject(1,order.getCusId());
-        pstm.setObject(2,order.getDateOfPlace());
-        pstm.setObject(3,order.getOrdId());
+        pstm.setObject(1, order.getCusId());
+        pstm.setObject(2, order.getDateOfPlace());
+        pstm.setObject(3, order.getOrdId());
 
-        return  pstm.executeUpdate() > 0;
+        return pstm.executeUpdate() > 0;
     }
 
     public static boolean delete(String id) throws SQLException {
@@ -63,17 +63,17 @@ public class OrderRepo {
 
         ResultSet resultSet = pstm.executeQuery();
 
-        if (resultSet.next()){
+        if (resultSet.next()) {
             String ordId = resultSet.getString(1);
             String cusId = resultSet.getString(2);
             Date dateOfPlase = Date.valueOf(resultSet.getString(3));
 
 
-            Order order = new Order(ordId,cusId,dateOfPlase);
+            Order order = new Order(ordId, cusId, dateOfPlase);
 
             return order;
         }
-    return null;
+        return null;
     }
 
     public static List<Order> getAll() throws SQLException {
@@ -86,13 +86,13 @@ public class OrderRepo {
 
         List<Order> orderList = new ArrayList<>();
 
-        while (resultSet.next()){
+        while (resultSet.next()) {
             String ordId = resultSet.getString(1);
             String cusId = resultSet.getString(2);
             Date dop = Date.valueOf(resultSet.getString(3));
 
 
-            Order order = new Order(ordId,cusId,dop);
+            Order order = new Order(ordId, cusId, dop);
             orderList.add(order);
         }
         return orderList;
@@ -111,5 +111,18 @@ public class OrderRepo {
             idList.add(id);
         }
         return idList;
+    }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT ORD_ID FROM orders ORDER BY ORD_ID DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
     }
 }

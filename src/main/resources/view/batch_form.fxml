@@ -107,7 +107,7 @@
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="116.0" text="BAT ID" />
           <TableColumn fx:id="colStoId" prefWidth="109.0" text="STO ID" />
-            <TableColumn fx:id="colPrice" prefWidth="116.0" text="Price" />
+            <TableColumn fx:id="colPrice" prefWidth="116.0" text="Unit Price" />
             <TableColumn fx:id="colType" prefWidth="236.0" text="Type" />
             <TableColumn fx:id="colProductionDate" prefWidth="172.0" text="Production Date" />
             <TableColumn fx:id="colNumberOfRejectedItem" prefWidth="124.0" text="Num Of Reject" />
@@ -129,7 +129,7 @@
          </font>
       </Label>
       <TextField fx:id="txtPrice" layoutX="743.0" layoutY="96.0" prefHeight="29.0" prefWidth="209.0" />
-      <Text layoutX="743.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="59.7294921875">
+      <Text layoutX="743.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price" wrappingWidth="82.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

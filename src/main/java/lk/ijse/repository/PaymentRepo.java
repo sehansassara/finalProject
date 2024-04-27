@@ -4,6 +4,7 @@ import lk.ijse.db.DbConnection;
 import lk.ijse.model.Order;
 import lk.ijse.model.Payment;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,7 +70,7 @@ public class PaymentRepo {
         if (resultSet.next()){
             String id = resultSet.getString(1);
             double amount = resultSet.getDouble(2);
-            String date = resultSet.getString(3);
+            Date date = Date.valueOf(resultSet.getString(3));
             String type = resultSet.getString(4);
             String ordID = resultSet.getString(5);
 
@@ -93,7 +94,7 @@ public class PaymentRepo {
         while (resultSet.next()){
             String id = resultSet.getString(1);
             double amount = resultSet.getDouble(2);
-            String date = resultSet.getString(3);
+            Date date = Date.valueOf(resultSet.getString(3));
             String type = resultSet.getString(4);
             String ordId = resultSet.getString(5);
 

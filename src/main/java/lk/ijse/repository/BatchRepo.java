@@ -111,4 +111,18 @@ public class BatchRepo {
         }
         return batchList;
     }
+
+    public static List<String> getIds() throws SQLException {
+        String sql = "SELECT BAT_ID FROM batch";
+        ResultSet resultSet = DbConnection.getInstance()
+                .getConnection()
+                .prepareStatement(sql)
+                .executeQuery();
+
+        List<String> batchList = new ArrayList<>();
+        while (resultSet.next()) {
+            batchList.add(resultSet.getString(1));
+        }
+        return batchList;
+    }
 }

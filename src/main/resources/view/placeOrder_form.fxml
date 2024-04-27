@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="AnchorpaneOrder" prefHeight="719.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PlaceOrderFormController">
+   <children>
+      <Label layoutX="342.0" layoutY="13.0" text="Place Order Form">
+         <font>
+            <Font name="System Bold" size="34.0" />
+         </font>
+      </Label>
+      <Text layoutX="141.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order ID :" wrappingWidth="83.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblOrdId" layoutX="234.0" layoutY="90.0" textFill="#581559de" />
+      <Text layoutX="644.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Place :" wrappingWidth="110.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblDop" layoutX="770.0" layoutY="90.0" />
+      <Text layoutX="141.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name :" wrappingWidth="133.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <JFXComboBox fx:id="comCustName" layoutX="141.0" layoutY="176.0" onAction="#comCustNameOnAction" prefHeight="24.0" prefWidth="172.0" />
+      <Text layoutX="647.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID :" wrappingWidth="103.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblCustId" layoutX="766.0" layoutY="146.0" />
+      <Text layoutX="141.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch ID :" wrappingWidth="83.72949218749989">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <JFXComboBox fx:id="comBatId" layoutX="139.0" layoutY="261.0" onAction="#comBatchIdOnAction" prefHeight="24.0" prefWidth="172.0" />
+      <Text layoutX="450.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price :" wrappingWidth="83.72949218749989">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="582.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" wrappingWidth="55.729492187499886">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblType" layoutX="599.0" layoutY="272.0" />
+      <Text layoutX="683.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Batch Quantity :" wrappingWidth="126.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblBatQty" layoutX="739.0" layoutY="272.0" />
+      <Text layoutX="863.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty :" wrappingWidth="55.7294921875">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtQty" layoutX="863.0" layoutY="268.0" onAction="#txtQtyOnAction" prefHeight="35.0" prefWidth="65.0" />
+      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="817.0" layoutY="328.0" onAction="#btnAddToCartOnAction" prefHeight="32.0" prefWidth="134.0" style="-fx-background-color: #83c5c1;" text="Add to cart">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-add-shopping-cart-90.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblCart" layoutX="61.0" layoutY="393.0" prefHeight="226.0" prefWidth="898.0">
+        <columns>
+          <TableColumn fx:id="colBatId" prefWidth="83.0" text="BAT ID" />
+          <TableColumn fx:id="colCusId" prefWidth="89.0" text="CUS ID" />
+            <TableColumn fx:id="colType" prefWidth="165.0" text="Type" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="115.0" text="Unit Price" />
+            <TableColumn fx:id="colQty" prefWidth="141.0" text="Qty" />
+            <TableColumn fx:id="colTotal" prefWidth="171.0" text="Total" />
+            <TableColumn fx:id="colAction" prefWidth="133.0" text="Action" />
+        </columns>
+      </TableView>
+      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="829.0" layoutY="648.0" onAction="#btnPlaceOrderOnAction" prefHeight="32.0" prefWidth="134.0" style="-fx-background-color: #b39ddb;" text="Place Order">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-bill-94.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <Text layoutX="55.0" layoutY="669.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Total :" wrappingWidth="103.7294921875">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblNetTotal" layoutX="172.0" layoutY="655.0" />
+      <Label fx:id="lblUnitPrice" layoutX="474.0" layoutY="271.0" />
+   </children>
+</AnchorPane>

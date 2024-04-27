@@ -102,11 +102,10 @@ public class BatchFormController {
         try {
             List<Employee> employeeList = EmployeeRepo.getAll();
             for (Employee employee : employeeList){
+                final Employee emp = employee;
+
                 JFXButton btn = new JFXButton("Add");
                 btn.setCursor(Cursor.HAND);
-
-                JFXButton removeBtn = new JFXButton("remove");
-                removeBtn.setCursor(Cursor.HAND);
 
                 EmployeeTm tm = new EmployeeTm(
                         employee.getEmpId(),
@@ -115,8 +114,7 @@ public class BatchFormController {
                         employee.getTel(),
                         employee.getSalary(),
                         employee.getPosition(),
-                        btn,
-                        removeBtn
+                        btn
                 );
                 obList.add(tm);
 
@@ -129,7 +127,6 @@ public class BatchFormController {
                     if(type.orElse(no) == yes) {
                         int selectedIndex = obList.indexOf(tm);
 
-                        Employee emp = employeeList.get(selectedIndex);
                         String Empid = emp.getEmpId();
                         String batchId=txtBatId.getText();
 
@@ -144,64 +141,9 @@ public class BatchFormController {
                             new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
                         }
 
-                        obList.remove(tm);
-                        obList.add(new EmployeeTm(
-                                emp.getEmpId(),
-                                emp.getFirstName(),
-                                emp.getAddress(),
-                                emp.getTel(),
-                                emp.getSalary(),
-                                emp.getPosition(),
-                                new JFXButton("Added"),
-                                new JFXButton("remove")
-                        ));
+                        // Update the existing EmployeeTm object in the obList
+                        tm.setBtnSave(new JFXButton("Added"));
                     }
-                });
-
-                removeBtn.setOnAction((e) -> {
-
-                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
-
-                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-
-                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
-
-
-                    if(type.orElse(no) == yes) {
-
-                        int selectedIndex = obList.indexOf(tm);
-
-
-                        Employee emp = employeeList.get(selectedIndex);
-
-                        String Empid = emp.getEmpId();
-
-                        String batchId=txtBatId.getText();
-                        BatchEmployee batchEmployee = new BatchEmployee(Empid, batchId);
-
-                        try {
-
-                            boolean isDeleted = BatchEmployeeRepo.delete(batchEmployee);
-
-                            if (isDeleted){
-
-                                new Alert(Alert.AlertType.CONFIRMATION,"employee is removed").show();
-
-                                obList.remove(selectedIndex);
-
-                                tblEmp.refresh();
-
-                            }
-
-                        } catch (SQLException ex) {
-
-                            new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
-
-                        }
-
-                    }
-
                 });
             }
 
@@ -215,7 +157,6 @@ public class BatchFormController {
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("empId"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colAction.setCellValueFactory(new PropertyValueFactory<>("btnSave"));
-        colAction11.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
     }
 
     private void getStoreIds() {
