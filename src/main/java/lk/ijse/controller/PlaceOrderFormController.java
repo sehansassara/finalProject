@@ -10,15 +10,17 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.model.Batch;
-import lk.ijse.model.Customer;
+import lk.ijse.model.*;
 import lk.ijse.model.tm.OrderTm;
 import lk.ijse.repository.BatchRepo;
 import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.OrderRepo;
+import lk.ijse.repository.PlaceOrderRepo;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -136,12 +138,12 @@ public class PlaceOrderFormController {
             throw new RuntimeException(e);
         }
     }
-
+String nextOrderId = "";
     private void getCurrentOrderIds() {
         try {
             String currentId = OrderRepo.getCurrentId();
 
-            String nextOrderId = generateNexrOrderId(currentId);
+            nextOrderId = generateNexrOrderId(currentId);
             lblOrdId.setText(nextOrderId);
 
         } catch (SQLException e) {
@@ -225,7 +227,45 @@ public class PlaceOrderFormController {
     }
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
+        String orderId = nextOrderId;
+        String cusId = lblCustId.getText();
+        Date date = Date.valueOf(LocalDate.now());
 
+        var order = new Order(orderId, cusId, date);
+
+        List<OrderDetail> odList = new ArrayList<>();
+
+        for (int i = 0; i < tblCart.getItems().size(); i++) {
+            OrderTm tm = obList.get(i);
+
+            OrderDetail od = new OrderDetail(
+                    orderId,
+                    tm.getBatId(),
+                    tm.getQty()
+            );
+
+            odList.add(od);
+        }
+
+        PlaceOrder po = new PlaceOrder(order, odList);
+
+
+        try {
+            boolean isPlaced = PlaceOrderRepo.placeOrder(po);
+            if (isPlaced){
+                new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
+                obList.clear();
+                tblCart.setItems(obList);
+                calculateNetTotal();
+                getCurrentOrderIds();
+
+            }else{
+                new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
+
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML

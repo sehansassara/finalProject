@@ -2,13 +2,16 @@ package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Ingredient;
+import lk.ijse.model.OrderDetail;
 import lk.ijse.model.Payment;
+import lk.ijse.model.batchIngredient;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class IngredientRepo {
     public static boolean save(Ingredient ingredient) throws SQLException {
@@ -113,5 +116,27 @@ public class IngredientRepo {
             idList.add(id);
         }
         return idList;
+    }
+
+    public static boolean update(List<batchIngredient> bcList) throws SQLException {
+        for (batchIngredient bi : bcList) {
+            boolean isUpdateQty = updateQty(bi.getBatId(), bi.getQty(),bi.getIngId());
+            if(!isUpdateQty) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean updateQty(String batId, int qty, String ingId) throws SQLException {
+        String sql = "UPDATE ingredient SET qtyOnHand = qtyOnHand - ? WHERE ING_ID = ?";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        pstm.setInt(1, qty);
+        pstm.setString(2, ingId);
+
+        return pstm.executeUpdate() > 0;
     }
 }

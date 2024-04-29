@@ -26,7 +26,7 @@ public class OrderRepo {
         return pstm.executeUpdate() > 0;
     }
 
-    public static boolean update(Order order) throws SQLException {
+  /*  public static boolean update(Order order) throws SQLException {
         String sql = "UPDATE orders SET CUS_ID = ?, dateOfPlace = ? WHERE ORD_ID = ?";
 
         PreparedStatement pstm = DbConnection.getInstance().
@@ -96,7 +96,7 @@ public class OrderRepo {
             orderList.add(order);
         }
         return orderList;
-    }
+    }*/
 
     public static List<String> getIds() throws SQLException {
         String sql = "SELECT ORD_ID FROM orders";

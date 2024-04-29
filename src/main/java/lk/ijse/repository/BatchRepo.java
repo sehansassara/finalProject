@@ -2,6 +2,7 @@ package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Batch;
+import lk.ijse.model.OrderDetail;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -124,5 +125,27 @@ public class BatchRepo {
             batchList.add(resultSet.getString(1));
         }
         return batchList;
+    }
+
+    public static boolean update(List<OrderDetail> odList) throws SQLException {
+        for (OrderDetail od : odList) {
+            boolean isUpdateQty = updateQty(od.getBatId(), od.getQty());
+            if(!isUpdateQty) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean updateQty(String batId, int qty) throws SQLException {
+        String sql = "UPDATE batch SET qty = qty - ? WHERE BAT_ID = ?";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        pstm.setInt(1, qty);
+        pstm.setString(2, batId);
+
+        return pstm.executeUpdate() > 0;
     }
 }

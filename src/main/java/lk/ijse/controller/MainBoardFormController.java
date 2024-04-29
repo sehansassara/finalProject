@@ -122,7 +122,12 @@ public class MainBoardFormController {
         Anchorpanemain.getChildren().add(dashboardPane);
     }
     @FXML
-    public void btnBatchIngredientOnAction(ActionEvent actionEvent) {
+    public void btnBatchIngredientOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/batchIngredientDetail_form.fxml"));
+
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(dashboardPane);
     }
 
     @FXML
