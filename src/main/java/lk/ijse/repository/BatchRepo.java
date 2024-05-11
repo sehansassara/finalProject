@@ -148,4 +148,17 @@ public class BatchRepo {
 
         return pstm.executeUpdate() > 0;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT BAT_ID FROM batch ORDER BY BAT_ID DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String batchId = resultSet.getString(1);
+            return batchId;
+        }
+        return null;
+    }
 }

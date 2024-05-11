@@ -12,11 +12,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.controller.Util.Regex;
 import lk.ijse.model.Customer;
-import lk.ijse.repository.CustomerRepo;
 import lk.ijse.model.tm.CustomerTm;
+import lk.ijse.repository.CustomerRepo;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -52,6 +56,7 @@ public class CustomerFormController {
     @FXML
     private AnchorPane custAnchorpane;
 
+   
     @FXML
     private TextField txtCusId;
 
@@ -65,6 +70,7 @@ public class CustomerFormController {
     private TextField txtTel;
 
     public void initialize() {
+        getCurrentCusIds();
         setCellValueFactory();
         loadAllCustomer();
     }
@@ -74,6 +80,27 @@ public class CustomerFormController {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+    }
+    String nextCusId = "";
+    private void getCurrentCusIds() {
+        try {
+            String currentId = CustomerRepo.getCurrentId();
+
+            nextCusId = generateNexrCusId(currentId);
+            txtCusId.setText(nextCusId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNexrCusId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("C");  //" ", "2"
+            int idNum = Integer.parseInt(split[1]);
+            return "C" + String.format("%03d", ++idNum);
+        }
+        return "C001";
     }
 
     private void loadAllCustomer() {
@@ -115,6 +142,7 @@ public class CustomerFormController {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
         loadAllCustomer();
+        clearFields();
     }
 
     @FXML
@@ -128,18 +156,21 @@ public class CustomerFormController {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
+        if (isValied()) {
+            Customer customer = new Customer(id, name, address, tel);
 
-        Customer customer = new Customer(id,name,address,tel);
-
-        try {
-            boolean isSaved = CustomerRepo.save(customer);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION,"Customer is saved").show();
+            try {
+                boolean isSaved = CustomerRepo.save(customer);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Customer is saved").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-        loadAllCustomer();
+                loadAllCustomer();
+                clearFields();
+                getCurrentCusIds();
     }
 
     @FXML
@@ -153,18 +184,20 @@ public class CustomerFormController {
             new Alert(Alert.AlertType.ERROR, "Please enter customer ID.").show();
             return;
         }
+if (isValied()) {
+    Customer customer = new Customer(id, name, address, tel);
 
-        Customer customer = new Customer(id, name, address, tel);
-
-        try {
-            boolean isUpdate = CustomerRepo.update(customer);
-            if (isUpdate){
-                new Alert(Alert.AlertType.CONFIRMATION,"customer is updated!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    try {
+        boolean isUpdate = CustomerRepo.update(customer);
+        if (isUpdate) {
+            new Alert(Alert.AlertType.CONFIRMATION, "customer is updated!").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
         loadAllCustomer();
+        clearFields();
     }
     @FXML
     public void btnClearOnAction(ActionEvent actionEvent) {
@@ -200,5 +233,39 @@ public class CustomerFormController {
         }else {
             new Alert(Alert.AlertType.INFORMATION,"customer is not found !").show();
         }
+    }
+
+    public void tblCustOnMouse(MouseEvent mouseEvent) {
+        int index = tblCustomer.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1){
+            return;
+        }
+
+        String id = colId.getCellData(index).toString();
+        String name = colName.getCellData(index).toString();
+        String address = colAddress.getCellData(index).toString();
+        String tel = colTel.getCellData(index).toString();
+
+
+        txtCusId.setText(id);
+        txtName.setText(name);
+        txtAddress.setText(address);
+        txtTel.setText(tel);
+    }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtCusId)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.NAME,txtName)) return false;
+        return true;
+    }
+
+    public void txtNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.NAME,txtName);
+    }
+
+
+    @FXML
+    void txtCusIdOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtCusId);
     }
 }

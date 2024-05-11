@@ -11,4 +11,5 @@ public class batchIngredient {
     private String batId;
     private int qty;
     private String ingId;
+
 }

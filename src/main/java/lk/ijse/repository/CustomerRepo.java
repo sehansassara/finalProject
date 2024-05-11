@@ -109,33 +109,34 @@ public class CustomerRepo {
         return idList;
     }
 
-    public static List<String> getNames() throws SQLException {
-        String sql = "SELECT name FROM customer";
+    public static List<String> getCon() throws SQLException {
+        String sql = "SELECT tel FROM customer";
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 
-        List<String> nameList = new ArrayList<>();
+        List<String> telList = new ArrayList<>();
 
         ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()) {
             String id = resultSet.getString(1);
-            nameList.add(id);
+            telList.add(id);
         }
-        return nameList;
+        return telList;
     }
 
-    public static Customer searchByName(String name) throws SQLException {
-        String sql = "SELECT * FROM customer WHERE name = ?";
+    public static Customer searchByTel(String tel) throws SQLException {
+        String sql = "SELECT * FROM customer WHERE tel = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setObject(1, name);
+        pstm.setObject(1, tel);
 
         ResultSet resultSet = pstm.executeQuery();
         if (resultSet.next()) {
             String cus_id = resultSet.getString(1);
+            String name = resultSet.getString(2);
             String address = resultSet.getString(3);
-            String tel = resultSet.getString(4);
+
 
             Customer customer = new Customer(cus_id, name, address, tel);
 
@@ -143,5 +144,31 @@ public class CustomerRepo {
         }
 
         return null;
+    }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT CUS_ID FROM customer ORDER BY CUS_ID DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String cusId = resultSet.getString(1);
+            return cusId;
+        }
+        return null;
+    }
+
+    public static int getCustomerCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS customer_count FROM customer  WHERE status = 'ACTIVE'";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("customer_count");
+        }
+        return 0;
     }
 }

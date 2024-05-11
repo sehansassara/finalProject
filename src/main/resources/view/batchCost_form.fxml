@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,10 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="719.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchCostFormController">
+<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchCostFormController">
    <children>
-      <Label layoutX="413.0" layoutY="10.0" text="Batch Cost">
+      <Label layoutX="14.0" layoutY="14.0" text="Batch Cost">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>
@@ -26,55 +26,55 @@
          </font>
       </Text>
       <JFXComboBox fx:id="comBatId" focusColor="#5e6d9a" layoutX="121.0" layoutY="110.0" onAction="#ComBatIdOnAction" prefHeight="24.0" prefWidth="183.0" unFocusColor="BLACK" />
-      <Text layoutX="429.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" wrappingWidth="63.7294921875">
+      <Text layoutX="119.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" wrappingWidth="63.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="540.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Production Date :" wrappingWidth="134.7294921875">
+      <Text layoutX="270.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Production Date :" wrappingWidth="134.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="718.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price :" wrappingWidth="95.7294921875">
+      <Text layoutX="518.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price :" wrappingWidth="95.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Label fx:id="lblProductionDate" layoutX="609.0" layoutY="126.0" />
-      <Label fx:id="lblBatchUnitPrice" layoutX="738.0" layoutY="126.0" />
-      <Label fx:id="lblBatchType" layoutX="451.0" layoutY="126.0" />
-      <Text layoutX="121.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ING ID :" wrappingWidth="63.7294921875">
+      <Label fx:id="lblProductionDate" layoutX="339.0" layoutY="227.0" />
+      <Label fx:id="lblBatchUnitPrice" layoutX="538.0" layoutY="226.0" />
+      <Label fx:id="lblBatchType" layoutX="141.0" layoutY="226.0" />
+      <Text layoutX="121.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ING ID :" wrappingWidth="63.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="comIngId" layoutX="121.0" layoutY="241.0" onAction="#comIngIdOnAction" prefHeight="24.0" prefWidth="183.0" />
-      <Text layoutX="433.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" wrappingWidth="63.7294921875">
+      <JFXComboBox fx:id="comIngId" layoutX="121.0" layoutY="321.0" onAction="#comIngIdOnAction" prefHeight="24.0" prefWidth="183.0" />
+      <Text layoutX="125.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" wrappingWidth="63.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="558.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UnitPrice :" wrappingWidth="80.7294921875">
+      <Text layoutX="298.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UnitPrice :" wrappingWidth="80.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Text layoutX="718.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity On Hand :" wrappingWidth="142.7294921875">
+      <Text layoutX="488.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity On Hand :" wrappingWidth="142.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Label fx:id="lblIngType" layoutX="454.0" layoutY="257.0" />
-      <Label fx:id="lblUnitPrice" layoutX="595.0" layoutY="257.0" />
-      <Label fx:id="lblQtyOnHand" layoutX="791.0" layoutY="257.0" />
-      <Text layoutX="904.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty :" wrappingWidth="41.7294921875">
+      <Label fx:id="lblIngType" layoutX="146.0" layoutY="448.0" />
+      <Label fx:id="lblUnitPrice" layoutX="335.0" layoutY="447.0" />
+      <Label fx:id="lblQtyOnHand" layoutX="561.0" layoutY="447.0" />
+      <Text layoutX="734.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty :" wrappingWidth="41.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtQty" layoutX="893.0" layoutY="237.0" onAction="#txtQtyOnAction" prefHeight="40.0" prefWidth="64.0" />
-      <TableView fx:id="tblCost" layoutX="194.0" layoutY="374.0" prefHeight="234.0" prefWidth="693.0">
+      <TextField fx:id="txtQty" layoutX="723.0" layoutY="427.0" onAction="#txtQtyOnAction" prefHeight="40.0" prefWidth="64.0" />
+      <TableView fx:id="tblCost" layoutX="876.0" layoutY="64.0" prefHeight="727.0" prefWidth="675.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="82.0" text="BAT ID" />
           <TableColumn fx:id="colIngId" prefWidth="85.0" text="ING ID" />
@@ -83,18 +83,25 @@
             <TableColumn fx:id="colTotal" prefWidth="154.0" text="Total" />
             <TableColumn fx:id="colAction" prefWidth="154.0" text="Action" />
         </columns>
+         <styleClass>
+            <String fx:value="column-header-background" />
+            <String fx:value="table-cell" />
+            <String fx:value="table-column" />
+            <String fx:value="table-row-cell" />
+            <String fx:value="table-view" />
+         </styleClass>
       </TableView>
-      <Label layoutX="42.0" layoutY="661.0" text="Total Cost :" textFill="#6b110e">
+      <Label layoutX="36.0" layoutY="774.0" text="Total Cost :" textFill="#6b110e">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotalCost" layoutX="213.0" layoutY="667.0" textFill="#324a22">
+      <Label fx:id="lblTotalCost" layoutX="213.0" layoutY="778.0" textFill="#324a22">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnAddToTable" layoutX="862.0" layoutY="317.0" onAction="#btnAddToTableOnAction" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #e6867a;" text="Add to table">
+      <JFXButton fx:id="btnAddToTable" layoutX="675.0" layoutY="525.0" onAction="#btnAddToTableOnAction" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #e6867a;" text="Add to table">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -103,7 +110,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnPlaceCost" layoutX="862.0" layoutY="663.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #86c28b;" text="Place Cost">
+      <JFXButton fx:id="btnPlaceCost" layoutX="675.0" layoutY="785.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #86c28b;" text="Place Cost">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

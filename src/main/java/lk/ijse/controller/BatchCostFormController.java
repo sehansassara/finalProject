@@ -9,13 +9,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.model.*;
+import lk.ijse.model.Batch;
+import lk.ijse.model.BatchCost;
+import lk.ijse.model.Ingredient;
+import lk.ijse.model.batchIngredient;
 import lk.ijse.model.tm.BatchCostTm;
-import lk.ijse.model.tm.OrderTm;
 import lk.ijse.repository.BatchCostRepo;
 import lk.ijse.repository.BatchRepo;
 import lk.ijse.repository.IngredientRepo;
-import lk.ijse.repository.PlaceOrderRepo;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -227,6 +228,7 @@ public class BatchCostFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "batch cost Placed!").show();
                 obList.clear();
                 tblCost.setItems(obList);
+
                 calculateNetTotal();
             }else{
                 new Alert(Alert.AlertType.WARNING, "batch cost Placed Unsuccessfully!").show();

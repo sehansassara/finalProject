@@ -1,0 +1,30 @@
+/* Main.css */
+
+/* Button styles */
+.jfx-button {
+
+    -fx-background-color: transparent;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 16px;
+
+    -fx-font-weight: bold;
+
+}
+
+/* Button hover effect */
+.jfx-button:hover {
+    -fx-background-color: #2893ff;
+    -fx-cursor: hand;
+}
+
+.dashboard-pane {
+    -fx-background-color: linear-gradient(to bottom, #a6c0fe, #e3f0fb); /* Gradient from #a6c0fe to #e3f0fb */
+}
+
+/* Add shadow effect to the AnchorPane */
+.dashboard-paneA {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0, 0, 4);
+}
+

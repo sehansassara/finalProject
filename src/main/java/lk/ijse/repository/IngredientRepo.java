@@ -2,8 +2,6 @@ package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Ingredient;
-import lk.ijse.model.OrderDetail;
-import lk.ijse.model.Payment;
 import lk.ijse.model.batchIngredient;
 
 import java.sql.PreparedStatement;
@@ -138,5 +136,18 @@ public class IngredientRepo {
         pstm.setString(2, ingId);
 
         return pstm.executeUpdate() > 0;
+    }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT ING_ID FROM ingredient ORDER BY ING_ID DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String ingId = resultSet.getString(1);
+            return ingId;
+        }
+        return null;
     }
 }

@@ -138,6 +138,15 @@ public class MainBoardFormController {
         Anchorpanemain.getChildren().clear();
         Anchorpanemain.getChildren().add(dashboardPane);
     }
+
+    @FXML
+    void btnBatchCostOnAction(ActionEvent event) throws IOException {
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/batchCost_form.fxml"));
+
+
+        Anchorpanemain.getChildren().clear();
+        Anchorpanemain.getChildren().add(dashboardPane);
+    }
     @FXML
     void btnLogOutOnAction(ActionEvent actionEvent) throws IOException {
         AnchorPane loginPane = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));

@@ -1,11 +1,12 @@
 package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
-import lk.ijse.model.OrderDetail;
 import lk.ijse.model.batchIngredient;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BatchIngredientRepo {
@@ -30,5 +31,27 @@ public class BatchIngredientRepo {
         pstm.setString(3, bi.getIngId());
 
         return pstm.executeUpdate() > 0;    //false ->  |
+    }
+
+    public static List<batchIngredient> getAll() throws SQLException {
+
+        String sql = "SELECT BAT_ID, qty, ING_ID FROM batchIngredientDetail";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<batchIngredient> batchIngredientList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            String batId = resultSet.getString("BAT_ID");
+            int qty = Integer.parseInt(resultSet.getString("qty"));
+            String ingId = resultSet.getString("ING_ID");
+
+
+            batchIngredient ba = new batchIngredient(batId,qty,ingId);
+            batchIngredientList.add(ba);
+        }
+        return batchIngredientList;
     }
 }

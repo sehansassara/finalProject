@@ -1,7 +1,6 @@
 package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
-import lk.ijse.model.Order;
 import lk.ijse.model.Payment;
 
 import java.sql.Date;
@@ -9,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PaymentRepo {
     public static boolean save(Payment payment) throws SQLException {
@@ -118,4 +119,36 @@ public class PaymentRepo {
         }
         return idList;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT PAY_ID FROM payment ORDER BY PAY_ID DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String payId = resultSet.getString(1);
+            return payId;
+        }
+        return null;
+    }
+
+    public static Map<String, Double> getPaymentsByDay() throws SQLException {
+        Map<String, Double> paymentsByDay = new HashMap<>();
+
+        String sql = "SELECT date, SUM(amount) AS total_amount FROM payment GROUP BY date";
+
+        try (PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+             ResultSet resultSet = pstm.executeQuery()) {
+
+            while (resultSet.next()) {
+                String date = resultSet.getString("date");
+                double totalAmount = resultSet.getDouble("total_amount");
+                paymentsByDay.put(date, totalAmount);
+            }
+        }
+
+        return paymentsByDay;
+    }
+
 }

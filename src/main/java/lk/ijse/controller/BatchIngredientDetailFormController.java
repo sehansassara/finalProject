@@ -7,9 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import lk.ijse.model.BatchEmployee;
-import lk.ijse.model.tm.BatchEmployeeTm;
-import lk.ijse.repository.BatchEmployeeRepo;
+import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.model.batchIngredient;
+import lk.ijse.model.tm.batchIngredientTM;
+import lk.ijse.repository.BatchIngredientRepo;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -26,7 +27,7 @@ public class BatchIngredientDetailFormController {
     private TableColumn<?, ?> colQty;
 
     @FXML
-    private TableView<?> tblBatchIng;
+    private TableView<batchIngredientTM> tblBatchIng;
 
     @FXML
     private TextField txtBatId;
@@ -36,6 +37,36 @@ public class BatchIngredientDetailFormController {
 
     @FXML
     private TextField txtQty;
+
+    public void initialize() {
+        setCellValueFactory();
+        loadAllBatchIng();
+    }
+
+    private void setCellValueFactory() {
+        colBatId.setCellValueFactory(new PropertyValueFactory<>("batId"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colIngId.setCellValueFactory(new PropertyValueFactory<>("ingId"));
+    }
+
+    private void loadAllBatchIng() {
+        ObservableList<batchIngredientTM> batIng = FXCollections.observableArrayList();
+        try {
+            List<batchIngredient> batIng1 = BatchIngredientRepo.getAll();
+            for (batchIngredient batchIngredient : batIng1){
+                batchIngredientTM tmt = new batchIngredientTM(
+                        batchIngredient.getBatId(),
+                        batchIngredient.getIngId(),
+                        batchIngredient.getQty()
+                );
+                batIng.add(tmt);
+            }
+            tblBatchIng.setItems(batIng);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+
+        }
+    }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {

@@ -1,0 +1,35 @@
+/* line.css */
+
+/* Remove the border and background of the chart area */
+.chart-area {
+    -fx-background-color: transparent;
+}
+
+/* Style the line series */
+.chart-line-symbol {
+    -fx-background-color: #ff5722; /* Change color as needed */
+    -fx-background-radius: 5px;
+}
+
+/* Style the chart legend */
+.chart-legend {
+    -fx-background-color: #ffffff; /* Change color as needed */
+    -fx-padding: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Style the axis labels */
+.axis-label {
+    -fx-text-fill: #000000; /* Change color as needed */
+    -fx-font-size: 14px;
+}
+
+/* Style the axis lines */
+.axis {
+    -fx-stroke: #000000; /* Change color as needed */
+}
+
+/* Style the axis tick marks */
+.axis-tick-mark {
+    -fx-stroke: #000000; /* Change color as needed */
+}

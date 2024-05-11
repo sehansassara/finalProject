@@ -1,0 +1,26 @@
+.table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-selection-bar: #03A9F4;
+    -fx-selection-bar-non-focused: #03A9F4;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #03A9F4;
+    -fx-text-fill: #FFFFFF;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #F5F5F5;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #E5E5E5;
+}
+
+.table-view .table-cell {
+    -fx-padding: 5px;
+}
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}

@@ -10,19 +10,22 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.OrderTm;
 import lk.ijse.repository.BatchRepo;
 import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.OrderRepo;
 import lk.ijse.repository.PlaceOrderRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PlaceOrderFormController {
     @FXML
@@ -59,7 +62,7 @@ public class PlaceOrderFormController {
     private JFXComboBox<String> comBatId;
 
     @FXML
-    private JFXComboBox<String> comCustName;
+    private JFXComboBox<String> comCustTel;
 
     @FXML
     private Label lblBatQty;
@@ -71,7 +74,7 @@ public class PlaceOrderFormController {
     private Label lblDop;
 
     @FXML
-    private Label lblOrdId;
+    private TextField txtOrdId;
 
     @FXML
     private Label lblType;
@@ -92,7 +95,7 @@ public class PlaceOrderFormController {
     public void initialize() {
         setDate();
         getCurrentOrderIds();
-        getCustomerNames();
+        getCustomerCon();
         getBatchIds();
         setCellValueFactory();
     }
@@ -123,16 +126,16 @@ public class PlaceOrderFormController {
 
     }
 
-    private void getCustomerNames() {
+    private void getCustomerCon() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> nameList = CustomerRepo.getNames();
+            List<String> nameList = CustomerRepo.getCon();
 
-            for (String name : nameList) {
-                obList.add(name);
+            for (String tel : nameList) {
+                obList.add(tel);
             }
 
-            comCustName.setItems(obList);
+            comCustTel.setItems(obList);
 
         } catch(SQLException e){
             throw new RuntimeException(e);
@@ -144,7 +147,7 @@ String nextOrderId = "";
             String currentId = OrderRepo.getCurrentId();
 
             nextOrderId = generateNexrOrderId(currentId);
-            lblOrdId.setText(nextOrderId);
+            txtOrdId.setText(nextOrderId);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -258,6 +261,7 @@ String nextOrderId = "";
                 tblCart.setItems(obList);
                 calculateNetTotal();
                 getCurrentOrderIds();
+                generateBill(orderId);
 
             }else{
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
@@ -288,10 +292,10 @@ String nextOrderId = "";
     }
 
     @FXML
-    void comCustNameOnAction(ActionEvent event) {
-        String name = comCustName.getValue();
+    void comCustTelOnAction(ActionEvent event) {
+        String tel = comCustTel.getValue();
         try {
-            Customer customer = CustomerRepo.searchByName(name);
+            Customer customer = CustomerRepo.searchByTel(tel);
 
             lblCustId.setText(customer.getId());
 
@@ -304,7 +308,32 @@ String nextOrderId = "";
     void txtQtyOnAction(ActionEvent event) {
         btnAddToCartOnAction(event);
     }
+    @FXML
+    void btnGenerateBillOnAction(ActionEvent event) {
 
+    }
+
+    private void generateBill(String orderId) {
+        try {
+            String netTotal = calculateNetTotal(orderId);
+
+            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/PlaceBill.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("orderId", orderId);
+            parameters.put("total", netTotal);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DbConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String calculateNetTotal(String orderId) throws SQLException {
+        return PlaceOrderRepo.calculateNetTotal(orderId);
+    }
 }
 
 

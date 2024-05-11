@@ -100,4 +100,30 @@ public class SupplierRepo {
         }
         return supplierList;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT SUP_ID FROM supplier ORDER BY SUP_ID DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String supId = resultSet.getString(1);
+            return supId;
+        }
+        return null;
+    }
+
+    public static int getSupplierCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS supplier_count FROM supplier  WHERE status = 'ACTIVE'";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("supplier_count");
+        }
+        return 0;
+    }
 }

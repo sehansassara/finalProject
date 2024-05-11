@@ -7,16 +7,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.controller.Util.Regex;
 import lk.ijse.model.Payment;
-import lk.ijse.model.tm.OrderTm;
 import lk.ijse.model.tm.PaymentTm;
-import lk.ijse.repository.IngredientRepo;
 import lk.ijse.repository.OrderRepo;
 import lk.ijse.repository.PaymentRepo;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class PaymentFormController {
@@ -51,7 +52,6 @@ public class PaymentFormController {
     @FXML
     private TextField txtDate;
 
-
     @FXML
     private TextField txtPayId;
 
@@ -59,10 +59,34 @@ public class PaymentFormController {
         setCellValueFactory();
         loadAllPayments();
         getOrdIds();
+        getCurrentPayIds();
         ObservableList<String> paymentTypes = FXCollections.observableArrayList("Cash", "Card");
         choiceType.setItems(paymentTypes);
 
+        txtDate.setText(String.valueOf(LocalDate.now()));
 
+
+    }
+
+    private void getCurrentPayIds() {
+        try {
+            String currentId = PaymentRepo.getCurrentId();
+
+            String nextCusId = generateNexrPayId(currentId);
+            txtPayId.setText(nextCusId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNexrPayId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("P");  //" ", "2"
+            int idNum = Integer.parseInt(split[1]);
+            return "P" + String.format("%03d", ++idNum);
+        }
+        return "P001";
     }
 
     private void getOrdIds() {
@@ -143,6 +167,7 @@ public class PaymentFormController {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
         loadAllPayments();
+        clearFields();
     }
 
     @FXML
@@ -162,18 +187,20 @@ public class PaymentFormController {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
+if (isValied()) {
+    Payment payment = new Payment(payId, amount, date, choiceTypeValue, ordId);
 
-        Payment payment = new Payment(payId,amount,date,choiceTypeValue,ordId);
-
-        try {
-            boolean isSaved = PaymentRepo.save(payment);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION,"payment is saved").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    try {
+        boolean isSaved = PaymentRepo.save(payment);
+        if (isSaved) {
+            new Alert(Alert.AlertType.CONFIRMATION, "payment is saved").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
         loadAllPayments();
+        clearFields();
     }
 
     @FXML
@@ -193,18 +220,20 @@ public class PaymentFormController {
             new Alert(Alert.AlertType.ERROR, "Please enter payment ID.").show();
             return;
         }
+if (isValied()) {
+    Payment payment = new Payment(payId, amount, date, choiceTypeValue, ordId);
 
-        Payment payment = new Payment(payId,amount,date,choiceTypeValue,ordId);
-
-        try {
-            boolean isUpdated = PaymentRepo.update(payment);
-            if (isUpdated){
-                new Alert(Alert.AlertType.CONFIRMATION,"payment is updated").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    try {
+        boolean isUpdated = PaymentRepo.update(payment);
+        if (isUpdated) {
+            new Alert(Alert.AlertType.CONFIRMATION, "payment is updated").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
         loadAllPayments();
+        clearFields();
     }
 
     @FXML
@@ -218,6 +247,7 @@ public class PaymentFormController {
                 txtAmount.setText(String.valueOf(payment.getAmount()));
                 txtDate.setText(String.valueOf(payment.getDate()));
                 comOrd.setValue(payment.getOrdId());
+                choiceType.setValue(payment.getType());
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.INFORMATION,"payment is not found !").show();
@@ -226,5 +256,40 @@ public class PaymentFormController {
 
     public void choiceTypeOnAction(MouseEvent mouseEvent) {
 
+    }
+
+    public void tblPayOnMouse(MouseEvent mouseEvent) {
+        int index = tblPayment.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1){
+            return;
+        }
+
+        String payId = colPayId.getCellData(index).toString();
+        String amount = colAmount.getCellData(index).toString();
+        String date = colDate.getCellData(index).toString();
+        String type = colType.getCellData(index).toString();
+        String ordId = colOrd.getCellData(index).toString();
+
+        txtPayId.setText(payId);
+        txtAmount.setText(amount);
+        txtDate.setText(date);
+        choiceType.setValue(type);
+        comOrd.setValue(ordId);
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtPayId)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.PRICE,txtAmount)) return false;
+        return true;
+    }
+    @FXML
+    void txtAmountOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.PRICE,txtAmount);
+    }
+
+    @FXML
+    void txtPayIdOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtPayId);
     }
 }

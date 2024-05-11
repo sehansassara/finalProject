@@ -24,19 +24,18 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <Label fx:id="lblOrdId" layoutX="234.0" layoutY="90.0" textFill="#581559de" />
       <Text layoutX="644.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Place :" wrappingWidth="110.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
       <Label fx:id="lblDop" layoutX="770.0" layoutY="90.0" />
-      <Text layoutX="141.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name :" wrappingWidth="133.7294921875">
+      <Text layoutX="141.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Contact :" wrappingWidth="142.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="comCustName" layoutX="141.0" layoutY="176.0" onAction="#comCustNameOnAction" prefHeight="24.0" prefWidth="172.0" />
+      <JFXComboBox fx:id="comCustTel" layoutX="141.0" layoutY="176.0" onAction="#comCustTelOnAction" prefHeight="24.0" prefWidth="172.0" />
       <Text layoutX="647.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID :" wrappingWidth="103.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -114,5 +113,6 @@
       </Text>
       <Label fx:id="lblNetTotal" layoutX="172.0" layoutY="655.0" />
       <Label fx:id="lblUnitPrice" layoutX="474.0" layoutY="271.0" />
+      <TextField fx:id="txtOrdId" layoutX="228.0" layoutY="86.0" />
    </children>
 </AnchorPane>

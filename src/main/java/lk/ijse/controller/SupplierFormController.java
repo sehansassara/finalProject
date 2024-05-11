@@ -10,11 +10,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.model.Customer;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.controller.Util.Regex;
 import lk.ijse.model.Ingredient;
 import lk.ijse.model.Supplier;
 import lk.ijse.model.tm.SupplierTm;
-import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.IngredientRepo;
 import lk.ijse.repository.SupplierRepo;
 
@@ -62,6 +63,28 @@ public class SupplierFormController {
         setCellValueFactory();
         loadAllSupplier();
         getIngrediantIds();
+        getCurrentSupIds();
+    }
+
+    private void getCurrentSupIds() {
+        try {
+            String currentId = SupplierRepo.getCurrentId();
+
+            String nextCusId = generateNexrSupId(currentId);
+            txtSupId.setText(nextCusId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNexrSupId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("S");  //" ", "2"
+            int idNum = Integer.parseInt(split[1]);
+            return "S" + String.format("%03d", ++idNum);
+        }
+        return "S001";
     }
 
     private void getIngrediantIds() {
@@ -137,6 +160,8 @@ public class SupplierFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
+        loadAllSupplier();
+        clearFields();
     }
 
     @FXML
@@ -151,17 +176,20 @@ public class SupplierFormController {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
+if (isValied()) {
+    Supplier supplier = new Supplier(id, companyName, address, contact, ingId);
 
-        Supplier supplier = new Supplier(id,companyName,address,contact,ingId);
-
-        try {
-            boolean isSaved = SupplierRepo.save(supplier);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION,"supplier is saved").show();
-            }
-        } catch (SQLException e) {
-           new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    try {
+        boolean isSaved = SupplierRepo.save(supplier);
+        if (isSaved) {
+            new Alert(Alert.AlertType.CONFIRMATION, "supplier is saved").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
+        loadAllSupplier();
+        clearFields();
     }
 
     @FXML
@@ -176,17 +204,20 @@ public class SupplierFormController {
             new Alert(Alert.AlertType.ERROR, "Please enter supplier ID.").show();
             return;
         }
+if (isValied()) {
+    Supplier supplier = new Supplier(id, companyName, address, contact, ingId);
 
-        Supplier supplier = new Supplier(id,companyName,address,contact,ingId);
-
-        try {
-            boolean isUpdated = SupplierRepo.updated(supplier);
-            if (isUpdated){
-                new Alert(Alert.AlertType.CONFIRMATION,"supplier is updated").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    try {
+        boolean isUpdated = SupplierRepo.updated(supplier);
+        if (isUpdated) {
+            new Alert(Alert.AlertType.CONFIRMATION, "supplier is updated").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
+        loadAllSupplier();
+        clearFields();
     }
 
     @FXML
@@ -206,7 +237,7 @@ public class SupplierFormController {
         try {
             Supplier supplier = SupplierRepo.searchById(id);
             if (supplier != null){
-                txtIngId.setText(supplier.getIngId());
+                txtSupId.setText(supplier.getSupId());
                 txtCompanyName.setText(supplier.getCompanyName());
                 txtAddress.setText(supplier.getAddress());
                 txtContact.setText(supplier.getContact());
@@ -217,4 +248,44 @@ public class SupplierFormController {
         }
     }
 
+    public void tblSupOnMouse(MouseEvent mouseEvent) {
+        int index = tblSupplier.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1){
+            return;
+        }
+
+        String supId = colSupId.getCellData(index).toString();
+        String companyName = colCompanyName.getCellData(index).toString();
+        String address = colAddress.getCellData(index).toString();
+        String contact = colContact.getCellData(index).toString();
+        String ingId = colIngId.getCellData(index).toString();
+
+        txtSupId.setText(supId);
+        txtCompanyName.setText(companyName);
+        txtAddress.setText(address);
+        txtContact.setText(contact);
+        comIngId.setValue(ingId);
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtSupId)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtAddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.CONTACT,txtContact)) return false;
+        return true;
+    }
+    @FXML
+    void txtAddressOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtAddress);
+    }
+
+    @FXML
+    void txtContactOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.CONTACT,txtContact);
+    }
+
+    @FXML
+    void txtSupIdOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtSupId);
+    }
 }

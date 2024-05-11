@@ -1,15 +1,15 @@
 package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
-import lk.ijse.model.Customer;
 import lk.ijse.model.Order;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderRepo {
     public static boolean save(Order order) throws SQLException {
@@ -124,5 +124,35 @@ public class OrderRepo {
             return orderId;
         }
         return null;
+    }
+
+    public static int getOrderCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS order_count FROM orders  WHERE status = 'ACTIVE'";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("order_count");
+        }
+        return 0;
+    }
+
+    public static Map<String, Integer> getOrdersByDay() throws SQLException {
+        Map<String, Integer> ordersByDay = new HashMap<>();
+
+        String sql = "SELECT dateOfPlace, COUNT(*) AS order_count FROM orders GROUP BY dateOfPlace";
+        try (PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+             ResultSet resultSet = pstm.executeQuery()) {
+
+            while (resultSet.next()) {
+                String orderDay = resultSet.getString("dateOfPlace");
+                int orderCount = resultSet.getInt("order_count");
+                ordersByDay.put(orderDay, orderCount);
+            }
+        }
+
+        return ordersByDay;
     }
 }

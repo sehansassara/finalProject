@@ -2,7 +2,6 @@ package lk.ijse.repository;
 
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Employee;
-import lk.ijse.model.Payment;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -110,5 +109,31 @@ public class EmployeeRepo {
             employeeList.add(employee);
         }
         return employeeList;
+    }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT EMP_ID FROM employee ORDER BY EMP_ID DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String empId = resultSet.getString(1);
+            return empId;
+        }
+        return null;
+    }
+
+    public static int getEmployeeCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS employee_count FROM employee WHERE status = 'ACTIVE'";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("employee_count");
+        }
+        return 0;
     }
 }

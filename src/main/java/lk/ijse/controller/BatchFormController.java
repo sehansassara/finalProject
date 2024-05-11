@@ -9,18 +9,30 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.model.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.controller.Util.Regex;
+import lk.ijse.model.Batch;
+import lk.ijse.model.BatchEmployee;
+import lk.ijse.model.Employee;
+import lk.ijse.model.Store;
 import lk.ijse.model.tm.BatchTm;
 import lk.ijse.model.tm.EmployeeTm;
-import lk.ijse.repository.*;
+import lk.ijse.repository.BatchEmployeeRepo;
+import lk.ijse.repository.BatchRepo;
+import lk.ijse.repository.EmployeeRepo;
+import lk.ijse.repository.StoreRepo;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 public class BatchFormController {
+
+    @FXML
+    private TextField txtBatId;
     @FXML
     private TableColumn<?, ?> colAction11;
 
@@ -58,7 +70,7 @@ public class BatchFormController {
     @FXML
     private JFXComboBox<String> comStoId;
     @FXML
-    private TextField txtBatId;
+    private Label lblBatId;
 
     @FXML
     private TextField txtNumOfReject;
@@ -91,9 +103,32 @@ public class BatchFormController {
         loadAllBatch();
         loadAllEmp();
         getStoreIds();
+        getCurrentBatchIds();
+        txtProductionDate.setText(String.valueOf(LocalDate.now()));
 
         ObservableList<String> batchType = FXCollections.observableArrayList("Jack Mackerel", "Tuna Mackeral","Mackerel","Sardin");
         choiceType.setItems(batchType);
+    }
+
+    private void getCurrentBatchIds() {
+        try {
+            String currentId = BatchRepo.getCurrentId();
+
+            String nextBatchId = generateNexrBatchId(currentId);
+            txtBatId.setText(nextBatchId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNexrBatchId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("B");  //" ", "2"
+            int idNum = Integer.parseInt(split[1]);
+            return "B" + String.format("%03d", ++idNum);
+        }
+        return "B001";
     }
 
     private void loadAllEmp() {
@@ -218,6 +253,7 @@ public class BatchFormController {
         txtProductionDate.setText("");
         txtNumOfReject.setText("");
         txtQty.setText("");
+        choiceType.setValue(null);
     }
 
     @FXML
@@ -238,16 +274,25 @@ public class BatchFormController {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
         loadAllBatch();
+        clearFields();
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         String id = txtBatId.getText();
         String stoId = comStoId.getValue();
-        double price = Double.parseDouble(txtPrice.getText());
-        String type = (String) choiceType.getValue();
-        Date productionDate = Date.valueOf(txtProductionDate.getText());
 
+        double price = 0.0;
+        if (!txtPrice.getText().isEmpty()) {
+            price = Double.parseDouble((txtPrice.getText()));
+        }
+
+        String type = (String) choiceType.getValue();
+
+        Date productionDate = new Date(0);
+        if (txtProductionDate.getText().isEmpty()){
+            new Alert(Alert.AlertType.INFORMATION,"pleace fill the blank").show();
+        }
         int numOfReject = 0;
         if (!txtNumOfReject.getText().isEmpty()) {
             numOfReject = Integer.parseInt(txtNumOfReject.getText());
@@ -258,31 +303,41 @@ public class BatchFormController {
             qty = Integer.parseInt(txtQty.getText());
         }
 
-        if (id.isEmpty() || stoId.isEmpty() || type == null) {
+        if (id.isEmpty() || stoId == null|| type == null) {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
+if (isValied()) {
+    Batch batch = new Batch(id, stoId, price, type, productionDate, numOfReject, qty);
 
-        Batch batch = new Batch(id,stoId,price,type,productionDate,numOfReject,qty);
-
-        try {
-            boolean isSaved = BatchRepo.save(batch);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION,"batch is saved").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    try {
+        boolean isSaved = BatchRepo.save(batch);
+        if (isSaved) {
+            new Alert(Alert.AlertType.CONFIRMATION, "batch is saved").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
         loadAllBatch();
+        clearFields();
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         String id = txtBatId.getText();
         String stoId = comStoId.getValue();
-        double price = Double.parseDouble(txtPrice.getText());
+        double price = 0.0;
+        if (!txtPrice.getText().isEmpty()) {
+            price = Double.parseDouble((txtPrice.getText()));
+        }
         String type = (String) choiceType.getValue();
-        Date productionDate = Date.valueOf(txtProductionDate.getText());
+
+        Date productionDate = new Date(0);
+        if (txtProductionDate.getText().isEmpty()){
+            new Alert(Alert.AlertType.INFORMATION,"pleace fill the blank").show();
+        }
+
 
         int numOfReject = 0;
         if (!txtNumOfReject.getText().isEmpty()) {
@@ -293,23 +348,20 @@ public class BatchFormController {
         if (!txtQty.getText().isEmpty()) {
             qty = Integer.parseInt(txtQty.getText());
         }
+if (isValied()) {
+    Batch batch = new Batch(id, stoId, price, type, productionDate, numOfReject, qty);
 
-        if (id.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please enter batch ID.").show();
-            return;
+    try {
+        boolean isUpdated = BatchRepo.update(batch);
+        if (isUpdated) {
+            new Alert(Alert.AlertType.CONFIRMATION, "batch is updated").show();
         }
-
-        Batch batch = new Batch(id,stoId,price,type,productionDate,numOfReject,qty);
-
-        try {
-            boolean isUpdated = BatchRepo.update(batch);
-            if (isUpdated){
-                new Alert(Alert.AlertType.CONFIRMATION,"batch is updated").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
         loadAllBatch();
+        clearFields();
     }
 
     @FXML
@@ -336,10 +388,56 @@ public class BatchFormController {
                 txtProductionDate.setText(String.valueOf(batch.getProductionDate()));
                 txtNumOfReject.setText(String.valueOf(batch.getNumberOfReject()));
                 txtQty.setText(String.valueOf(batch.getQty()));
+                choiceType.setValue(batch.getType());
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.INFORMATION,"batch is not found !").show();
         }
     }
 
+    public void tblBatOnClick(MouseEvent mouseEvent) {
+        int index = tblBatch.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1){
+            return;
+        }
+
+        String batId = colBatId.getCellData(index).toString();
+        String stoId = colStoId.getCellData(index).toString();
+        String unitPrice = colPrice.getCellData(index).toString();
+        String type = colType.getCellData(index).toString();
+        String productionDate = colProductionDate.getCellData(index).toString();
+        String numOfReject = colNumberOfRejectedItem.getCellData(index).toString();
+        String qty = colQty.getCellData(index).toString();
+
+        txtBatId.setText(batId);
+        comStoId.setValue(stoId);
+        txtPrice.setText(unitPrice);
+        choiceType.setValue(type);
+        txtProductionDate.setText(productionDate);
+        txtNumOfReject.setText(numOfReject);
+        txtQty.setText(qty);
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtBatId)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.PRICE,txtPrice)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty)) return false;
+        return true;
+    }
+
+    public void txtBatIdOnKeyReleased(javafx.scene.input.KeyEvent keyEvent) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtBatId);
+    }
+
+    @FXML
+    void txtPriceOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.PRICE,txtPrice);
+    }
+
+    @FXML
+    void txtQtyOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty);
+
+    }
 }

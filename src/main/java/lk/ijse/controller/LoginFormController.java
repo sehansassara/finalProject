@@ -1,7 +1,9 @@
 package lk.ijse.controller;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.application.Platform;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,22 +16,24 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import lk.ijse.db.DbConnection;
 
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
-import java.util.Properties;
-import java.util.Random;
-public class LoginFormController {
+import java.util.ResourceBundle;
 
+public class LoginFormController {
+    @FXML
+    private Label lblWelcome;
+
+    @FXML
+    private Label lblSea;
     public AnchorPane rootnode;
     public TextField emailField;
 
@@ -47,8 +51,20 @@ public class LoginFormController {
 
     @FXML
     private TextField txtUserId;
+    private String welcomeText = "WELCOME";
+    private int currentIndex = 0;
 
-
+    public void initialize() {
+        // Create a Timeline to update the label text gradually
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(230), event -> {
+            if (currentIndex <= welcomeText.length()) {
+                lblWelcome.setText(welcomeText.substring(0, currentIndex));
+                currentIndex++;
+            }
+        }));
+        timeline.setCycleCount(welcomeText.length() + 1); // Execute animation for the length of welcomeText
+        timeline.play();
+    }
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
         String userId = txtUserId.getText();

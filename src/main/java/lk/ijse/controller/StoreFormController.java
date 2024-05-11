@@ -9,6 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.controller.Util.Regex;
 import lk.ijse.model.Store;
 import lk.ijse.model.tm.StoreTm;
 import lk.ijse.repository.StoreRepo;
@@ -98,6 +101,7 @@ public class StoreFormController {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
         loadAllStore();
+        clearFields();
     }
 
     @FXML
@@ -116,18 +120,20 @@ public class StoreFormController {
             return;
         }
 
+if (isValied()) {
+    Store store = new Store(id, capacity, location);
 
-        Store store = new Store(id,capacity,location);
-
-        try {
-            boolean isSaved = StoreRepo.save(store);
-            if (isSaved){
-                new Alert(Alert.AlertType.CONFIRMATION,"store is saved").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    try {
+        boolean isSaved = StoreRepo.save(store);
+        if (isSaved) {
+            new Alert(Alert.AlertType.CONFIRMATION, "store is saved").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
         loadAllStore();
+        clearFields();
     }
 
     @FXML
@@ -146,18 +152,20 @@ public class StoreFormController {
             return;
         }
 
+if (isValied()) {
+    Store store = new Store(id, capacity, location);
 
-        Store store = new Store(id,capacity,location);
-
-        try {
-            boolean isUpdate = StoreRepo.update(store);
-            if (isUpdate){
-                new Alert(Alert.AlertType.CONFIRMATION,"store is updated").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+    try {
+        boolean isUpdate = StoreRepo.update(store);
+        if (isUpdate) {
+            new Alert(Alert.AlertType.CONFIRMATION, "store is updated").show();
         }
+    } catch (SQLException e) {
+        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+    }
+}
         loadAllStore();
+        clearFields();
     }
 
     @FXML
@@ -174,5 +182,37 @@ public class StoreFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.INFORMATION,"store is not found !").show();
         }
+    }
+
+    public void tblStoreOnMouse(MouseEvent mouseEvent) {
+        int index = tblStore.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1){
+            return;
+        }
+
+        String stoId = colStoId.getCellData(index).toString();
+        String capacity = colCapacity.getCellData(index).toString();
+        String location = colLocation.getCellData(index).toString();
+
+        txtStoId.setText(stoId);
+        txtCapacity.setText(capacity);
+        txtLocation.setText(location);
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtStoId)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtCapacity)) return false;
+        return true;
+    }
+    @FXML
+    void txtCapacityOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtStoId);
+    }
+
+
+    @FXML
+    void txtStoIdOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtCapacity);
     }
 }

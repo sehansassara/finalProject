@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,23 +14,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootnode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
+<AnchorPane fx:id="rootnode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="793.0" style="-fx-background-radius: 100; -fx-background-color: #25efe1;" stylesheets="@../css/Login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-      <AnchorPane prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #0c0c31;" />
-      <TextField fx:id="txtUserId" layoutX="337.0" layoutY="159.0" prefHeight="34.0" prefWidth="250.0" promptText="type here" />
-      <TextField fx:id="txtPassword" layoutX="337.0" layoutY="206.0" prefHeight="34.0" prefWidth="250.0" promptText="type here" />
-      <Text layoutX="267.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID">
+      <AnchorPane prefHeight="460.0" prefWidth="374.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="338.0" fitWidth="408.0" layoutX="18.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/fresh-salmon-slices-dark-background_599292-68.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <TextField fx:id="txtUserId" layoutX="477.0" layoutY="219.0" prefHeight="34.0" prefWidth="250.0" promptText="type here" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" AnchorPane.bottomAnchor="207.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
          <font>
-            <Font size="14.0" />
+            <Font size="17.0" />
+         </font></TextField>
+      <PasswordField fx:id="txtPassword" layoutX="477.0" layoutY="266.0" prefHeight="34.0" prefWidth="250.0" promptText="type here" style="-fx-background-color: transpate; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;">
+         <font>
+            <Font size="17.0" />
+         </font></PasswordField>
+      <Text layoutX="407.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID">
+         <font>
+            <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="267.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="387.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
-            <Font size="14.0" />
+            <Font size="16.0" />
          </font>
       </Text>
-      <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="370.0" layoutY="290.0" onAction="#btnLoginOnAction" prefHeight="29.0" prefWidth="119.0" ripplerFill="BLACK" style="-fx-background-color: #1ca8b5;" text="Login">
+      <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="520.0" layoutY="360.0" onAction="#btnLoginOnAction" prefHeight="29.0" prefWidth="119.0" ripplerFill="WHITE" style="-fx-background-color: Black;" stylesheets="@../css/Login.css" text="Login" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -35,21 +54,26 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <ImageView fitHeight="82.0" fitWidth="96.0" layoutX="386.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/24-248235_user-profile-avatar-login-account-fa-user-circle.jpeg" />
-         </image>
-      </ImageView>
-      <Label layoutX="386.0" layoutY="89.0" text="Login">
-         <font>
-            <Font name="System Bold" size="27.0" />
-         </font>
-      </Label>
-      <Text layoutX="334.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Did you forget the password ?" wrappingWidth="218.0">
+      <Text layoutX="476.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Did you forget the password ?" wrappingWidth="218.0">
          <font>
             <Font name="FreeSerif" size="18.0" />
          </font>
       </Text>
-      <Hyperlink fx:id="linkForgetPassword" layoutX="363.0" layoutY="359.0" onAction="#linkForgetPasswordOnAction" prefHeight="22.0" prefWidth="150.0" text="Forgotten Password" />
+      <Hyperlink fx:id="linkForgetPassword" layoutX="505.0" layoutY="419.0" onAction="#linkForgetPasswordOnAction" prefHeight="22.0" prefWidth="150.0" text="Forgotten Password" />
+      <Label fx:id="lblWelcome" layoutX="463.0" layoutY="44.0" stylesheets="@../css/Login.css" text="WELCOME">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSea" layoutX="503.0" layoutY="94.0" stylesheets="@../css/Login.css" text="LNV SEA FOOD">
+         <font>
+            <Font name="Rasa Medium" size="26.0" />
+         </font>
+      </Label>
+
    </children>
+   <styleClass>
+      <String fx:value="text-field" />
+      <String fx:value="password-field" />
+   </styleClass>
 </AnchorPane>
