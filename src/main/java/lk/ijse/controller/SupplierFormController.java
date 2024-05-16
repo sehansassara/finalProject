@@ -13,14 +13,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.controller.Util.Regex;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.Ingredient;
 import lk.ijse.model.Supplier;
 import lk.ijse.model.tm.SupplierTm;
 import lk.ijse.repository.IngredientRepo;
 import lk.ijse.repository.SupplierRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SupplierFormController {
 
@@ -162,6 +169,7 @@ public class SupplierFormController {
         }
         loadAllSupplier();
         clearFields();
+        getCurrentSupIds();
     }
 
     @FXML
@@ -176,20 +184,25 @@ public class SupplierFormController {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
-if (isValied()) {
-    Supplier supplier = new Supplier(id, companyName, address, contact, ingId);
 
-    try {
-        boolean isSaved = SupplierRepo.save(supplier);
-        if (isSaved) {
-            new Alert(Alert.AlertType.CONFIRMATION, "supplier is saved").show();
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
         }
-    } catch (SQLException e) {
-        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-    }
-}
+
+        Supplier supplier = new Supplier(id, companyName, address, contact, ingId);
+
+        try {
+            boolean isSaved = SupplierRepo.save(supplier);
+            if (isSaved) {
+                new Alert(Alert.AlertType.CONFIRMATION, "supplier is saved").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
         loadAllSupplier();
         clearFields();
+        getCurrentSupIds();
     }
 
     @FXML
@@ -204,20 +217,25 @@ if (isValied()) {
             new Alert(Alert.AlertType.ERROR, "Please enter supplier ID.").show();
             return;
         }
-if (isValied()) {
-    Supplier supplier = new Supplier(id, companyName, address, contact, ingId);
 
-    try {
-        boolean isUpdated = SupplierRepo.updated(supplier);
-        if (isUpdated) {
-            new Alert(Alert.AlertType.CONFIRMATION, "supplier is updated").show();
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
         }
-    } catch (SQLException e) {
-        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-    }
-}
+
+        Supplier supplier = new Supplier(id, companyName, address, contact, ingId);
+
+        try {
+            boolean isUpdated = SupplierRepo.updated(supplier);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "supplier is updated").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
         loadAllSupplier();
         clearFields();
+        getCurrentSupIds();
     }
 
     @FXML
@@ -287,5 +305,23 @@ if (isValied()) {
     @FXML
     void txtSupIdOnKeyReleased(KeyEvent event) {
         Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtSupId);
+    }
+
+    @FXML
+    void txtCompanyKeyReleasedOAction(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtCompanyName);
+    }
+
+
+    @FXML
+    void btnBillOnAction(ActionEvent event) throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/Supplier.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("supId",txtSupId.getText());
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(jasperReport,data, DbConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint,false);
     }
 }

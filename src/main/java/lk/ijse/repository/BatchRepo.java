@@ -76,11 +76,12 @@ public class BatchRepo {
             String stoId = resultSet.getString(2);
             double price = Double.parseDouble(resultSet.getString(3));
             String type = resultSet.getString(4);
-            Date productionDate = Date.valueOf(resultSet.getString(5));
+            Date date = resultSet.getDate(5);
+
             int numberOfReject = resultSet.getInt(6);
             int qty = resultSet.getInt(7);
 
-            Batch batch = new Batch(batId,stoId,price,type,productionDate,numberOfReject,qty);
+            Batch batch = new Batch(batId,stoId,price,type,date,numberOfReject,qty);
             return batch;
         }
         return null;
@@ -102,11 +103,11 @@ public class BatchRepo {
             String stoId = resultSet.getString(2);
             double price = resultSet.getDouble(3);
             String type = resultSet.getString(4);
-            Date productionDate = Date.valueOf(resultSet.getString(5));
+            Date date = resultSet.getDate(5);
             int numberOfReject = resultSet.getInt(6);
             int qty = resultSet.getInt(7);
 
-            Batch batch = new Batch(batId,stoId,price,type,productionDate,numberOfReject,qty);
+            Batch batch = new Batch(batId,stoId,price,type,date,numberOfReject,qty);
 
             batchList.add(batch);
         }

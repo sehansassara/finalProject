@@ -1,7 +1,6 @@
 package lk.ijse.controller;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -14,19 +13,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.controller.Util.Regex;
 import lk.ijse.db.DbConnection;
 
-import javax.mail.*;
+import javax.mail.MessagingException;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class LoginFormController {
     @FXML
@@ -69,6 +68,11 @@ public class LoginFormController {
     void btnLoginOnAction(ActionEvent event) throws IOException {
         String userId = txtUserId.getText();
         String pw = txtPassword.getText();
+
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
 
         try {
             checkCredential(userId, pw);
@@ -115,161 +119,32 @@ public class LoginFormController {
     @FXML
     void linkForgetPasswordOnAction(ActionEvent event) throws IOException, MessagingException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/forgetPassword2_form.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/forgetPassword1_form.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Password Forget Form");
         stage.show();
+    }
 
-
-      /*  String recipientEmail = emailField.getText();
-
-
-        String otp = generateOTP();
-
-
-        sendEmail(recipientEmail, otp);
-
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-
-        alert.setTitle("Success");
-
-
-        alert.setHeaderText("OTP sent successfully");
-
-
-        alert.setContentText("We have sent a 4-digit OTP to your email address. Please check your inbox.");
-
-
-        alert.showAndWait();
-
-
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtUserId)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtPassword)) return false;
+        return true;
     }
 
 
-    private String generateOTP() {
-
-
-        int otpLength = 4;
-
-
-        String allowedChars = "0123456789";
-
-
-        Random random = new Random();
-
-
-        StringBuilder otp = new StringBuilder(otpLength);
-
-
-        for (int i = 0; i < otpLength; i++) {
-
-
-            int index = random.nextInt(allowedChars.length());
-
-
-            otp.append(allowedChars.charAt(index));
-
-
-        }
-
-
-        return otp.toString();
-
+    @FXML
+    void txtPassKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtPassword);
 
     }
 
+    @FXML
+    void txtUserKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtUserId);
 
-    private void sendEmail(String recipientEmail, String otp) throws MessagingException {
-
-
-        String smtpHost = "smtp.gmail.com";
-
-
-        int smtpPort = 465;
-
-
-        String senderEmail = "sehansassara2002@gmail.com";
-
-
-        String senderPassword = "Sehan0731";
-
-
-        Properties properties = new Properties();
-
-
-        properties.put("mail.smtp.auth", "true");
-
-
-        properties.put("mail.smtp.starttls.enable", "true");
-
-
-        properties.put("mail.smtp.host", smtpHost);
-
-
-        properties.put("mail.smtp.port", smtpPort);
-
-
-        properties.put("mail.smtp.ssl.enable", "true");
-
-
-        Session session = Session.getInstance(properties, new Authenticator() {
-
-
-            @Override
-
-
-            protected PasswordAuthentication getPasswordAuthentication() {
-
-
-                return new PasswordAuthentication(senderEmail, senderPassword);
-
-
-            }
-
-
-        });
-
-
-        try {
-
-
-            Message message = new MimeMessage(session);
-
-
-            message.setFrom(new InternetAddress(senderEmail));
-
-
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
-
-
-            message.setSubject("Password Reset OTP");
-
-
-            message.setText("Your OTP for password reset is: " + otp);
-
-
-            Transport.send(message);
-
-
-            System.out.println("Email sent successfully!");
-
-
-        } catch (MessagingException e) {
-
-
-            e.printStackTrace();
-
-
-            throw e;
-
-
-        }*/
     }
-
     @FXML
     void linkNewAccountOnAction(ActionEvent event) {
 

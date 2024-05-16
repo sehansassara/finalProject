@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +17,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class StoreFormController {
-
+    @FXML
+    private ChoiceBox<String> choiceStore;
     @FXML
     private TableColumn<?, ?> colCapacity;
 
@@ -39,10 +37,10 @@ public class StoreFormController {
     @FXML
     private TextField txtLocation;
 
-    @FXML
-    private TextField txtStoId;
     public void initialize() {
         setCellValueFactory();
+        ObservableList<String> stores = FXCollections.observableArrayList("ST001", "ST002","ST003","ST004");
+        choiceStore.setItems(stores);
         loadAllStore();
     }
 
@@ -77,14 +75,14 @@ public class StoreFormController {
     }
 
     private void clearFields() {
-        txtStoId.setText("");
+        choiceStore.setValue(null);
         txtCapacity.setText("");
         txtLocation.setText("");
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        String id = txtStoId.getText();
+        String id = choiceStore.getValue();
 
         if (id.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Please enter store ID.").show();
@@ -106,7 +104,7 @@ public class StoreFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String id = txtStoId.getText();
+        String id = choiceStore.getValue();
 
         int capacity = 0;
         if (!txtCapacity.getText().isEmpty()) {
@@ -120,7 +118,11 @@ public class StoreFormController {
             return;
         }
 
-if (isValied()) {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
     Store store = new Store(id, capacity, location);
 
     try {
@@ -131,14 +133,13 @@ if (isValied()) {
     } catch (SQLException e) {
         new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
     }
-}
         loadAllStore();
         clearFields();
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        String id = txtStoId.getText();
+        String id = choiceStore.getValue();
 
         int capacity = 0;
         if (!txtCapacity.getText().isEmpty()) {
@@ -152,7 +153,11 @@ if (isValied()) {
             return;
         }
 
-if (isValied()) {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
     Store store = new Store(id, capacity, location);
 
     try {
@@ -163,19 +168,18 @@ if (isValied()) {
     } catch (SQLException e) {
         new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
     }
-}
         loadAllStore();
         clearFields();
     }
 
     @FXML
     void txtSearchOnAction(ActionEvent event) {
-        String id = txtStoId.getText();
+        String id = choiceStore.getValue();
 
         try {
             Store store = StoreRepo.searchById(id);
             if (store != null){
-                txtStoId.setText(store.getStoId());
+                choiceStore.setValue(store.getStoId());
                 txtCapacity.setText(String.valueOf(store.getCapacity()));
                 txtLocation.setText(store.getLocation());
             }
@@ -195,24 +199,26 @@ if (isValied()) {
         String capacity = colCapacity.getCellData(index).toString();
         String location = colLocation.getCellData(index).toString();
 
-        txtStoId.setText(stoId);
+        choiceStore.setValue(stoId);
         txtCapacity.setText(capacity);
         txtLocation.setText(location);
     }
 
     public boolean isValied(){
-        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtStoId)) return false;
         if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtCapacity)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtLocation)) return false;
         return true;
     }
+
+
+
     @FXML
     void txtCapacityOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtStoId);
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtCapacity);
     }
 
-
     @FXML
-    void txtStoIdOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtCapacity);
+    void txtLocationKeyReleasedOnAction(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtLocation);
     }
 }

@@ -1,0 +1,36 @@
+.label-style {
+    -fx-font-family: "Arial"; /* Font family */
+    -fx-font-size: 24px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0.2, 0, 0); /* Add drop shadow effect */
+    -fx-text-fill: white; /* Two-color gradient text */
+    -fx-background-color: linear-gradient(to top right, #00bfff, #007bff); /* Two-color gradient background */
+    -fx-background-radius: 10px; /* Background radius */
+    -fx-padding: 10px 20px; /* Padding */
+}
+
+.send-otp-button {
+    -fx-background-color: #FFFFFF; /* Button background color */
+    -fx-text-fill: #2196F3; /* Text color */
+    -fx-font-size: 18px; /* Font size */
+    -fx-font-family: "Arial"; /* Font family */
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, #000000, 10, 0.2, 0, 0); /* Add drop shadow effect */
+    -fx-padding: 10 20; /* Padding for the button */
+    -fx-background-radius: 20; /* Rounded corners */
+    -fx-cursor: hand;
+}
+
+.send-otp-button:hover {
+    -fx-background-color: #E0E0E0; /* Hover background color */
+}
+
+#AnchorpaneForget {
+    -fx-border-color: #CCCCCC; /* Color of the border */
+    -fx-border-width: 10px; /* Width of the border */
+    -fx-border-radius: 0px; /* Border radius to make corners rounded */
+}
+
+.background-pane {
+    -fx-background-color: linear-gradient(to bottom right, #4CAF50, #2196F3); /* Gradient background */
+}

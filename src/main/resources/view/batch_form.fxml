@@ -30,7 +30,7 @@
       <JFXComboBox fx:id="comStoId" layoutX="447.0" layoutY="132.0" onAction="#comStoIdOnAction" prefHeight="29.0" prefWidth="209.0" />
       <TextField fx:id="txtPrice" layoutX="97.0" layoutY="228.0" onKeyReleased="#txtPriceOnKeyReleased" prefHeight="29.0" prefWidth="209.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px  0px; -fx-text-fill: black;" />
       <TextField fx:id="txtProductionDate" layoutX="444.0" layoutY="228.0" prefHeight="29.0" prefWidth="209.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <TextField fx:id="txtNumOfReject" layoutX="97.0" layoutY="319.0" prefHeight="29.0" prefWidth="209.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
+      <TextField fx:id="txtNumOfReject" layoutX="97.0" layoutY="319.0" onKeyReleased="#txtNumOfRejectOnKeyReleased" prefHeight="29.0" prefWidth="209.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
       <TextField fx:id="txtQty" layoutX="444.0" layoutY="319.0" onKeyReleased="#txtQtyOnKeyReleased" prefHeight="29.0" prefWidth="209.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
       <ChoiceBox fx:id="choiceType" layoutX="98.0" layoutY="412.0" prefHeight="29.0" prefWidth="209.0" />
 

@@ -265,6 +265,11 @@ public class BatchFormController {
             return;
         }
 
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
         try {
             boolean isDeleted = BatchRepo.delete(id);
             if (isDeleted){
@@ -275,6 +280,8 @@ public class BatchFormController {
         }
         loadAllBatch();
         clearFields();
+        getCurrentBatchIds();
+        txtProductionDate.setText(String.valueOf(LocalDate.now()));
     }
 
     @FXML
@@ -289,9 +296,9 @@ public class BatchFormController {
 
         String type = (String) choiceType.getValue();
 
-        Date productionDate = new Date(0);
-        if (txtProductionDate.getText().isEmpty()){
-            new Alert(Alert.AlertType.INFORMATION,"pleace fill the blank").show();
+        Date productionDate = null;
+        if (!txtProductionDate.getText().isEmpty()){
+             productionDate = Date.valueOf(LocalDate.now());
         }
         int numOfReject = 0;
         if (!txtNumOfReject.getText().isEmpty()) {
@@ -307,7 +314,11 @@ public class BatchFormController {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
-if (isValied()) {
+
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
     Batch batch = new Batch(id, stoId, price, type, productionDate, numOfReject, qty);
 
     try {
@@ -318,9 +329,11 @@ if (isValied()) {
     } catch (SQLException e) {
         new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
     }
-}
+
         loadAllBatch();
         clearFields();
+        getCurrentBatchIds();
+        txtProductionDate.setText(String.valueOf(LocalDate.now()));
     }
 
     @FXML
@@ -333,9 +346,9 @@ if (isValied()) {
         }
         String type = (String) choiceType.getValue();
 
-        Date productionDate = new Date(0);
-        if (txtProductionDate.getText().isEmpty()){
-            new Alert(Alert.AlertType.INFORMATION,"pleace fill the blank").show();
+        Date productionDate = null;
+        if (!txtProductionDate.getText().isEmpty()){
+            productionDate = Date.valueOf(LocalDate.now());
         }
 
 
@@ -348,7 +361,12 @@ if (isValied()) {
         if (!txtQty.getText().isEmpty()) {
             qty = Integer.parseInt(txtQty.getText());
         }
-if (isValied()) {
+
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
     Batch batch = new Batch(id, stoId, price, type, productionDate, numOfReject, qty);
 
     try {
@@ -359,9 +377,10 @@ if (isValied()) {
     } catch (SQLException e) {
         new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
     }
-}
         loadAllBatch();
         clearFields();
+        getCurrentBatchIds();
+        txtProductionDate.setText(String.valueOf(LocalDate.now()));
     }
 
     @FXML
@@ -381,6 +400,7 @@ if (isValied()) {
 
         try {
             Batch batch = BatchRepo.searchById(id);
+
             if(batch != null){
                 txtBatId.setText(batch.getBatId());
                 comStoId.setValue(batch.getStoId());
@@ -423,6 +443,8 @@ if (isValied()) {
         if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtBatId)) return false;
         if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.PRICE,txtPrice)) return false;
         if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.PRICE,txtNumOfReject)) return false;
+
         return true;
     }
 
@@ -438,6 +460,12 @@ if (isValied()) {
     @FXML
     void txtQtyOnKeyReleased(KeyEvent event) {
         Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty);
-
     }
+
+
+    @FXML
+    void txtNumOfRejectOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.PRICE,txtNumOfReject);
+    }
+
 }

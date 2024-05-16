@@ -31,7 +31,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtCompanyName" layoutX="485.0" layoutY="130.0" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
+      <TextField fx:id="txtCompanyName" layoutX="485.0" layoutY="130.0" onKeyReleased="#txtCompanyKeyReleasedOAction" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
       <Text layoutX="106.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="124.0">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -114,5 +114,17 @@
          </styleClass>
       </TableView>
       <JFXComboBox fx:id="comIngId" layoutX="106.0" layoutY="342.0" onAction="#ComIngIdOnAction" prefHeight="30.0" prefWidth="205.0" />
+      <JFXButton layoutX="14.0" layoutY="761.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Report">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-bill-94.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

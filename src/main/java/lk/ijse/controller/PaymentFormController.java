@@ -10,15 +10,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.controller.Util.Regex;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.Payment;
 import lk.ijse.model.tm.PaymentTm;
 import lk.ijse.repository.OrderRepo;
 import lk.ijse.repository.PaymentRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PaymentFormController {
 
@@ -62,9 +69,8 @@ public class PaymentFormController {
         getCurrentPayIds();
         ObservableList<String> paymentTypes = FXCollections.observableArrayList("Cash", "Card");
         choiceType.setItems(paymentTypes);
-
         txtDate.setText(String.valueOf(LocalDate.now()));
-
+        comOrd.setEditable(true);
 
     }
 
@@ -168,6 +174,7 @@ public class PaymentFormController {
         }
         loadAllPayments();
         clearFields();
+        getCurrentPayIds();
     }
 
     @FXML
@@ -179,7 +186,11 @@ public class PaymentFormController {
             amount = Double.parseDouble(txtAmount.getText());
         }
 
-        Date date = Date.valueOf(txtDate.getText());
+        Date date = null;
+        if (!txtDate.getText().isEmpty()){
+            date = Date.valueOf(LocalDate.now());
+        }
+
         String choiceTypeValue = (String) choiceType.getValue();
         String ordId = comOrd.getValue();
 
@@ -187,18 +198,22 @@ public class PaymentFormController {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
-if (isValied()) {
-    Payment payment = new Payment(payId, amount, date, choiceTypeValue, ordId);
 
-    try {
-        boolean isSaved = PaymentRepo.save(payment);
-        if (isSaved) {
-            new Alert(Alert.AlertType.CONFIRMATION, "payment is saved").show();
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
         }
-    } catch (SQLException e) {
-        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-    }
-}
+
+        Payment payment = new Payment(payId, amount, date, choiceTypeValue, ordId);
+
+        try {
+            boolean isSaved = PaymentRepo.save(payment);
+            if (isSaved) {
+                new Alert(Alert.AlertType.CONFIRMATION, "payment is saved").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
         loadAllPayments();
         clearFields();
     }
@@ -212,7 +227,11 @@ if (isValied()) {
             amount = Double.parseDouble(txtAmount.getText());
         }
 
-        Date date = Date.valueOf(txtDate.getText());
+        Date date = null;
+        if (!txtDate.getText().isEmpty()){
+            date = Date.valueOf(LocalDate.now());
+        }
+        
         String choiceTypeValue = (String) choiceType.getValue();
         String ordId = comOrd.getValue();
 
@@ -220,20 +239,25 @@ if (isValied()) {
             new Alert(Alert.AlertType.ERROR, "Please enter payment ID.").show();
             return;
         }
-if (isValied()) {
-    Payment payment = new Payment(payId, amount, date, choiceTypeValue, ordId);
 
-    try {
-        boolean isUpdated = PaymentRepo.update(payment);
-        if (isUpdated) {
-            new Alert(Alert.AlertType.CONFIRMATION, "payment is updated").show();
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
         }
-    } catch (SQLException e) {
-        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-    }
-}
+
+        Payment payment = new Payment(payId, amount, date, choiceTypeValue, ordId);
+
+        try {
+            boolean isUpdated = PaymentRepo.update(payment);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "payment is updated").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
         loadAllPayments();
         clearFields();
+        getCurrentPayIds();
     }
 
     @FXML
@@ -291,5 +315,41 @@ if (isValied()) {
     @FXML
     void txtPayIdOnKeyReleased(KeyEvent event) {
         Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtPayId);
+    }
+
+    @FXML
+    void btnBillOnAction(ActionEvent event) throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/Payment.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("payId",txtPayId.getText());
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(jasperReport,data, DbConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint,false);
+    }
+
+    @FXML
+    void filterOrderId(KeyEvent event) {
+        ObservableList<String > filterCon = FXCollections.observableArrayList();
+        String enteredText = comOrd.getEditor().getText();
+
+        try {
+            List<String> conList = OrderRepo.getIds();
+
+            for (String con : conList){
+                if (con.contains(enteredText)){
+                    filterCon.add(con);
+                }
+            }
+            comOrd.setItems(filterCon);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void orderIdMousedClick(MouseEvent event) {
+        comOrd.getSelectionModel().clearSelection();
     }
 }

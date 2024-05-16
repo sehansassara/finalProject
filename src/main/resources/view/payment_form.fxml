@@ -114,6 +114,18 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="comOrd" layoutX="149.0" layoutY="438.0" prefHeight="29.0" prefWidth="223.0" />
+      <JFXComboBox fx:id="comOrd" layoutX="149.0" layoutY="438.0" onKeyReleased="#filterOrderId" onMouseClicked="#orderIdMousedClick" prefHeight="29.0" prefWidth="223.0" />
+      <JFXButton buttonType="RAISED" layoutX="48.0" layoutY="768.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Report">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-bill-94.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

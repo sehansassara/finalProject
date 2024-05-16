@@ -130,6 +130,7 @@ public class IngredientFormController {
         }
         loadAllIngredient();
         clearFields();
+        getCurrentIngIds();
     }
 
     @FXML
@@ -149,7 +150,11 @@ public class IngredientFormController {
             return;
         }
 
-        if (isValied()) {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
     Ingredient ingredient = new Ingredient(id, type, price, qtyOnHand);
     try {
         boolean isSaved = IngredientRepo.save(ingredient);
@@ -159,9 +164,9 @@ public class IngredientFormController {
     } catch (SQLException e) {
         new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
     }
-    }
         loadAllIngredient();
         clearFields();
+        getCurrentIngIds();
     }
 
     @FXML
@@ -180,20 +185,25 @@ public class IngredientFormController {
             new Alert(Alert.AlertType.ERROR, "Please enter ingredient ID.").show();
             return;
         }
-if (isValied()) {
-    Ingredient ingredient = new Ingredient(id, type, price, qtyOnHand);
 
-    try {
-        boolean isUpdated = IngredientRepo.update(ingredient);
-        if (isUpdated) {
-            new Alert(Alert.AlertType.CONFIRMATION, "ingredient is updated").show();
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
         }
-    } catch (SQLException e) {
-        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-    }
-}
+
+        Ingredient ingredient = new Ingredient(id, type, price, qtyOnHand);
+
+        try {
+            boolean isUpdated = IngredientRepo.update(ingredient);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "ingredient is updated").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
         loadAllIngredient();
         clearFields();
+        getCurrentIngIds();
     }
 
     @FXML

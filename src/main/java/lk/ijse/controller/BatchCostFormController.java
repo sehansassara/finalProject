@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.Batch;
 import lk.ijse.model.BatchCost;
 import lk.ijse.model.Ingredient;
@@ -17,11 +20,13 @@ import lk.ijse.model.tm.BatchCostTm;
 import lk.ijse.repository.BatchCostRepo;
 import lk.ijse.repository.BatchRepo;
 import lk.ijse.repository.IngredientRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class BatchCostFormController {
     @FXML
@@ -86,8 +91,22 @@ public class BatchCostFormController {
         getBatIds();
         getIngIds();
         setCellValueFactory();
+        clearFields();
+        comBatId.setEditable(true);
+        comBatId.setEditable(true);
     }
-
+    private void clearFields() {
+        comBatId.setValue(null);
+        comIngId.setValue(null);
+        lblBatchUnitPrice.setText("");
+        lblProductionDate.setText("");
+        lblUnitPrice.setText("");
+        txtQty.setText("");
+        lblIngType.setText("");
+        lblBatchUnitPrice.setText("");
+        lblQtyOnHand.setText("");
+        lblBatchType.setText("");
+    }
     private void setCellValueFactory() {
         colBatId.setCellValueFactory(new PropertyValueFactory<>("batId"));
         colIngId.setCellValueFactory(new PropertyValueFactory<>("ingId"));
@@ -145,10 +164,10 @@ public class BatchCostFormController {
             throw new RuntimeException(e);
         }
     }
-
+    String batId="";
     @FXML
     void btnAddToTableOnAction(ActionEvent event) {
-        String batId = comBatId.getValue();
+         batId = comBatId.getValue();
         String ingId = comIngId.getValue();
         double unitPrice = Double.parseDouble(lblUnitPrice.getText());
         int qty = Integer.parseInt(txtQty.getText());
@@ -228,14 +247,37 @@ public class BatchCostFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "batch cost Placed!").show();
                 obList.clear();
                 tblCost.setItems(obList);
-
+                generateBill(batId);
                 calculateNetTotal();
+                clearFields();
             }else{
                 new Alert(Alert.AlertType.WARNING, "batch cost Placed Unsuccessfully!").show();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void generateBill(String batId) {
+        try {
+            String netTotal = calculateNetTotal(batId);
+
+            JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/BatchCost.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("batId", batId);
+            parameters.put("total", netTotal);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DbConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static String calculateNetTotal(String batId) throws SQLException {
+        return BatchCostRepo.calculateNetTotal(batId);
     }
 
     @FXML
@@ -262,4 +304,51 @@ public class BatchCostFormController {
         btnAddToTableOnAction(event);
     }
 
+    @FXML
+    void comBatIdOnMouseClicked(MouseEvent event) {
+        comBatId.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    void comIngIdOnMouseClicked(MouseEvent event) {
+        comIngId.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    void filterBatId(KeyEvent event) {
+        ObservableList<String > filterCon = FXCollections.observableArrayList();
+        String enteredText = comBatId.getEditor().getText();
+
+        try {
+            List<String> conList = BatchRepo.getIds();
+
+            for (String con : conList){
+                if (con.contains(enteredText)){
+                    filterCon.add(con);
+                }
+            }
+            comBatId.setItems(filterCon);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void filterIngId(KeyEvent event) {
+        ObservableList<String > filterCon = FXCollections.observableArrayList();
+        String enteredText = comIngId.getEditor().getText();
+
+        try {
+            List<String> conList = IngredientRepo.getIds();
+
+            for (String con : conList){
+                if (con.contains(enteredText)){
+                    filterCon.add(con);
+                }
+            }
+            comIngId.setItems(filterCon);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

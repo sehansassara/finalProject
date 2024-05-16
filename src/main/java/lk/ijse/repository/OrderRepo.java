@@ -3,6 +3,7 @@ package lk.ijse.repository;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Order;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -154,5 +155,27 @@ public class OrderRepo {
         }
 
         return ordersByDay;
+    }
+
+    public static List<Order> getAll() throws SQLException {
+        String sql = "SELECT * FROM orders WHERE status = 'ACTIVE'";
+        PreparedStatement pstm = DbConnection.getInstance().
+                getConnection().
+                prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<Order> orderList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            String ordId = resultSet.getString(1);
+            String cusId = resultSet.getString(2);
+            Date dop = Date.valueOf(resultSet.getString(3));
+
+
+            Order order = new Order(ordId, cusId, dop);
+            orderList.add(order);
+        }
+        return orderList;
     }
 }

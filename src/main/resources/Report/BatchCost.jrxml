@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cccccccds" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f6c185d8-16b7-40e9-bfcd-09086be79ac7">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="324"/>
+    <property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="671"/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (24)"/>
+    <parameter name="batId" class="java.lang.String"/>
+    <parameter name="total" class="java.lang.String"/>
+    <queryString language="SQL">
+        <![CDATA[SELECT `LnvCo`.`batchIngredientDetail`.`BAT_ID`  , `LnvCo`.batch.`productionDate`  ,  `LnvCo`.ingredient.`unitPrice` , `LnvCo`.`batchIngredientDetail`.`ING_ID` , `LnvCo`.`batchIngredientDetail`.qty
+
+FROM `LnvCo`.batch
+
+JOIN  `LnvCo`.`batchIngredientDetail`  ON `LnvCo`.batch.`BAT_ID`  =  `LnvCo`.`batchIngredientDetail`.`BAT_ID`
+
+
+JOIN  `LnvCo`.ingredient  ON  `LnvCo`.`batchIngredientDetail`.`ING_ID`   = `LnvCo`.ingredient.`ING_ID`
+
+WHERE  `LnvCo`.batch.`BAT_ID` =  $P{batId} ]]>
+    </queryString>
+    <field name="BAT_ID" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="BAT_ID"/>
+        <property name="com.jaspersoft.studio.field.label" value="BAT_ID"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="batchIngredientDetail"/>
+    </field>
+    <field name="productionDate" class="java.sql.Date">
+        <property name="com.jaspersoft.studio.field.name" value="productionDate"/>
+        <property name="com.jaspersoft.studio.field.label" value="productionDate"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="batch"/>
+    </field>
+    <field name="unitPrice" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="unitPrice"/>
+        <property name="com.jaspersoft.studio.field.label" value="unitPrice"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="ingredient"/>
+    </field>
+    <field name="ING_ID" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="ING_ID"/>
+        <property name="com.jaspersoft.studio.field.label" value="ING_ID"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="batchIngredientDetail"/>
+    </field>
+    <field name="qty" class="java.lang.Integer">
+        <property name="com.jaspersoft.studio.field.name" value="qty"/>
+        <property name="com.jaspersoft.studio.field.label" value="qty"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="batchIngredientDetail"/>
+    </field>
+    <group name="BAT_ID">
+        <groupExpression><![CDATA[$F{BAT_ID}]]></groupExpression>
+    </group>
+    <group name="productionDate">
+        <groupExpression><![CDATA[$F{productionDate}]]></groupExpression>
+    </group>
+    <group name="unitPrice">
+        <groupExpression><![CDATA[$F{unitPrice}]]></groupExpression>
+    </group>
+    <group name="ING_ID">
+        <groupExpression><![CDATA[$F{ING_ID}]]></groupExpression>
+    </group>
+    <group name="qty">
+        <groupExpression><![CDATA[$F{qty}]]></groupExpression>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="81" splitType="Stretch">
+            <staticText>
+                <reportElement x="290" y="7" width="224" height="30" uuid="62074944-9edc-4251-95ef-c844776a6858"/>
+                <textElement textAlignment="Center">
+                    <font size="20" isBold="true"/>
+                </textElement>
+                <text><![CDATA[LNV SEA FOOD]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="262" y="30" width="280" height="30" uuid="c6f2348e-2fe7-453e-878a-d9b6e688c90e"/>
+                <textElement>
+                    <font size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[The best Sea food producers]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="352" y="51" width="100" height="21" uuid="0f5c99e5-844a-41a4-bff3-966079d5f20a"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[0354718456]]></text>
+            </staticText>
+            <image>
+                <reportElement x="172" y="-20" width="107" height="101" uuid="82be88e5-eff3-406f-9512-23f4b76c34f4"/>
+                <imageExpression><![CDATA["/home/sehan/Downloads/Logo-02-01-01 (1).png"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="47" splitType="Stretch">
+            <textField>
+                <reportElement x="13" y="17" width="100" height="30" uuid="20fafbcc-d225-46f8-b76f-21d57273d58a"/>
+                <textElement>
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{batId}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="61" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="162" height="30" uuid="9dae4272-08f5-4b4a-a741-9129084b5ad9">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f92eb9b-a7be-433a-be09-77c39d796e65"/>
+                </reportElement>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[BAT_ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="162" y="0" width="160" height="30" uuid="c75bf923-d34a-4930-bb35-424631942e3d">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c800e326-1ce3-4663-b153-f82e4a265da3"/>
+                </reportElement>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[productionDate]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="322" y="0" width="160" height="30" uuid="7bab339e-7b5b-411e-9b35-3677d8d9d8b4">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4996bf42-8a67-4546-8f63-4d3ac47f7a22"/>
+                </reportElement>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[unitPrice]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="482" y="0" width="160" height="30" uuid="e579344d-74b8-4f1d-96b5-9c7cef973590">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bfafe25-3131-4c1b-9f04-2bffc2fa6c17"/>
+                </reportElement>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ING_ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="642" y="0" width="160" height="30" uuid="fa75dd48-74ea-4ca1-a0aa-8beb982e4c0c">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9618fb9f-4b98-4caa-bae0-aeb0bd159546"/>
+                </reportElement>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[qty]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="30" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="162" height="30" uuid="01493f8a-5f8a-4c87-b11a-fc0158d3faef">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8f92eb9b-a7be-433a-be09-77c39d796e65"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{BAT_ID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="162" y="0" width="160" height="30" uuid="72cd2b67-6539-4c45-a8a1-ddbd0e203d42">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c800e326-1ce3-4663-b153-f82e4a265da3"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{productionDate}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="322" y="0" width="160" height="30" uuid="ee194e99-42b9-4beb-9aca-11a13b57c469">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4996bf42-8a67-4546-8f63-4d3ac47f7a22"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="482" y="0" width="160" height="30" uuid="73aee7c1-bb26-4efc-af7a-30a6de5ce25b">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4bfafe25-3131-4c1b-9f04-2bffc2fa6c17"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{ING_ID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="642" y="0" width="160" height="30" uuid="8bc584fd-b65d-4c68-b1cd-63937bb22c9d">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9618fb9f-4b98-4caa-bae0-aeb0bd159546"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch">
+            <textField>
+                <reportElement x="660" y="13" width="100" height="30" uuid="b5535138-39f3-4d10-bdfd-fbc3895c605a"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="540" y="7" width="110" height="30" uuid="d13f2aa2-7739-40b4-9152-bb6afc1896ca"/>
+                <textElement>
+                    <font size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[batch cost :]]></text>
+            </staticText>
+        </band>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch">
+            <staticText>
+                <reportElement x="221" y="17" width="360" height="30" uuid="871a85d2-dccf-4dc8-9346-4cf51a8b79c4"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Aluthgama Road,Yatagala,Alpitiya]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

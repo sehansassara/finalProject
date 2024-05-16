@@ -24,10 +24,10 @@ public static boolean isTextFieldValid(TextField textField, String text){
             filed = "^([0-9]){1,}[.]([0-9]){1,}$";
             break;
         case PRICE:
-            filed = "\\b\\d+(\\.\\d{2})?\\b";
+            filed = "\\b\\d+(\\.\\d{1})?\\b";
             break;
         case QTY:
-            filed = "\"^\\\\d+$\"";
+            filed = "^[1-9]\\d*$";
             break;
     }
     Pattern pattern = Pattern.compile(filed);

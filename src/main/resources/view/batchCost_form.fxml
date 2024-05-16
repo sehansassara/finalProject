@@ -25,7 +25,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="comBatId" focusColor="#5e6d9a" layoutX="121.0" layoutY="110.0" onAction="#ComBatIdOnAction" prefHeight="24.0" prefWidth="183.0" unFocusColor="BLACK" />
+      <JFXComboBox fx:id="comBatId" focusColor="#5e6d9a" layoutX="121.0" layoutY="110.0" onAction="#ComBatIdOnAction" onKeyReleased="#filterBatId" onMouseClicked="#comBatIdOnMouseClicked" prefHeight="24.0" prefWidth="183.0" unFocusColor="BLACK" />
       <Text layoutX="119.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" wrappingWidth="63.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -49,7 +49,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <JFXComboBox fx:id="comIngId" layoutX="121.0" layoutY="321.0" onAction="#comIngIdOnAction" prefHeight="24.0" prefWidth="183.0" />
+      <JFXComboBox fx:id="comIngId" layoutX="121.0" layoutY="321.0" onAction="#comIngIdOnAction" onKeyReleased="#filterIngId" onMouseClicked="#comIngIdOnMouseClicked" prefHeight="24.0" prefWidth="183.0" />
       <Text layoutX="125.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" wrappingWidth="63.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />

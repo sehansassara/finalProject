@@ -30,7 +30,7 @@ public class BatchIngredientRepo {
         pstm.setInt(2, bi.getQty());
         pstm.setString(3, bi.getIngId());
 
-        return pstm.executeUpdate() > 0;    //false ->  |
+        return pstm.executeUpdate() > 0;
     }
 
     public static List<batchIngredient> getAll() throws SQLException {

@@ -17,13 +17,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.controller.Util.Regex;
+import lk.ijse.db.DbConnection;
 import lk.ijse.model.Customer;
 import lk.ijse.model.tm.CustomerTm;
 import lk.ijse.repository.CustomerRepo;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerFormController {
 
@@ -143,6 +150,7 @@ public class CustomerFormController {
         }
         loadAllCustomer();
         clearFields();
+        getCurrentCusIds();
     }
 
     @FXML
@@ -156,7 +164,11 @@ public class CustomerFormController {
             new Alert(Alert.AlertType.ERROR, "Please fill in all fields.").show();
             return;
         }
-        if (isValied()) {
+
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
             Customer customer = new Customer(id, name, address, tel);
 
             try {
@@ -167,7 +179,6 @@ public class CustomerFormController {
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
-        }
                 loadAllCustomer();
                 clearFields();
                 getCurrentCusIds();
@@ -184,20 +195,25 @@ public class CustomerFormController {
             new Alert(Alert.AlertType.ERROR, "Please enter customer ID.").show();
             return;
         }
-if (isValied()) {
-    Customer customer = new Customer(id, name, address, tel);
 
-    try {
-        boolean isUpdate = CustomerRepo.update(customer);
-        if (isUpdate) {
-            new Alert(Alert.AlertType.CONFIRMATION, "customer is updated!").show();
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
         }
-    } catch (SQLException e) {
-        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-    }
-}
+
+        Customer customer = new Customer(id, name, address, tel);
+
+        try {
+            boolean isUpdate = CustomerRepo.update(customer);
+            if (isUpdate) {
+                new Alert(Alert.AlertType.CONFIRMATION, "customer is updated!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
         loadAllCustomer();
         clearFields();
+        getCurrentCusIds();
     }
     @FXML
     public void btnClearOnAction(ActionEvent actionEvent) {
@@ -256,7 +272,21 @@ if (isValied()) {
     public boolean isValied(){
         if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtCusId)) return false;
         if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtAddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.CONTACT,txtTel)) return false;
+
         return true;
+    }
+    @FXML
+    void txtAddressOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.ADDRESS,txtAddress);
+
+    }
+
+    @FXML
+    void txtTelOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.CONTACT,txtTel);
+
     }
 
     public void txtNameOnKeyReleased(KeyEvent keyEvent) {
@@ -267,5 +297,17 @@ if (isValied()) {
     @FXML
     void txtCusIdOnKeyReleased(KeyEvent event) {
         Regex.setTextColor(lk.ijse.controller.Util.TextField.ID,txtCusId);
+    }
+
+    @FXML
+    void btnBillOnAction(ActionEvent event) throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/Customer.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("cusId",txtCusId.getText());
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(jasperReport,data, DbConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint,false);
     }
 }

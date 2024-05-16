@@ -170,6 +170,7 @@ public class EmployeeFormController {
         }
         loadAllEmployee();
         clearFields();
+        getCurrentEmpIds();
     }
 
     @FXML
@@ -187,7 +188,10 @@ public class EmployeeFormController {
 
         String position = txtPosition.getText();
 
-        if (isValied()){
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
 
         Employee employee = new Employee(id,fName,lName,address,tel,salary,position);
 
@@ -204,9 +208,9 @@ public class EmployeeFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
-        }
         loadAllEmployee();
         clearFields();
+        getCurrentEmpIds();
     }
 
     @FXML
@@ -225,25 +229,29 @@ public class EmployeeFormController {
         String position = txtPosition.getText();
 
 
-if (isValied()) {
-    Employee employee = new Employee(id, fName, lName, address, tel, salary, position);
-
-    try {
-        if (id.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Please enter employee ID.").show();
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
             return;
         }
 
-        boolean isUpdated = EmployeeRepo.update(employee);
-        if (isUpdated) {
-            new Alert(Alert.AlertType.CONFIRMATION, "employee is updated").show();
+        Employee employee = new Employee(id, fName, lName, address, tel, salary, position);
+
+        try {
+            if (id.isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Please enter employee ID.").show();
+                return;
+            }
+
+            boolean isUpdated = EmployeeRepo.update(employee);
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "employee is updated").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-    } catch (SQLException e) {
-        new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-    }
-}
         loadAllEmployee();
         clearFields();
+        getCurrentEmpIds();
     }
 
     @FXML

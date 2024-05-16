@@ -1,0 +1,89 @@
+/* styles.css */
+
+.root {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: linear-gradient(to bottom, #4caf50, #2196f3); /* Green to Blue gradient */
+    -fx-padding: 20px;
+}
+
+.anchorpane-side {
+    -fx-background-color: linear-gradient(to bottom right, #2ecc71, #3498db); /* Green to Blue gradient */
+    -fx-background-radius: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-padding: 20px;
+    -fx-alignment: center;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 56px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+}
+
+.text {
+    -fx-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+}
+
+.text-field, .password-field {
+    -fx-pref-height: 40px;
+    -fx-pref-width: 300px;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-color: #ffffff;
+    -fx-prompt-text-fill: #95a5a6;
+    -fx-padding: 0 15 0 15;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
+    -fx-font-size: 14px;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #2ecc71;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 6, 0, 0, 3);
+}
+
+.jfx-button {
+    -fx-pref-height: 45px;
+    -fx-pref-width: 180px;
+    -fx-background-radius: 22.5px;
+    -fx-font-size: 16px;
+    -fx-font-family: 'Arial Bold';
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 6, 0, 0, 3);
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.jfx-button#btnSave {
+    -fx-background-color: #3498db;
+    -fx-rippler-fill: #2980b9;
+}
+
+.jfx-button#btnSave:hover {
+    -fx-background-color: #2980b9;
+}
+
+.jfx-button#btnBack {
+    -fx-background-color: #e74c3c;
+    -fx-rippler-fill: #c0392b;
+}
+
+.jfx-button#btnBack:hover {
+    -fx-background-color: #c0392b;
+}
+
+.image-view {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
+    -fx-transition: opacity 0.3s ease-in-out;
+}
+
+.image-view:hover {
+    -fx-opacity: 0.8;
+}

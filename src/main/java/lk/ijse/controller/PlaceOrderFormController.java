@@ -6,10 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.controller.Util.Regex;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.OrderTm;
@@ -22,6 +26,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -36,7 +41,14 @@ public class PlaceOrderFormController {
 
     @FXML
     private JFXButton btnPlaceOrder;
+    @FXML
+    private TableColumn<?, ?> colCusId1;
 
+    @FXML
+    private TableColumn<?, ?> colDOP;
+
+    @FXML
+    private TableColumn<?, ?> colOrderId;
     @FXML
     private TableColumn<?, ?> colAction;
 
@@ -81,12 +93,15 @@ public class PlaceOrderFormController {
 
     @FXML
     private Label lblUnitPrice;
-    
+
     @FXML
     private Label lblNetTotal;
 
     @FXML
     private TableView<OrderTm> tblCart;
+
+    @FXML
+    private TableView<Order> tblOrder;
 
     @FXML
     private TextField txtQty;
@@ -98,6 +113,46 @@ public class PlaceOrderFormController {
         getCustomerCon();
         getBatchIds();
         setCellValueFactory();
+        loadAllOrders();
+        setCellValueFactoryOrder();
+        clearFields();
+        comCustTel.setEditable(true);
+        comBatId.setEditable(true);
+    }
+
+    private void clearFields() {
+        comCustTel.setValue(null);
+        lblCustId.setText("");
+        comBatId.setValue(null);
+        lblType.setText("");
+        lblUnitPrice.setText("");
+        lblBatQty.setText("");
+    }
+
+    private void setCellValueFactoryOrder() {
+        colOrderId.setCellValueFactory(new PropertyValueFactory<>("ordId"));
+        colCusId1.setCellValueFactory(new PropertyValueFactory<>("cusId"));
+        colDOP.setCellValueFactory(new PropertyValueFactory<>("dateOfPlace"));
+    }
+
+    private void loadAllOrders() {
+        ObservableList<Order> obList = FXCollections.observableArrayList();
+
+        try {
+            List<Order> orderList = OrderRepo.getAll();
+            for (Order order : orderList){
+                Order tm = new Order(
+                        order.getOrdId(),
+                        order.getCusId(),
+                        order.getDateOfPlace()
+                );
+                obList.add(tm);
+            }
+
+            tblOrder.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void setCellValueFactory() {
@@ -141,7 +196,7 @@ public class PlaceOrderFormController {
             throw new RuntimeException(e);
         }
     }
-String nextOrderId = "";
+    String nextOrderId = "";
     private void getCurrentOrderIds() {
         try {
             String currentId = OrderRepo.getCurrentId();
@@ -250,8 +305,12 @@ String nextOrderId = "";
             odList.add(od);
         }
 
-        PlaceOrder po = new PlaceOrder(order, odList);
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
 
+        PlaceOrder po = new PlaceOrder(order, odList);
 
         try {
             boolean isPlaced = PlaceOrderRepo.placeOrder(po);
@@ -262,6 +321,8 @@ String nextOrderId = "";
                 calculateNetTotal();
                 getCurrentOrderIds();
                 generateBill(orderId);
+                loadAllOrders();
+                clearFields();
 
             }else{
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
@@ -333,6 +394,75 @@ String nextOrderId = "";
 
     private String calculateNetTotal(String orderId) throws SQLException {
         return PlaceOrderRepo.calculateNetTotal(orderId);
+    }
+
+    @FXML
+    void filterCustomerCon(KeyEvent event) {
+        ObservableList<String > filterCon = FXCollections.observableArrayList();
+        String enteredText = comCustTel.getEditor().getText();
+
+        try {
+            List<String> conList = CustomerRepo.getCon();
+
+            for (String con : conList){
+                if (con.contains(enteredText)){
+                    filterCon.add(con);
+                }
+            }
+            comCustTel.setItems(filterCon);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void filterbatId(KeyEvent event) {
+        ObservableList<String > filterCon = FXCollections.observableArrayList();
+        String enteredText = comBatId.getEditor().getText();
+
+        try {
+            List<String> conList = BatchRepo.getIds();
+
+            for (String con : conList){
+                if (con.contains(enteredText)){
+                    filterCon.add(con);
+                }
+            }
+            comBatId.setItems(filterCon);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void comBatIdOnMousedClicked(MouseEvent event) {
+        comBatId.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    void comCustTelOnMouseClicked(MouseEvent event) {
+        comCustTel.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    void btnAddNewCustomerOnAction(ActionEvent event) throws IOException {
+
+        AnchorPane customerPane = FXMLLoader.load(this.getClass().getResource("/view/customer_form.fxml"));
+
+
+        AnchorpaneOrder.getChildren().clear();
+        AnchorpaneOrder.getChildren().add(customerPane);
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty)) return false;
+        return true;
+    }
+
+    @FXML
+    void txtQtykeyReleasedOnAction(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty);
+
     }
 }
 

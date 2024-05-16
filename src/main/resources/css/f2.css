@@ -1,0 +1,51 @@
+#anchorpaneForget2 {
+    -fx-background-color: #CCCCCC;
+}
+
+.inner-pane {
+    -fx-background-color: linear-gradient(to bottom right, #4CAF50, #2196F3); /* Gradient background */
+    -fx-background-radius: 10;
+}
+
+.label-title {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 38px;
+    -fx-text-fill: #333333;
+}
+
+.label-content {
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-text-fill: #333333;
+}
+
+.text-field {
+    -fx-font-size: 28px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+.jfx-button {
+    -fx-font-size: 13px;
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+#btnConfirm {
+    -fx-background-color: #41b12b;
+}
+
+#btnBack{
+    -fx-background-color: #db8825;
+}
+.lblMain {
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+}
+

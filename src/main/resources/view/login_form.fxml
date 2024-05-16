@@ -25,14 +25,14 @@
                </image>
             </ImageView>
          </children></AnchorPane>
-      <TextField fx:id="txtUserId" layoutX="477.0" layoutY="219.0" prefHeight="34.0" prefWidth="250.0" promptText="type here" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" AnchorPane.bottomAnchor="207.0">
+      <TextField fx:id="txtUserId" layoutX="477.0" layoutY="219.0" onKeyReleased="#txtUserKeyReleased" prefHeight="34.0" prefWidth="250.0" promptText="type here" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" AnchorPane.bottomAnchor="207.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <font>
             <Font size="17.0" />
          </font></TextField>
-      <PasswordField fx:id="txtPassword" layoutX="477.0" layoutY="266.0" prefHeight="34.0" prefWidth="250.0" promptText="type here" style="-fx-background-color: transpate; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;">
+      <PasswordField fx:id="txtPassword" layoutX="477.0" layoutY="266.0" onKeyReleased="#txtPassKeyReleased" prefHeight="34.0" prefWidth="250.0" promptText="type here" style="-fx-background-color: transpate; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;">
          <font>
             <Font size="17.0" />
          </font></PasswordField>
