@@ -159,7 +159,7 @@
          </styleClass></AnchorPane>
       <AnchorPane layoutX="299.0" layoutY="857.0" prefHeight="158.0" prefWidth="1607.0" stylesheets="@../css/Main.css">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="25.0" layoutY="29.0" onAction="#btnBackOnAction" prefHeight="44.0" prefWidth="118.0" text="Back">
+            <JFXButton buttonType="RAISED" layoutX="25.0" layoutY="29.0" onAction="#btnBackOnAction" prefHeight="44.0" prefWidth="118.0" styleClass="jfx-buttonBack" stylesheets="@../css/button.css" text="Back">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -168,7 +168,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="1465.0" layoutY="29.0" onAction="#btnLogOutOnAction" prefHeight="44.0" prefWidth="118.0" text="Log Out">
+            <JFXButton buttonType="RAISED" layoutX="1465.0" layoutY="29.0" onAction="#btnLogOutOnAction" prefHeight="44.0" prefWidth="118.0" stylesheets="@../css/button.css" text="Log Out">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -176,6 +176,10 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="jfx-buttonLogOut" />
+                  <String fx:value="jfx-buttonLogOUt" />
+               </styleClass>
             </JFXButton>
          </children>
          <styleClass>

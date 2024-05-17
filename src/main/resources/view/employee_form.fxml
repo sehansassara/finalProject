@@ -126,7 +126,7 @@
             <String fx:value="table-view" />
          </styleClass>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="92.0" layoutY="751.0" onAction="#btnReportOnAction" prefHeight="33.0" prefWidth="97.0" style="-fx-background-color: #b0bec5 #b0bec5;" text="Report">
+      <JFXButton buttonType="RAISED" layoutX="92.0" layoutY="751.0" onAction="#btnReportOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>

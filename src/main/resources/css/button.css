@@ -10,7 +10,6 @@
 
 }
 
-/* Button hover effect */
 .jfx-buttonSave:hover {
     -fx-background-color:  #03a9f4;
     -fx-cursor: hand;
@@ -28,7 +27,6 @@
 
 }
 
-/* Button hover effect */
 .jfx-buttonDelete:hover {
     -fx-background-color:   #d50000;
     -fx-cursor: hand;
@@ -46,7 +44,6 @@
 
 }
 
-/* Button hover effect */
 .jfx-buttonUpdate:hover {
     -fx-background-color: #ffff00;
     -fx-cursor: hand;
@@ -63,11 +60,122 @@
 
     }
 
-    /* Button hover effect */
     .jfx-buttonClear:hover {
         -fx-background-color: #b0bec5;
         -fx-cursor: hand;
     }
+
+.jfx-buttonBack {
+
+    -fx-background-color: transparent;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 16px;
+
+    -fx-font-weight: bold;
+
+}
+
+.jfx-buttonBack:hover {
+    -fx-background-color: #e74c3c;
+    -fx-cursor: hand;
+}
+
+.jfx-buttonLogOut {
+
+    -fx-background-color: transparent;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 16px;
+
+    -fx-font-weight: bold;
+
+}
+
+.jfx-buttonLogOUt:hover {
+    -fx-background-color: #8e44ad;
+    -fx-cursor: hand;
+}
+
+.jfx-buttonBill {
+
+    -fx-background-color: transparent;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 13px;
+
+    -fx-font-weight: bold;
+
+}
+
+.jfx-buttonBill:hover {
+    -fx-background-color: #ff5f89;
+    -fx-cursor: hand;
+}
+
+.jfx-buttonAdd {
+
+    -fx-background-color: #0167a3;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 13px;
+
+    -fx-font-weight: bold;
+
+}
+
+.jfx-buttonAddPlace {
+
+    -fx-background-color:  #83c5c1;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 13px;
+
+    -fx-font-weight: bold;
+
+}
+
+.jfx-buttonPlace {
+
+    -fx-background-color:   #b39ddb;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 13px;
+
+    -fx-font-weight: bold;
+
+}
+
+.jfx-buttonBatch {
+
+    -fx-background-color:    #e6867a;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 13px;
+
+    -fx-font-weight: bold;
+
+}
+
+.jfx-buttonBatchCost {
+
+    -fx-background-color: #86c28b;
+
+    -fx-text-fill: black;
+
+    -fx-font-size: 13px;
+
+    -fx-font-weight: bold;
+
+}
+
 .text-field, .password-field {
     -fx-background-color: #f0f0f0;
     -fx-border-color: #ccc;

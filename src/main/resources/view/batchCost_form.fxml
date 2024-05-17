@@ -101,7 +101,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnAddToTable" layoutX="675.0" layoutY="525.0" onAction="#btnAddToTableOnAction" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #e6867a;" text="Add to table">
+      <JFXButton fx:id="btnAddToTable" layoutX="675.0" layoutY="525.0" onAction="#btnAddToTableOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatch" stylesheets="@../css/button.css" text="Add to table">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -110,7 +110,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnPlaceCost" layoutX="675.0" layoutY="785.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #86c28b;" text="Place Cost">
+      <JFXButton fx:id="btnPlaceCost" layoutX="675.0" layoutY="785.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatchCost" stylesheets="@../css/button.css" text="Place Cost">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

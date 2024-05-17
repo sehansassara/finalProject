@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -71,7 +72,7 @@
          </font>
       </Text>
       <TextField fx:id="txtQty" layoutX="863.0" layoutY="268.0" onAction="#txtQtyOnAction" onKeyReleased="#txtQtykeyReleasedOnAction" prefHeight="35.0" prefWidth="65.0" />
-      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="817.0" layoutY="339.0" onAction="#btnAddToCartOnAction" prefHeight="32.0" prefWidth="134.0" style="-fx-background-color: #83c5c1;" text="Add to cart">
+      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="817.0" layoutY="339.0" onAction="#btnAddToCartOnAction" prefHeight="32.0" prefWidth="134.0" styleClass="jfx-buttonAddPlace" stylesheets="@../css/button.css" text="Add to cart">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -83,7 +84,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblCart" layoutX="61.0" layoutY="407.0" prefHeight="285.0" prefWidth="898.0">
+      <TableView fx:id="tblCart" layoutX="61.0" layoutY="407.0" prefHeight="285.0" prefWidth="898.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="83.0" text="BAT ID" />
           <TableColumn fx:id="colCusId" prefWidth="89.0" text="CUS ID" />
@@ -93,8 +94,15 @@
             <TableColumn fx:id="colTotal" prefWidth="171.0" text="Total" />
             <TableColumn fx:id="colAction" prefWidth="133.0" text="Action" />
         </columns>
+         <styleClass>
+            <String fx:value="column-header-background" />
+            <String fx:value="table-cell" />
+            <String fx:value="table-column" />
+            <String fx:value="table-row-cell" />
+            <String fx:value="table-view" />
+         </styleClass>
       </TableView>
-      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="840.0" layoutY="749.0" onAction="#btnPlaceOrderOnAction" prefHeight="32.0" prefWidth="134.0" style="-fx-background-color: #b39ddb;" text="Place Order">
+      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="824.0" layoutY="749.0" onAction="#btnPlaceOrderOnAction" prefHeight="32.0" prefWidth="134.0" styleClass="jfx-buttonPlace" stylesheets="@../css/button.css" text="Place Order">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -113,19 +121,26 @@
       </Text>
       <Label fx:id="lblNetTotal" layoutX="172.0" layoutY="757.0" />
       <Label fx:id="lblUnitPrice" layoutX="474.0" layoutY="271.0" />
-      <TextField fx:id="txtOrdId" layoutX="228.0" layoutY="86.0" />
-      <JFXButton layoutX="334.0" layoutY="154.0" onAction="#btnAddNewCustomerOnAction" prefHeight="24.0" prefWidth="94.0" text="Add" />
+      <TextField fx:id="txtOrdId" layoutX="228.0" layoutY="86.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
+      <JFXButton layoutX="334.0" layoutY="154.0" onAction="#btnAddNewCustomerOnAction" prefHeight="24.0" prefWidth="94.0" styleClass="jfx-buttonAdd" stylesheets="@../css/button.css" text="Add" />
       <Label layoutX="1040.0" layoutY="86.0" text="Resent Order Details :">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <TableView fx:id="tblOrder" layoutX="1048.0" layoutY="132.0" prefHeight="560.0" prefWidth="525.0">
+      <TableView fx:id="tblOrder" layoutX="1048.0" layoutY="132.0" prefHeight="560.0" prefWidth="525.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colOrderId" prefWidth="158.0" text="ORD ID" />
           <TableColumn fx:id="colCusId1" prefWidth="147.0" text="CUS ID" />
             <TableColumn fx:id="colDOP" prefWidth="219.0" text="Date of place" />
         </columns>
+         <styleClass>
+            <String fx:value="column-header-background" />
+            <String fx:value="table-cell" />
+            <String fx:value="table-column" />
+            <String fx:value="table-row-cell" />
+            <String fx:value="table-view" />
+         </styleClass>
       </TableView>
    </children>
 </AnchorPane>
