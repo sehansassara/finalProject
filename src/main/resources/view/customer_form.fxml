@@ -41,7 +41,7 @@
                </image>
             </ImageView>
          </graphic></JFXButton>
-      <JFXButton fx:id="btnUpdate" layoutX="246.0" layoutY="774.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
+      <JFXButton fx:id="btnUpdate" layoutX="248.0" layoutY="774.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -52,7 +52,7 @@
                </image>
             </ImageView>
          </graphic></JFXButton>
-      <JFXButton fx:id="btnClear" layoutX="130.0" layoutY="774.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
+      <JFXButton fx:id="btnClear" layoutX="136.0" layoutY="774.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -102,7 +102,7 @@
          </font>
       </Text>
       <TextField fx:id="txtCusId" layoutX="57.0" layoutY="164.0" onAction="#txtSearchOnAction" onKeyReleased="#txtCusIdOnKeyReleased" prefHeight="33.0" prefWidth="241.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <JFXButton fx:id="btnClear1" layoutX="20.0" layoutY="774.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
+      <JFXButton fx:id="btnClear1" layoutX="25.0" layoutY="774.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

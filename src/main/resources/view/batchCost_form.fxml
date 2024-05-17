@@ -110,7 +110,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnPlaceCost" layoutX="675.0" layoutY="785.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatchCost" stylesheets="@../css/button.css" text="Place Cost">
+      <JFXButton fx:id="btnPlaceCost" layoutX="675.0" layoutY="774.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatchCost" stylesheets="@../css/button.css" text="Place Cost">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -115,7 +115,7 @@
          </font>
       </Text>
       <JFXComboBox fx:id="comOrd" layoutX="149.0" layoutY="438.0" onKeyReleased="#filterOrderId" onMouseClicked="#orderIdMousedClick" prefHeight="29.0" prefWidth="223.0" />
-      <JFXButton buttonType="RAISED" layoutX="48.0" layoutY="768.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
+      <JFXButton buttonType="RAISED" layoutX="34.0" layoutY="768.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
