@@ -66,6 +66,7 @@ public class ForgetPassword3FormController {
         } else {
             txtConfirmPassword.setStyle("-fx-border-color: #e74c3c;");
             txtNewPassword.setStyle("-fx-border-color: #e74c3c;");
+            new Alert(Alert.AlertType.INFORMATION, "Password not match!!").show();
         }
     }
 

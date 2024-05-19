@@ -2,7 +2,6 @@ package lk.ijse.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,31 +58,6 @@ public class BatchEmployeeDetailFormController {
             throw new RuntimeException(ex);
 
         }
-    }
-
-    @FXML
-    void btnClearOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDeleteOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSaveOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void txtSearchOnAction(ActionEvent event) {
-
     }
 
     public void tblBatEmpOnMouse(MouseEvent mouseEvent) {

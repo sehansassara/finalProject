@@ -30,7 +30,7 @@ public class ForgetPassword1FormController {
     @FXML
     void btnSendOtpOnAction(ActionEvent event) {
         int otp = new Random().nextInt(9000) + 1000;
-        JavaMail.sendMail("lasithasumudu.ls@gmail.com",otp);
+        JavaMail.sendMail("sehansassara0731@gmail.com",otp);
         OTP=otp;
         System.out.println(">>>"+otp);
 

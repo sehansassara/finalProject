@@ -110,7 +110,7 @@ public class CustomerRepo {
     }
 
     public static List<String> getCon() throws SQLException {
-        String sql = "SELECT tel FROM customer";
+        String sql = "SELECT tel FROM customer WHERE status = 'ACTIVE'";
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 

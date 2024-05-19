@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchIngredientDetailFormController">
    <children>
@@ -19,77 +14,11 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Text layoutX="101.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BAT ID">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Text>
-      <TextField fx:id="txtBatId" layoutX="98.0" layoutY="140.0" onAction="#txtSearchOnAction" prefHeight="26.0" prefWidth="208.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <Text layoutX="99.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Text>
-      <TextField fx:id="txtQty" layoutX="98.0" layoutY="254.0" prefHeight="26.0" prefWidth="208.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <Text layoutX="99.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ING ID">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Text>
-      <TextField fx:id="txtIngId" layoutX="99.0" layoutY="373.0" prefHeight="26.0" prefWidth="208.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <JFXButton buttonType="RAISED" layoutX="425.0" layoutY="734.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8-plus-96.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="321.0" layoutY="734.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8-delete-64.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="217.0" layoutY="734.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8-update-96.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="113.0" layoutY="734.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/icons8-clear-90.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <TableView fx:id="tblBatchIng" layoutX="730.0" layoutY="105.0" prefHeight="662.0" prefWidth="751.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblBatchIng" layoutX="290.0" layoutY="88.0" prefHeight="662.0" prefWidth="1027.0" stylesheets="@../css/BatchIngre.css">
         <columns>
-          <TableColumn fx:id="colBatId" prefWidth="282.0" text="BAT ID" />
-          <TableColumn fx:id="colQty" prefWidth="218.0" text="QTY" />
-            <TableColumn fx:id="colIngId" prefWidth="248.0" text="ING ID" />
+          <TableColumn fx:id="colBatId" prefWidth="311.0" text="BAT ID" />
+          <TableColumn fx:id="colQty" prefWidth="365.0" text="QTY" />
+            <TableColumn fx:id="colIngId" prefWidth="348.0" text="ING ID" />
         </columns>
          <styleClass>
             <String fx:value="table-view" />

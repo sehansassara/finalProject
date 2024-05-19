@@ -38,12 +38,7 @@
          </font></PasswordField>
       <Text layoutX="407.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID">
          <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text layoutX="387.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-         <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
       </Text>
       <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="520.0" layoutY="360.0" onAction="#btnLoginOnAction" prefHeight="29.0" prefWidth="119.0" ripplerFill="WHITE" style="-fx-background-color: Black;" stylesheets="@../css/Login.css" text="Login" textFill="WHITE">
@@ -70,6 +65,11 @@
             <Font name="Rasa Medium" size="26.0" />
          </font>
       </Label>
+      <Text layoutX="390.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
 
    </children>
    <styleClass>

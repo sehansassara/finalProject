@@ -6,7 +6,7 @@
 
 .anchorpane-side {
     -fx-background-color: linear-gradient(to bottom right, #2ecc71, #3498db); /* Green to Blue gradient */
-    -fx-background-radius: 15px;
+    -fx-background-radius: 0px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
     -fx-padding: 20px;
     -fx-alignment: center;
