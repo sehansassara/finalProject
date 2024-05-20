@@ -59,9 +59,18 @@ public class ForgetPassword3FormController {
                 pstm.setString(1, newPassword);
                 if (pstm.executeUpdate() > 0){
                     new Alert(Alert.AlertType.CONFIRMATION, "Password Updated!!").show();
+                    AnchorPane loginPane = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
+
+                    Scene scene = new Scene(loginPane);
+
+                    Stage stage = (Stage) anchorpainForget3.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.centerOnScreen();
                 }
                 txtConfirmPassword.setStyle("-fx-border-color: green;");
                 txtNewPassword.setStyle("-fx-border-color: green;");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         } else {
             txtConfirmPassword.setStyle("-fx-border-color: #e74c3c;");

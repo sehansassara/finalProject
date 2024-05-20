@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.controller.Util.Regex;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.*;
 import lk.ijse.model.tm.OrderTm;
@@ -120,9 +121,9 @@ public class PlaceOrderFormController {
     }
 
     private void clearFields() {
-       // comCustTel.setValue(null);
+        comCustTel.setValue(null);
         lblCustId.setText("");
-       // comBatId.setValue(null);
+        comBatId.setValue(null);
         lblType.setText("");
         lblUnitPrice.setText("");
         lblBatQty.setText("");
@@ -309,11 +310,6 @@ public class PlaceOrderFormController {
             odList.add(od);
         }
 
-//        if (!isValied()) {
-//            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
-//            return;
-//        }
-
         PlaceOrder po = new PlaceOrder(order, odList);
 
         try {
@@ -327,7 +323,6 @@ public class PlaceOrderFormController {
                 generateBill(orderId);
                 loadAllOrders();
                 clearFields();
-
             }else{
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
 
@@ -361,9 +356,11 @@ public class PlaceOrderFormController {
         String tel = comCustTel.getValue();
         try {
             Customer customer = CustomerRepo.searchByTel(tel);
+            if (customer != null) {
+                lblCustId.setText(customer.getId());
+            }
 
-            lblCustId.setText(customer.getId());
-
+            txtQty.requestFocus();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -440,12 +437,12 @@ public class PlaceOrderFormController {
 
     @FXML
     void comBatIdOnMousedClicked(MouseEvent event) {
-       // comBatId.getSelectionModel().clearSelection();
+        comBatId.getSelectionModel().clearSelection();
     }
 
     @FXML
     void comCustTelOnMouseClicked(MouseEvent event) {
-        //comCustTel.getSelectionModel().clearSelection();
+        comCustTel.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -459,13 +456,13 @@ public class PlaceOrderFormController {
     }
 
     public boolean isValied(){
-       // if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty)) return false;
         return true;
     }
 
     @FXML
     void txtQtykeyReleasedOnAction(KeyEvent event) {
-      //  Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty);
+        Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty);
 
     }
 }

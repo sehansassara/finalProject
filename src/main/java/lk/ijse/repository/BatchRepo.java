@@ -115,7 +115,7 @@ public class BatchRepo {
     }
 
     public static List<String> getIds() throws SQLException {
-        String sql = "SELECT BAT_ID FROM batch";
+        String sql = "SELECT BAT_ID FROM batch WHERE status = 'ACTIVE'";
         ResultSet resultSet = DbConnection.getInstance()
                 .getConnection()
                 .prepareStatement(sql)

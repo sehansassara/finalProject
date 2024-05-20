@@ -100,7 +100,7 @@ public class OrderRepo {
     }*/
 
     public static List<String> getIds() throws SQLException {
-        String sql = "SELECT ORD_ID FROM orders";
+        String sql = "SELECT ORD_ID FROM orders WHERE status = 'ACTIVE'";
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 

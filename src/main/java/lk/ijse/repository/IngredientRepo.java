@@ -101,7 +101,7 @@ public class IngredientRepo {
     }
 
     public static List<String> getIds() throws SQLException {
-        String sql = "SELECT ING_ID FROM ingredient";
+        String sql = "SELECT ING_ID FROM ingredient WHERE status = 'ACTIVE'";
         PreparedStatement pstm = DbConnection.getInstance().
                 getConnection().
                 prepareStatement(sql);
