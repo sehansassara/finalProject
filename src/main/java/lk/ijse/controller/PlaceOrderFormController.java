@@ -21,6 +21,7 @@ import lk.ijse.repository.BatchRepo;
 import lk.ijse.repository.CustomerRepo;
 import lk.ijse.repository.OrderRepo;
 import lk.ijse.repository.PlaceOrderRepo;
+import lombok.Getter;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -95,7 +96,10 @@ public class PlaceOrderFormController {
     private Label lblUnitPrice;
 
     @FXML
-    private Label lblNetTotal;
+    private  Label lblNetTotal;
+
+    @FXML
+    private TextField txtPaidAmount;
 
     @FXML
     private TableView<OrderTm> tblCart;
@@ -105,6 +109,9 @@ public class PlaceOrderFormController {
 
     @FXML
     private TextField txtQty;
+
+    @FXML
+    private Label lblBalance;
     private ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
     public void initialize() {
@@ -127,6 +134,8 @@ public class PlaceOrderFormController {
         lblType.setText("");
         lblUnitPrice.setText("");
         lblBatQty.setText("");
+        txtPaidAmount.setText("");
+        lblBalance.setText("");
     }
 
     private void setCellValueFactoryOrder() {
@@ -196,10 +205,13 @@ public class PlaceOrderFormController {
             throw new RuntimeException(e);
         }
     }
+    @Getter
+    private static String currentId = "";
     String nextOrderId = "";
+
     private void getCurrentOrderIds() {
         try {
-            String currentId = OrderRepo.getCurrentId();
+             currentId = OrderRepo.getCurrentId();
 
             nextOrderId = generateNexrOrderId(currentId);
             txtOrdId.setText(nextOrderId);
@@ -282,7 +294,7 @@ public class PlaceOrderFormController {
     }
 
     private void calculateNetTotal() {
-        int netTotal = 0;
+        double netTotal = 0;
         for (int i = 0; i < tblCart.getItems().size(); i++) {
             netTotal += (double) colTotal.getCellData(i);
         }
@@ -323,6 +335,7 @@ public class PlaceOrderFormController {
                 generateBill(orderId);
                 loadAllOrders();
                 clearFields();
+
             }else{
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
 
@@ -375,23 +388,47 @@ public class PlaceOrderFormController {
 
     }
 
+    double balance;
+    double netTotal;
     private void generateBill(String orderId) {
         try {
-            String netTotal = calculateNetTotal(orderId);
-
+             netTotal = Double.parseDouble(String.valueOf(Double.parseDouble(calculateNetTotal(orderId))));
+            double total = Double.parseDouble(String.valueOf(Double.parseDouble(txtPaidAmount.getText())));
+             balance = netTotal - total ;
+            lblBalance.setText(String.format("%.2f", balance));
             JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/PlaceBill.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("orderId", orderId);
             parameters.put("total", netTotal);
+            parameters.put("paid amount", total);
+            parameters.put("balance", balance);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DbConnection.getInstance().getConnection());
             JasperViewer.viewReport(jasperPrint, false);
-        } catch (JRException | SQLException e) {
+
+            openPaymentForm(String.valueOf(netTotal));
+        } catch (JRException | SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    private void openPaymentForm(String s) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/payment_form.fxml"));
+            AnchorPane paymentForm = loader.load();
+            PaymentFormController paymentFormController = loader.getController();
+            paymentFormController.setNetTotal(netTotal);
+
+            // Replace the current content with the payment form
+            AnchorpaneOrder.getChildren().clear();
+            AnchorpaneOrder.getChildren().add(paymentForm);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private String calculateNetTotal(String orderId) throws SQLException {
         return PlaceOrderRepo.calculateNetTotal(orderId);
@@ -465,7 +502,20 @@ public class PlaceOrderFormController {
         Regex.setTextColor(lk.ijse.controller.Util.TextField.QTY,txtQty);
 
     }
-}
+
+
+    @FXML
+    void txtpaidamountOnKey(KeyEvent event) {
+        try {
+            double netTotal = Double.parseDouble(lblNetTotal.getText());
+            double paidAmount = Double.parseDouble(txtPaidAmount.getText());
+            double balance = paidAmount - netTotal;
+            lblBalance.setText(String.format("%.2f", balance));
+        } catch (NumberFormatException e) {
+            // Handle the case where the input is not a valid number
+            lblBalance.setText("Invalid input");
+        }
+    }}
 
 
 

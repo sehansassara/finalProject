@@ -84,7 +84,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblCart" layoutX="61.0" layoutY="407.0" prefHeight="285.0" prefWidth="898.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblCart" layoutX="61.0" layoutY="399.0" prefHeight="285.0" prefWidth="898.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="83.0" text="BAT ID" />
           <TableColumn fx:id="colCusId" prefWidth="89.0" text="CUS ID" />
@@ -114,12 +114,15 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <Text layoutX="55.0" layoutY="771.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Total :" wrappingWidth="103.7294921875">
+      <Text layoutX="90.0" layoutY="734.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Total :" wrappingWidth="103.7294921875">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Label fx:id="lblNetTotal" layoutX="172.0" layoutY="757.0" />
+      <Label fx:id="lblNetTotal" layoutX="207.0" layoutY="716.0" textFill="#22752c">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font></Label>
       <Label fx:id="lblUnitPrice" layoutX="474.0" layoutY="271.0" />
       <TextField fx:id="txtOrdId" layoutX="228.0" layoutY="86.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
       <JFXButton layoutX="334.0" layoutY="154.0" onAction="#btnAddNewCustomerOnAction" prefHeight="24.0" prefWidth="94.0" styleClass="jfx-buttonAdd" stylesheets="@../css/button.css" text="Add" />
@@ -142,5 +145,24 @@
             <String fx:value="table-view" />
          </styleClass>
       </TableView>
+      <Text layoutX="55.0" layoutY="772.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paid Amount :" wrappingWidth="142.7294921875">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtPaidAmount" layoutX="199.0" layoutY="740.0" onKeyReleased="#txtpaidamountOnKey" prefHeight="26.0" prefWidth="171.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #c0392b;">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font></TextField>
+      <Text layoutX="102.0" layoutY="815.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance :" wrappingWidth="95.04711914062489">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblBalance" layoutX="209.0" layoutY="797.0" textFill="#091b51">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

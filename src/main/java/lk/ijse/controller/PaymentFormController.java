@@ -5,10 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.controller.Util.Regex;
 import lk.ijse.db.DbConnection;
 import lk.ijse.model.Payment;
@@ -20,6 +22,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -28,6 +31,9 @@ import java.util.List;
 import java.util.Map;
 
 public class PaymentFormController {
+
+    @FXML
+    private AnchorPane AnpPay;
 
     @FXML
     private ChoiceBox<String> choiceType;
@@ -72,6 +78,20 @@ public class PaymentFormController {
         txtDate.setText(String.valueOf(LocalDate.now()));
         comOrd.setEditable(true);
 
+       // double netTotal = PlaceOrderFormController.getNetTotal();
+        String orderId = PlaceOrderFormController.getCurrentId();
+
+       // setNetTotal(netTotal);
+        setOrderId(orderId);
+
+    }
+
+    private void setOrderId(String orderId) {
+        comOrd.setValue(orderId);
+    }
+
+    void setNetTotal(double netTotal) {
+        txtAmount.setText(String.valueOf(netTotal));
     }
 
     private void getCurrentPayIds() {
@@ -210,9 +230,16 @@ public class PaymentFormController {
             boolean isSaved = PaymentRepo.save(payment);
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "payment is saved").show();
+                AnchorPane orderPane = FXMLLoader.load(this.getClass().getResource("/view/placeOrder_form.fxml"));
+
+
+                AnpPay.getChildren().clear();
+                AnpPay.getChildren().add(orderPane);
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         loadAllPayments();
         clearFields();
