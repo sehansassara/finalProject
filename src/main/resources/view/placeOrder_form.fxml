@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorpaneOrder" prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PlaceOrderFormController">
+<AnchorPane fx:id="AnchorpaneOrder" prefHeight="703.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PlaceOrderFormController">
    <children>
       <Label layoutX="342.0" layoutY="13.0" text="Place Order Form">
          <font>
@@ -72,7 +72,7 @@
          </font>
       </Text>
       <TextField fx:id="txtQty" layoutX="863.0" layoutY="268.0" onAction="#txtQtyOnAction" onKeyReleased="#txtQtykeyReleasedOnAction" prefHeight="35.0" prefWidth="65.0" />
-      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="817.0" layoutY="339.0" onAction="#btnAddToCartOnAction" prefHeight="32.0" prefWidth="134.0" styleClass="jfx-buttonAddPlace" stylesheets="@../css/button.css" text="Add to cart">
+      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="817.0" layoutY="310.0" onAction="#btnAddToCartOnAction" prefHeight="32.0" prefWidth="134.0" styleClass="jfx-buttonAddPlace" stylesheets="@../css/button.css" text="Add to cart">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,7 +84,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblCart" layoutX="61.0" layoutY="399.0" prefHeight="285.0" prefWidth="898.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblCart" layoutX="61.0" layoutY="353.0" prefHeight="199.0" prefWidth="898.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="83.0" text="BAT ID" />
           <TableColumn fx:id="colCusId" prefWidth="89.0" text="CUS ID" />
@@ -102,7 +102,7 @@
             <String fx:value="table-view" />
          </styleClass>
       </TableView>
-      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="824.0" layoutY="749.0" onAction="#btnPlaceOrderOnAction" prefHeight="32.0" prefWidth="134.0" styleClass="jfx-buttonPlace" stylesheets="@../css/button.css" text="Place Order">
+      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="817.0" layoutY="609.0" onAction="#btnPlaceOrderOnAction" prefHeight="32.0" prefWidth="134.0" styleClass="jfx-buttonPlace" stylesheets="@../css/button.css" text="Place Order">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -114,28 +114,24 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <Text layoutX="90.0" layoutY="734.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Total :" wrappingWidth="103.7294921875">
+      <Text layoutX="90.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Total :" wrappingWidth="103.7294921875">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Label fx:id="lblNetTotal" layoutX="207.0" layoutY="716.0" textFill="#22752c">
-         <font>
-            <Font name="System Bold" size="19.0" />
-         </font></Label>
       <Label fx:id="lblUnitPrice" layoutX="474.0" layoutY="271.0" />
       <TextField fx:id="txtOrdId" layoutX="228.0" layoutY="86.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
       <JFXButton layoutX="334.0" layoutY="154.0" onAction="#btnAddNewCustomerOnAction" prefHeight="24.0" prefWidth="94.0" styleClass="jfx-buttonAdd" stylesheets="@../css/button.css" text="Add" />
-      <Label layoutX="1040.0" layoutY="86.0" text="Resent Order Details :">
+      <Label layoutX="986.0" layoutY="86.0" text="Resent Order Details :">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <TableView fx:id="tblOrder" layoutX="1048.0" layoutY="132.0" prefHeight="560.0" prefWidth="525.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblOrder" layoutX="986.0" layoutY="132.0" prefHeight="508.0" prefWidth="310.0" stylesheets="@../css/BatchIngre.css">
         <columns>
-          <TableColumn fx:id="colOrderId" prefWidth="158.0" text="ORD ID" />
-          <TableColumn fx:id="colCusId1" prefWidth="147.0" text="CUS ID" />
-            <TableColumn fx:id="colDOP" prefWidth="219.0" text="Date of place" />
+          <TableColumn fx:id="colOrderId" prefWidth="94.39990234375" text="ORD ID" />
+          <TableColumn fx:id="colCusId1" prefWidth="83.199951171875" text="CUS ID" />
+            <TableColumn fx:id="colDOP" prefWidth="127.2000732421875" text="Date of place" />
         </columns>
          <styleClass>
             <String fx:value="column-header-background" />
@@ -145,23 +141,28 @@
             <String fx:value="table-view" />
          </styleClass>
       </TableView>
-      <Text layoutX="55.0" layoutY="772.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paid Amount :" wrappingWidth="142.7294921875">
+      <Text layoutX="60.0" layoutY="632.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paid Amount :" wrappingWidth="126.7294921875">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="txtPaidAmount" layoutX="199.0" layoutY="740.0" onKeyReleased="#txtpaidamountOnKey" prefHeight="26.0" prefWidth="171.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #c0392b;">
+      <TextField fx:id="txtPaidAmount" layoutX="188.0" layoutY="600.0" onKeyReleased="#txtpaidamountOnKey" prefHeight="42.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #c0392b;">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="System Bold" size="18.0" />
          </font></TextField>
-      <Text layoutX="102.0" layoutY="815.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance :" wrappingWidth="95.04711914062489">
+      <Text layoutX="101.0" layoutY="663.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance :" wrappingWidth="75.84713745117176">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Text>
-      <Label fx:id="lblBalance" layoutX="209.0" layoutY="797.0" textFill="#091b51">
+      <Label fx:id="lblBalance" layoutX="198.0" layoutY="642.0" textFill="#262c69">
          <font>
-            <Font size="19.0" />
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblNetTotal" layoutX="191.0" layoutY="583.0" textFill="#09430c">
+         <font>
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
    </children>

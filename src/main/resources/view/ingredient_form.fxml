@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.IngredientFormController">
+<AnchorPane prefHeight="704.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.IngredientFormController">
    <children>
       <Label layoutX="14.0" layoutY="22.0" text="Ingredients">
          <font>
@@ -26,25 +26,25 @@
          </font>
       </Text>
       <TextField fx:id="txtIngId" layoutX="113.0" layoutY="171.0" onAction="#txtSearchOnAction" onKeyReleased="#txtIngIdOnKeyReleased" prefHeight="29.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <Text layoutX="458.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="55.7294921875">
+      <Text layoutX="423.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="55.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="choiceType" layoutX="458.0" layoutY="171.0" prefHeight="29.0" prefWidth="226.0" />
+      <ChoiceBox fx:id="choiceType" layoutX="423.0" layoutY="171.0" prefHeight="29.0" prefWidth="226.0" />
       <Text layoutX="113.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price" wrappingWidth="77.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
       <TextField fx:id="txtUnitPrice" layoutX="113.0" layoutY="306.0" onKeyReleased="#txtUnitPriceOnKeyReleased" prefHeight="29.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <Text layoutX="458.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity On Hand" wrappingWidth="139.7294921875">
+      <Text layoutX="423.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity On Hand" wrappingWidth="139.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtQuantityOnHand" layoutX="458.0" layoutY="306.0" onKeyReleased="#txtQuantityOnHandOnKeyReleased" prefHeight="29.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <JFXButton buttonType="RAISED" layoutX="430.0" layoutY="761.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
+      <TextField fx:id="txtQuantityOnHand" layoutX="423.0" layoutY="306.0" onKeyReleased="#txtQuantityOnHandOnKeyReleased" prefHeight="29.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
+      <JFXButton buttonType="RAISED" layoutX="430.0" layoutY="628.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -56,7 +56,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="324.0" layoutY="761.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="324.0" layoutY="628.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -68,7 +68,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="218.0" layoutY="761.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="218.0" layoutY="628.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -80,7 +80,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="113.0" layoutY="761.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="113.0" layoutY="628.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -92,12 +92,12 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblIngredient" layoutX="775.0" layoutY="44.0" onMouseClicked="#tblIngOnMouse" prefHeight="730.0" prefWidth="790.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblIngredient" layoutX="704.0" layoutY="44.0" onMouseClicked="#tblIngOnMouse" prefHeight="616.0" prefWidth="566.0" stylesheets="@../css/BatchIngre.css">
         <columns>
-          <TableColumn fx:id="colIngId" prefWidth="135.0" text="ING ID" />
-          <TableColumn fx:id="colType" prefWidth="236.0" text="Type" />
-            <TableColumn fx:id="colUnitPrice" prefWidth="206.0" text="Unit Price" />
-            <TableColumn fx:id="colQuantityOnHand" prefWidth="210.0" text="Quantity On Hand" />
+          <TableColumn fx:id="colIngId" prefWidth="128.7999267578125" text="ING ID" />
+          <TableColumn fx:id="colType" prefWidth="117.5999755859375" text="Type" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="147.99993896484375" text="Unit Price" />
+            <TableColumn fx:id="colQuantityOnHand" prefWidth="167.199951171875" text="Quantity On Hand" />
         </columns>
          <styleClass>
             <String fx:value="column-header-background" />

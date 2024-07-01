@@ -51,10 +51,7 @@
     </background>
     <title>
         <band height="79" splitType="Stretch">
-            <image>
-                <reportElement x="75" y="-22" width="107" height="101" uuid="3ef60e1d-64ea-4ac3-9faf-e81bd2418ab1"/>
-                <imageExpression><![CDATA["/home/sehan/Downloads/Logo-02-01-01 (1).png"]]></imageExpression>
-            </image>
+
             <staticText>
                 <reportElement x="193" y="7" width="224" height="30" uuid="8f6b0cd6-0593-4209-a3d3-e2b6f20a759d"/>
                 <textElement textAlignment="Center">

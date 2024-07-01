@@ -164,8 +164,9 @@ public class BatchFormController {
 
                         String Empid = emp.getEmpId();
                         String batchId=txtBatId.getText();
+                        System.out.println(batchId);
 
-                        BatchEmployee batchEmployee = new BatchEmployee(Empid, batchId);
+                        BatchEmployee batchEmployee = new BatchEmployee(batchId,Empid);
 
                         try {
                             boolean isSaved = BatchEmployeeRepo.save(batchEmployee);
@@ -174,6 +175,7 @@ public class BatchFormController {
                             }
                         } catch (SQLException ex) {
                             new Alert(Alert.AlertType.ERROR,ex.getMessage()).show();
+                            System.out.println(ex.getMessage());
                         }
 
                         // Update the existing EmployeeTm object in the obList

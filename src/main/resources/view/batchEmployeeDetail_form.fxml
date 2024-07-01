@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchEmployeeDetailFormController">
+<AnchorPane prefHeight="703.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchEmployeeDetailFormController">
    <children>
       <Label layoutX="21.0" layoutY="31.0" text="Batch Employee Details">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <TableView fx:id="tblBatEmp" layoutX="302.0" layoutY="98.0" onMouseClicked="#tblBatEmpOnMouse" prefHeight="699.0" prefWidth="985.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblBatEmp" layoutX="162.0" layoutY="100.0" onMouseClicked="#tblBatEmpOnMouse" prefHeight="578.0" prefWidth="986.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="498.0" text="BAT ID" />
           <TableColumn fx:id="colEmpId" prefWidth="484.0" text="EMP ID" />

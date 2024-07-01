@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.StoreFormController">
+<AnchorPane prefHeight="704.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.StoreFormController">
    <children>
       <Label layoutX="14.0" layoutY="25.0" text="Store">
          <font>
@@ -37,7 +37,7 @@
          </font>
       </Text>
       <TextField fx:id="txtLocation" layoutX="147.0" layoutY="305.0" onKeyReleased="#txtLocationKeyReleasedOnAction" prefHeight="33.0" prefWidth="213.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; _fx_text-fill: black;" />
-      <JFXButton buttonType="RAISED" layoutX="474.0" layoutY="744.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
+      <JFXButton buttonType="RAISED" layoutX="474.0" layoutY="635.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -49,7 +49,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="367.0" layoutY="744.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="367.0" layoutY="635.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -61,7 +61,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="260.0" layoutY="744.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="260.0" layoutY="635.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -73,7 +73,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="153.0" layoutY="744.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="153.0" layoutY="635.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -85,11 +85,11 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TableView fx:id="tblStore" layoutX="904.0" layoutY="57.0" onMouseClicked="#tblStoreOnMouse" prefHeight="741.0" prefWidth="607.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblStore" layoutX="775.0" layoutY="57.0" onMouseClicked="#tblStoreOnMouse" prefHeight="606.0" prefWidth="464.0" stylesheets="@../css/BatchIngre.css">
         <columns>
-          <TableColumn fx:id="colStoId" prefWidth="185.0" text="STO ID" />
-          <TableColumn fx:id="colCapacity" prefWidth="226.0" text="Capacity" />
-            <TableColumn fx:id="colLocation" prefWidth="195.0" text="Location" />
+          <TableColumn fx:id="colStoId" prefWidth="154.39996337890625" text="STO ID" />
+          <TableColumn fx:id="colCapacity" prefWidth="147.19989013671875" text="Capacity" />
+            <TableColumn fx:id="colLocation" prefWidth="160.0" text="Location" />
         </columns>
          <styleClass>
             <String fx:value="column-header-background" />

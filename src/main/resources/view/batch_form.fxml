@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchFormController">
+<AnchorPane prefHeight="703.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchFormController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Batch">
          <font>
@@ -62,7 +62,7 @@
          </font>
       </Text>
 
-      <JFXButton buttonType="RAISED" layoutX="399.0" layoutY="778.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
+      <JFXButton buttonType="RAISED" layoutX="399.0" layoutY="636.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -74,7 +74,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="293.0" layoutY="778.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="293.0" layoutY="636.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -86,7 +86,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="187.0" layoutY="778.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="187.0" layoutY="636.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -98,7 +98,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="778.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="636.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -110,15 +110,15 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblBatch" layoutX="511.0" layoutY="377.0" onMouseClicked="#tblBatOnClick" prefHeight="434.0" prefWidth="980.0" stylesheets="@../css/line.css">
+      <TableView fx:id="tblBatch" layoutX="511.0" layoutY="377.0" onMouseClicked="#tblBatOnClick" prefHeight="280.0" prefWidth="774.0" stylesheets="@../css/line.css">
          <columns>
-            <TableColumn fx:id="colBatId" prefWidth="116.0" text="BAT ID" />
-            <TableColumn fx:id="colStoId" prefWidth="109.0" text="STO ID" />
-            <TableColumn fx:id="colPrice" prefWidth="116.0" text="Unit Price" />
-            <TableColumn fx:id="colType" prefWidth="236.0" text="Type" />
-            <TableColumn fx:id="colProductionDate" prefWidth="172.0" text="Production Date" />
-            <TableColumn fx:id="colNumberOfRejectedItem" prefWidth="124.0" text="Num Of Reject" />
-            <TableColumn fx:id="colQty" prefWidth="106.0" text="Qty" />
+            <TableColumn fx:id="colBatId" prefWidth="86.4000244140625" text="BAT ID" />
+            <TableColumn fx:id="colStoId" prefWidth="77.5999755859375" text="STO ID" />
+            <TableColumn fx:id="colPrice" prefWidth="96.0" text="Unit Price" />
+            <TableColumn fx:id="colType" prefWidth="107.99993896484375" text="Type" />
+            <TableColumn fx:id="colProductionDate" prefWidth="136.79998779296875" text="Production Date" />
+            <TableColumn fx:id="colNumberOfRejectedItem" prefWidth="163.99993896484375" text="Num Of Reject" />
+            <TableColumn fx:id="colQty" prefWidth="95.199951171875" text="Qty" />
          </columns>
          <styleClass>
             <String fx:value="axis" />
@@ -130,7 +130,7 @@
          </styleClass>
       </TableView>
 
-      <TableView fx:id="tblEmp" layoutX="1110.0" layoutY="95.0" prefHeight="218.0" prefWidth="381.0" stylesheets="@../css/line.css">
+      <TableView fx:id="tblEmp" layoutX="891.0" layoutY="97.0" prefHeight="218.0" prefWidth="381.0" stylesheets="@../css/line.css">
          <columns>
             <TableColumn fx:id="colEmpId" prefWidth="83.0" text="EmpId" />
             <TableColumn fx:id="colFirstName" prefWidth="132.0" text="name" />
@@ -145,7 +145,7 @@
             <String fx:value="chart-line-symbol" />
          </styleClass>
       </TableView>
-      <Label layoutX="926.0" layoutY="95.0" prefHeight="29.0" prefWidth="135.0" text="Employee Detail:">
+      <Label layoutX="707.0" layoutY="97.0" prefHeight="29.0" prefWidth="135.0" text="Employee Detail:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

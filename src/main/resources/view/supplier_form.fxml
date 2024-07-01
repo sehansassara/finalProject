@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFormController">
+<AnchorPane prefHeight="703.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SupplierFormController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Supplier">
          <font>
@@ -26,30 +26,30 @@
          </font>
       </Text>
       <TextField fx:id="txtSupId" layoutX="106.0" layoutY="130.0" onAction="#txtSearchOnAction" onKeyReleased="#txtSupIdOnKeyReleased" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px  2px 0px; -fx-text-fill: black;" />
-      <Text layoutX="485.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" wrappingWidth="124.0">
+      <Text layoutX="374.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Name" wrappingWidth="124.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtCompanyName" layoutX="485.0" layoutY="130.0" onKeyReleased="#txtCompanyKeyReleasedOAction" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
+      <TextField fx:id="txtCompanyName" layoutX="374.0" layoutY="130.0" onKeyReleased="#txtCompanyKeyReleasedOAction" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
       <Text layoutX="106.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="124.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
       <TextField fx:id="txtAddress" layoutX="106.0" layoutY="236.0" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
-      <Text layoutX="486.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact" wrappingWidth="124.0">
+      <Text layoutX="375.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact" wrappingWidth="124.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtContact" layoutX="486.0" layoutY="236.0" onKeyReleased="#txtContactOnKeyReleased" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
+      <TextField fx:id="txtContact" layoutX="375.0" layoutY="236.0" onKeyReleased="#txtContactOnKeyReleased" prefHeight="30.0" prefWidth="205.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: black;" />
       <Text layoutX="111.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ING ID" wrappingWidth="124.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <JFXButton layoutX="470.0" layoutY="761.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
+      <JFXButton layoutX="470.0" layoutY="631.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -61,7 +61,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="364.0" layoutY="761.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
+      <JFXButton layoutX="364.0" layoutY="631.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -73,7 +73,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="258.0" layoutY="761.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
+      <JFXButton layoutX="258.0" layoutY="631.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -85,7 +85,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="152.0" layoutY="761.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
+      <JFXButton layoutX="152.0" layoutY="631.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -97,13 +97,13 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TableView fx:id="tblSupplier" layoutX="739.0" layoutY="52.0" onMouseClicked="#tblSupOnMouse" prefHeight="747.0" prefWidth="840.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblSupplier" layoutX="634.0" layoutY="52.0" onMouseClicked="#tblSupOnMouse" prefHeight="606.0" prefWidth="624.0" stylesheets="@../css/BatchIngre.css">
         <columns>
-          <TableColumn fx:id="colSupId" prefWidth="132.0" text="SUP ID" />
-          <TableColumn fx:id="colCompanyName" prefWidth="197.0" text="Company Name" />
-            <TableColumn fx:id="colAddress" prefWidth="164.0" text="Address" />
-            <TableColumn fx:id="colContact" prefWidth="203.0" text="Contact" />
-            <TableColumn fx:id="colIngId" prefWidth="145.0" text="ING ID" />
+          <TableColumn fx:id="colSupId" prefWidth="102.4000244140625" text="SUP ID" />
+          <TableColumn fx:id="colCompanyName" prefWidth="130.39996337890625" text="Company Name" />
+            <TableColumn fx:id="colAddress" prefWidth="127.20013427734375" text="Address" />
+            <TableColumn fx:id="colContact" prefWidth="140.800048828125" text="Contact" />
+            <TableColumn fx:id="colIngId" prefWidth="116.800048828125" text="ING ID" />
         </columns>
          <styleClass>
             <String fx:value="column-header-background" />
@@ -114,7 +114,7 @@
          </styleClass>
       </TableView>
       <JFXComboBox fx:id="comIngId" layoutX="106.0" layoutY="342.0" onAction="#ComIngIdOnAction" prefHeight="30.0" prefWidth="205.0" />
-      <JFXButton layoutX="45.0" layoutY="761.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
+      <JFXButton layoutX="47.0" layoutY="630.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

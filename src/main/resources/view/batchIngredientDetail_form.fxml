@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchIngredientDetailFormController">
+<AnchorPane prefHeight="704.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchIngredientDetailFormController">
    <children>
       <Label layoutX="14.0" layoutY="28.0" text="Batch Ingredient Details">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <TableView fx:id="tblBatchIng" layoutX="290.0" layoutY="88.0" prefHeight="662.0" prefWidth="1027.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblBatchIng" layoutX="179.0" layoutY="88.0" prefHeight="578.0" prefWidth="986.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colBatId" prefWidth="311.0" text="BAT ID" />
           <TableColumn fx:id="colQty" prefWidth="365.0" text="QTY" />

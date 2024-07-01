@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchCostFormController">
+<AnchorPane prefHeight="703.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.BatchCostFormController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Batch Cost">
          <font>
@@ -68,20 +68,20 @@
       <Label fx:id="lblIngType" layoutX="146.0" layoutY="448.0" />
       <Label fx:id="lblUnitPrice" layoutX="335.0" layoutY="447.0" />
       <Label fx:id="lblQtyOnHand" layoutX="561.0" layoutY="447.0" />
-      <Text layoutX="734.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty :" wrappingWidth="41.7294921875">
+      <Text layoutX="674.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty :" wrappingWidth="41.7294921875">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TextField fx:id="txtQty" layoutX="723.0" layoutY="427.0" onAction="#txtQtyOnAction" prefHeight="40.0" prefWidth="64.0" />
-      <TableView fx:id="tblCost" layoutX="876.0" layoutY="64.0" prefHeight="727.0" prefWidth="675.0" stylesheets="@../css/BatchIngre.css">
+      <TextField fx:id="txtQty" layoutX="658.0" layoutY="427.0" onAction="#txtQtyOnAction" prefHeight="40.0" prefWidth="64.0" />
+      <TableView fx:id="tblCost" layoutX="777.0" layoutY="64.0" prefHeight="602.0" prefWidth="511.0" stylesheets="@../css/BatchIngre.css">
         <columns>
-          <TableColumn fx:id="colBatId" prefWidth="82.0" text="BAT ID" />
-          <TableColumn fx:id="colIngId" prefWidth="85.0" text="ING ID" />
-            <TableColumn fx:id="colUnitPrice" prefWidth="109.0" text="Unit Price" />
-            <TableColumn fx:id="colQty" prefWidth="108.0" text="Qty" />
-            <TableColumn fx:id="colTotal" prefWidth="154.0" text="Total" />
-            <TableColumn fx:id="colAction" prefWidth="154.0" text="Action" />
+          <TableColumn fx:id="colBatId" prefWidth="69.5999755859375" text="BAT ID" />
+          <TableColumn fx:id="colIngId" prefWidth="70.39996337890625" text="ING ID" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="84.00006103515625" text="Unit Price" />
+            <TableColumn fx:id="colQty" prefWidth="66.400146484375" text="Qty" />
+            <TableColumn fx:id="colTotal" prefWidth="104.7999267578125" text="Total" />
+            <TableColumn fx:id="colAction" prefWidth="109.5999755859375" text="Action" />
         </columns>
          <styleClass>
             <String fx:value="column-header-background" />
@@ -91,17 +91,12 @@
             <String fx:value="table-view" />
          </styleClass>
       </TableView>
-      <Label layoutX="36.0" layoutY="774.0" text="Total Cost :" textFill="#6b110e">
+      <Label layoutX="33.0" layoutY="580.0" text="Total Cost :" textFill="#6b110e">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotalCost" layoutX="213.0" layoutY="778.0" textFill="#324a22">
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Label>
-      <JFXButton fx:id="btnAddToTable" layoutX="675.0" layoutY="525.0" onAction="#btnAddToTableOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatch" stylesheets="@../css/button.css" text="Add to table">
+      <JFXButton fx:id="btnAddToTable" layoutX="615.0" layoutY="525.0" onAction="#btnAddToTableOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatch" stylesheets="@../css/button.css" text="Add to table">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -110,7 +105,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnPlaceCost" layoutX="675.0" layoutY="774.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatchCost" stylesheets="@../css/button.css" text="Place Cost">
+      <JFXButton fx:id="btnPlaceCost" layoutX="615.0" layoutY="637.0" onAction="#btnPlaceCostOnAction" prefHeight="29.0" prefWidth="135.0" styleClass="jfx-buttonBatchCost" stylesheets="@../css/button.css" text="Place Cost">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -119,5 +114,10 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <Label fx:id="lblTotalCost" layoutX="197.0" layoutY="585.0">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -99,10 +99,7 @@ FROM `LnvCo`.employee]]>
                 </textElement>
                 <text><![CDATA[0354718456]]></text>
             </staticText>
-            <image>
-                <reportElement x="30" y="-20" width="131" height="120" uuid="d4051108-3f01-4c2b-9178-163ab4e185df"/>
-                <imageExpression><![CDATA["/home/sehan/Downloads/WhatsApp Image 2024-05-08 at 10.35.54 PM.jpeg"]]></imageExpression>
-            </image>
+
         </band>
     </title>
     <pageHeader>

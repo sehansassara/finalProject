@@ -331,10 +331,10 @@ public class PlaceOrderFormController {
                 obList.clear();
                 tblCart.setItems(obList);
                 calculateNetTotal();
-                getCurrentOrderIds();
                 generateBill(orderId);
                 loadAllOrders();
                 clearFields();
+                getCurrentOrderIds();
 
             }else{
                 new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();

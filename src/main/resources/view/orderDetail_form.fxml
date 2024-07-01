@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.OrderDetailFormController">
+<AnchorPane prefHeight="703.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.OrderDetailFormController">
    <children>
       <Label layoutX="14.0" layoutY="23.0" prefHeight="30.0" prefWidth="177.0" text="Order Detail">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <TableView fx:id="tblOrderDetail" layoutX="362.0" layoutY="100.0" prefHeight="711.0" prefWidth="883.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblOrderDetail" layoutX="213.0" layoutY="100.0" prefHeight="566.0" prefWidth="883.0" stylesheets="@../css/BatchIngre.css">
         <columns>
           <TableColumn fx:id="colOrdId" prefWidth="274.0" text="ORD ID" />
           <TableColumn fx:id="colBatId" prefWidth="256.0" text="BAT ID" />

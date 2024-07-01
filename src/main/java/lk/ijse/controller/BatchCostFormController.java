@@ -167,7 +167,7 @@ public class BatchCostFormController {
     String batId="";
     @FXML
     void btnAddToTableOnAction(ActionEvent event) {
-         batId = comBatId.getValue();
+        batId = comBatId.getValue();
         String ingId = comIngId.getValue();
         double unitPrice = Double.parseDouble(lblUnitPrice.getText());
         int qty = Integer.parseInt(txtQty.getText());

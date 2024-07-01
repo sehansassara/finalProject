@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnpPay" prefHeight="838.0" prefWidth="1607.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
+<AnchorPane fx:id="AnpPay" prefHeight="703.0" prefWidth="1328.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
    <children>
       <Label layoutX="14.0" layoutY="25.0" text="Payment">
          <font>
@@ -44,13 +44,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
-      <TableView fx:id="tblPayment" layoutX="736.0" layoutY="77.0" onMouseClicked="#tblPayOnMouse" prefHeight="723.0" prefWidth="838.0" stylesheets="@../css/BatchIngre.css">
+      <TableView fx:id="tblPayment" layoutX="736.0" layoutY="77.0" onMouseClicked="#tblPayOnMouse" prefHeight="528.0" prefWidth="554.0" stylesheets="@../css/BatchIngre.css">
         <columns>
-          <TableColumn fx:id="colPayId" prefWidth="116.0" text="PAY ID" />
-          <TableColumn fx:id="colAmount" prefWidth="193.0" text="Amount" />
-            <TableColumn fx:id="colDate" prefWidth="197.0" text="Date" />
-            <TableColumn fx:id="colType" prefWidth="193.0" text="Type" />
-            <TableColumn fx:id="colOrd" prefWidth="138.0" text="ORD ID" />
+          <TableColumn fx:id="colPayId" prefWidth="92.79998779296875" text="PAY ID" />
+          <TableColumn fx:id="colAmount" prefWidth="119.199951171875" text="Amount" />
+            <TableColumn fx:id="colDate" prefWidth="121.60003662109375" text="Date" />
+            <TableColumn fx:id="colType" prefWidth="110.400146484375" text="Type" />
+            <TableColumn fx:id="colOrd" prefWidth="102.4000244140625" text="ORD ID" />
         </columns>
          <styleClass>
             <String fx:value="column-header-background" />
@@ -60,7 +60,7 @@
             <String fx:value="table-view" />
          </styleClass>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="467.0" layoutY="768.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
+      <JFXButton buttonType="RAISED" layoutX="467.0" layoutY="642.0" onAction="#btnSaveOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonSave" stylesheets="@../css/button.css" text="Save">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -72,7 +72,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="359.0" layoutY="768.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
+      <JFXButton buttonType="RAISED" layoutX="359.0" layoutY="642.0" onAction="#btnDeleteOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonDelete" stylesheets="@../css/button.css" text="Delete">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,7 +84,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="251.0" layoutY="768.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
+      <JFXButton buttonType="RAISED" layoutX="251.0" layoutY="642.0" onAction="#btnUpdateOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonUpdate" stylesheets="@../css/button.css" text="Update">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -96,7 +96,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="140.0" layoutY="768.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
+      <JFXButton buttonType="RAISED" layoutX="140.0" layoutY="642.0" onAction="#btnClearOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonClear" stylesheets="@../css/button.css" text="Clear">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -115,7 +115,7 @@
          </font>
       </Text>
       <JFXComboBox fx:id="comOrd" layoutX="149.0" layoutY="438.0" onKeyReleased="#filterOrderId" onMouseClicked="#orderIdMousedClick" prefHeight="29.0" prefWidth="223.0" />
-      <JFXButton buttonType="RAISED" layoutX="34.0" layoutY="768.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
+      <JFXButton buttonType="RAISED" layoutX="34.0" layoutY="642.0" onAction="#btnBillOnAction" prefHeight="33.0" prefWidth="97.0" styleClass="jfx-buttonBill" stylesheets="@../css/button.css" text="Report">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                <image>
